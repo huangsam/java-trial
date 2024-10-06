@@ -1,0 +1,10 @@
+# System
+.DS_Store
+*.class
+
+# Gradle
+/.gradle
+/build
+
+# App runtime
+*.log
