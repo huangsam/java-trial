@@ -12,19 +12,19 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class TestEmployee {
-    private static final Employee[] arrayOfEmps = {
+    private static final Employee[] EMP_ARRAY = {
         new Employee(1, "Jeff Bezos", 100000.0),
         new Employee(2, "Bill Gates", 200000.0),
         new Employee(3, "Mark Zuckerberg", 300000.0)
     };
 
-    private static final List<Employee> empList = Arrays.asList(arrayOfEmps);
+    private static final List<Employee> EMP_LIST = Arrays.asList(EMP_ARRAY);
 
-    private static final EmployeeRepository empRepo = new EmployeeRepository();
+    private static final EmployeeRepository EMP_REPO = new EmployeeRepository();
 
     @BeforeAll
     static void setup() {
-        empList.forEach(empRepo::add);
+        EMP_LIST.forEach(EMP_REPO::add);
     }
 
     @Test
@@ -37,7 +37,7 @@ public class TestEmployee {
 
     @Test
     void testSalaryIncrement() {
-        empList.forEach(e -> {
+        EMP_LIST.forEach(e -> {
             double originalSalary = e.getSalary();
             e.salaryIncrement(10.0);
             assertEquals(e.getSalary(), originalSalary + 10.0);
@@ -47,13 +47,13 @@ public class TestEmployee {
     @Test
     void testEmployeeIdToEmployeeStream() {
         Integer[] empIds = {1, 2, 3};
-        List<Employee> employeesFromRepo = Stream.of(empIds).map(empRepo::findById).toList();
+        List<Employee> employeesFromRepo = Stream.of(empIds).map(EMP_REPO::findById).toList();
         assertEquals(empIds.length, employeesFromRepo.size());
     }
 
     @Test
     void testCollectStreamThenList() {
-        List<Employee> employees = empList.stream().toList();
-        assertEquals(empList.size(), employees.size());
+        List<Employee> employees = EMP_LIST.stream().toList();
+        assertEquals(EMP_LIST.size(), employees.size());
     }
 }
