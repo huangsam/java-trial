@@ -43,6 +43,6 @@ public class TestArrayDeque {
         assertEquals(1, deque.pop());
         assertEquals(2, deque.pop());
         assertEquals(3, deque.pop());
-        assertThrows(NoSuchElementException.class, () -> deque.pop());
+        assertThrows(NoSuchElementException.class, deque::pop);
     }
 }
