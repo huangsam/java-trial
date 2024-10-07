@@ -2,9 +2,12 @@
 .DS_Store
 *.class
 
+# IDE
+.idea/
+
 # Gradle
-/.gradle
-/build
+.gradle/
+build/
 
 # App runtime
 *.log
