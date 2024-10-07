@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'application'
     id 'com.dorongold.task-tree' version '3.0.0'
+    id 'checkstyle'
 }
 
 repositories {
@@ -25,4 +26,9 @@ tasks.named('test', Test) {
 
 application {
     mainClass = 'org.huangsam.sample.TrialRunner'
+}
+
+checkstyle {
+    toolVersion = '10.18.2'
+    configFile = file('config/checkstyle/checkstyle.xml')
 }
