@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class TestArrayDeque {
-    private static ArrayDeque<Integer> deque = new ArrayDeque<>();
+    private static final ArrayDeque<Integer> deque = new ArrayDeque<>();
 
     @BeforeEach
     void resetDeque() {

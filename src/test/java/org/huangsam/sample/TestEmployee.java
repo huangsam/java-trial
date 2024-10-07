@@ -12,19 +12,19 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class TestEmployee {
-    private static Employee[] arrayOfEmps = {
+    private static final Employee[] arrayOfEmps = {
         new Employee(1, "Jeff Bezos", 100000.0),
         new Employee(2, "Bill Gates", 200000.0),
         new Employee(3, "Mark Zuckerberg", 300000.0)
     };
 
-    private static List<Employee> empList = Arrays.asList(arrayOfEmps);
+    private static final List<Employee> empList = Arrays.asList(arrayOfEmps);
 
-    private static EmployeeRepository empRepo = new EmployeeRepository();
+    private static final EmployeeRepository empRepo = new EmployeeRepository();
 
     @BeforeAll
     static void setup() {
-        empList.stream().forEach(e -> empRepo.add(e));
+        empList.forEach(empRepo::add);
     }
 
     @Test

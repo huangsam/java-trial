@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-class TestTrialRun {
+public class TestMath {
     @Test
     void testAdd() {
         assertEquals(1 + 1, 2);
