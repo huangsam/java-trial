@@ -37,7 +37,7 @@ public class TestEmployee {
 
     @Test
     void testSalaryIncrement() {
-        empList.stream().forEach(e -> {
+        empList.forEach(e -> {
             double originalSalary = e.getSalary();
             e.salaryIncrement(10.0);
             assertEquals(e.getSalary(), originalSalary + 10.0);
