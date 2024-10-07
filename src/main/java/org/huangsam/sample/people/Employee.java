@@ -1,8 +1,8 @@
 package org.huangsam.sample.people;
 
 public class Employee {
-    private int id;
-    private String name;
+    private final int id;
+    private final String name;
     private double salary;
 
     public Employee(int id, String name, double salary) {
