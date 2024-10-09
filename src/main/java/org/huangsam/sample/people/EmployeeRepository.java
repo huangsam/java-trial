@@ -1,7 +1,7 @@
 package org.huangsam.sample.people;
 
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 public class EmployeeRepository {
     private final Map<Integer, Employee> employeeRecords = new HashMap<>();
