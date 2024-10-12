@@ -1,8 +1,8 @@
 plugins {
     id 'java'
     id 'application'
-    id 'com.dorongold.task-tree' version libs.versions.task.tree
     id 'checkstyle'
+    alias(libs.plugins.task.tree)
 }
 
 repositories {

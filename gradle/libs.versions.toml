@@ -7,3 +7,6 @@ task-tree = "3.0.0"
 checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.ref = "checkstyle" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
 junit-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+
+[plugins]
+task-tree = { id = "com.dorongold.task-tree", version.ref = "task-tree" }
