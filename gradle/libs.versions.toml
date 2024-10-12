@@ -1,0 +1,9 @@
+[versions]
+checkstyle = "10.18.2"
+junit-jupiter = "5.11.2"
+task-tree = "3.0.0"
+
+[libraries]
+checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.ref = "checkstyle" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
+junit-launcher = { module = "org.junit.platform:junit-platform-launcher" }

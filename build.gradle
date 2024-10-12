@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'application'
-    id 'com.dorongold.task-tree' version '3.0.0'
+    id 'com.dorongold.task-tree' version libs.versions.task.tree
     id 'checkstyle'
 }
 
@@ -10,8 +10,9 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.2'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation libs.checkstyle
+    testImplementation libs.junit.jupiter
+    testRuntimeOnly libs.junit.launcher
 }
 
 tasks.named('test', Test) {
@@ -29,6 +30,5 @@ application {
 }
 
 checkstyle {
-    toolVersion = '10.18.2'
     configFile = file('config/checkstyle/checkstyle.xml')
 }
