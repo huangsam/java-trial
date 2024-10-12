@@ -28,7 +28,3 @@ tasks.named('test', Test) {
 application {
     mainClass = 'org.huangsam.sample.TrialRunner'
 }
-
-checkstyle {
-    configFile = file('config/checkstyle/checkstyle.xml')
-}
