@@ -1,6 +1,7 @@
 package org.huangsam.sample;
 
 import org.huangsam.sample.io.NumberCruncher;
+import org.huangsam.sample.io.NumberFetcher;
 
 public class TrialRunner {
     public static void main(String[] args) throws InterruptedException {
@@ -10,13 +11,12 @@ public class TrialRunner {
                 null, null, null, null,
                 null, null, null, null};
 
-        // Scatter
         for (int i = 0; i < threads.length; i++) {
-            threads[i] = new Thread(new NumberCruncher(i));
+            threads[i] = new Thread(
+                    new NumberFetcher(new NumberCruncher(), i));
             threads[i].start();
         }
 
-        // Gather
         for (Thread thread : threads) {
             thread.join();
         }
