@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -61,5 +62,23 @@ public class TestEmployee {
     void testCollectStreamThenList() {
         List<Employee> employees = EMP_LIST.stream().toList();
         assertEquals(EMP_LIST.size(), employees.size());
+    }
+
+    @Test
+    void testFilterStream() {
+        Integer[] employeeIds = {1, 2, 3};
+        List<Employee> employees = Stream.of(employeeIds)
+                .map(EMP_REPO::findById)
+                .filter(Objects::nonNull)
+                .filter(emp -> emp.getSalary() > 100000.0)
+                .toList();
+
+        assertEquals(2, employees.size());
+
+        Employee first = employees.get(0);
+        Employee second = employees.get(1);
+
+        assertEquals("Bill Gates", first.getName());
+        assertEquals("Mark Zuckerberg", second.getName());
     }
 }
