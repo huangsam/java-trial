@@ -16,6 +16,7 @@ public class TestEmployee {
         new Employee(3, "Mark Zuckerberg", 300000.0)
     };
 
+    // https://stackoverflow.com/a/16748184
     private static final List<Employee> EMP_LIST = Arrays.asList(EMP_ARRAY);
 
     private static final EmployeeRepository EMP_REPO = new EmployeeRepository();
