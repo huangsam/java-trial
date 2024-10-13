@@ -1,4 +1,4 @@
-package org.huangsam.sample;
+package org.huangsam.sample.people;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -6,8 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-import org.huangsam.sample.people.Employee;
-import org.huangsam.sample.people.EmployeeRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
