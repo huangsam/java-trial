@@ -90,13 +90,13 @@ public class TestMirage {
 
     @Test
     void testEmptyField() {
-        Optional<Field> result = mirage.getCarField("foo");
-        assertTrue(result.isEmpty());
+        Optional<Field> optionalField = mirage.getCarField("foo");
+        assertTrue(optionalField.isEmpty());
     }
 
     @Test
     void testEmptyMethod() {
-        Optional<Method> result = mirage.getCarMethod("foo");
-        assertTrue(result.isEmpty());
+        Optional<Method> optionalMethod = mirage.getCarMethod("foo");
+        assertTrue(optionalMethod.isEmpty());
     }
 }
