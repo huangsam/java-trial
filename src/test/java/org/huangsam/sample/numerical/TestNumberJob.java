@@ -29,7 +29,7 @@ public class TestNumberJob {
     private NumberReporter mockReporter;
 
     @Test
-    void testCruncherCompleted() throws InterruptedException {
+    void testCruncherWithCompleteResult() throws InterruptedException {
         int expectedId = 4;
 
         Thread thread = new Thread(
@@ -43,7 +43,7 @@ public class TestNumberJob {
     }
 
     @Test
-    void testCruncherInterrupted() throws InterruptedException {
+    void testCruncherWithErrorResult() throws InterruptedException {
         int expectedId = 5;
 
         Thread thread = new Thread(
