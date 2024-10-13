@@ -2,6 +2,7 @@ package org.huangsam.sample;
 
 import org.huangsam.sample.threading.NumberCruncher;
 import org.huangsam.sample.threading.NumberJob;
+import org.huangsam.sample.threading.NumberReporter;
 
 public class TrialRunner {
     public static void main(String[] args) throws InterruptedException {
@@ -13,7 +14,7 @@ public class TrialRunner {
 
         for (int i = 0; i < threads.length; i++) {
             threads[i] = new Thread(
-                    new NumberJob(i, new NumberCruncher()));
+                    new NumberJob(i, new NumberCruncher(), new NumberReporter()));
             threads[i].start();
         }
 
