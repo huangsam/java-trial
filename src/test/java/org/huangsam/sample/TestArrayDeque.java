@@ -4,14 +4,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.stream.Stream;
 import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Using data structures like List, Map, Stack, Set are pretty common.
+ * At the same time, it's good to touch a Deque as it serves both
+ * the purpose of a stack and a queue. Getting the hang of its
+ * methods can be useful for a large variety of scenarios.
+ */
 public class TestArrayDeque {
-    private static final ArrayDeque<Integer> DEQUE = new ArrayDeque<>();
+    private static final Deque<Integer> DEQUE = new ArrayDeque<>();
 
     @BeforeEach
     void resetDeque() {
