@@ -23,7 +23,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * at runtime. The cons of reflection is its heavy reliance on strings, as
  * noted in these tests.
  *
- * @see <a href="https://www.youtube.com/watch?v=bhhMJSKNCQY">YouTube video</a>
+ * @see <a href="https://www.youtube.com/watch?v=bhhMJSKNCQY">YouTube on Relection</a>
+ * @see <a href="https://www.youtube.com/watch?v=vKVzRbsMnTQ">YouTube on Optionals</a>
  */
 public class TestMirage {
     private static Mirage mirage;
