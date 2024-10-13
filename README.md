@@ -1,6 +1,6 @@
 # Java Trial
 
-Playground for LTS features from Java 8 thru 21.
+Playground for LTS features from Java 8 through 21.
 
 Useful resources:
 
