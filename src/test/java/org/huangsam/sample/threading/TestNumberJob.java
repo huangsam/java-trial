@@ -28,8 +28,7 @@ public class TestNumberJob {
                 new Thread(new NumberJob(0, mockCruncher)),
                 new Thread(new NumberJob(1, mockCruncher)),
                 new Thread(new NumberJob(2, mockCruncher)),
-                new Thread(new NumberJob(3, mockCruncher))
-        };
+                new Thread(new NumberJob(3, mockCruncher))};
         for (Thread thread : threads) {
             thread.start();
         }
