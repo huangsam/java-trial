@@ -9,6 +9,13 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Inspired by content regarding Java Streams in Java 8. Testing things
+ * based off of {@code Streams.of}, as well as trying the various methods
+ * like {@code map}, {@code forEach}, etc.
+ *
+ * @see <a href="https://stackify.com/streams-guide-java-8/">Stackify post</a>
+ */
 public class TestEmployee {
     private static final Employee[] EMP_ARRAY = {
         new Employee(1, "Jeff Bezos", 100000.0),
