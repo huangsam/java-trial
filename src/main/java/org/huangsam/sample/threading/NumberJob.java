@@ -1,10 +1,10 @@
 package org.huangsam.sample.threading;
 
-public class NumberFetcher implements Runnable {
+public class NumberJob implements Runnable {
     private final int id;
     private final NumberCruncher cruncher;
 
-    public NumberFetcher(NumberCruncher worker, int input) {
+    public NumberJob(NumberCruncher worker, int input) {
         id = input;
         cruncher = worker;
     }

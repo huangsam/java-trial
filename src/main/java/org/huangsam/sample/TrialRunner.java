@@ -1,7 +1,7 @@
 package org.huangsam.sample;
 
 import org.huangsam.sample.threading.NumberCruncher;
-import org.huangsam.sample.threading.NumberFetcher;
+import org.huangsam.sample.threading.NumberJob;
 
 public class TrialRunner {
     public static void main(String[] args) throws InterruptedException {
@@ -13,7 +13,7 @@ public class TrialRunner {
 
         for (int i = 0; i < threads.length; i++) {
             threads[i] = new Thread(
-                    new NumberFetcher(new NumberCruncher(), i));
+                    new NumberJob(new NumberCruncher(), i));
             threads[i].start();
         }
 
