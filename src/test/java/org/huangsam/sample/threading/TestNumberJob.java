@@ -23,13 +23,11 @@ public class TestNumberJob {
         int expectedId = 4;
         int expectedResult = 16;
 
-        when(mockCruncher.compute(expectedId)).thenReturn(expectedResult);
-
-        Thread thread = new Thread(new NumberJob(expectedId, mockCruncher, mockReporter));
+        Thread thread = new Thread(
+                new NumberJob(expectedId, new NumberCruncher(), mockReporter));
         thread.start();
         thread.join();
 
-        verify(mockCruncher).compute(expectedId);
         verify(mockReporter).report(expectedResult, expectedId);
     }
 
@@ -48,10 +46,14 @@ public class TestNumberJob {
             thread.join();
         }
 
+        // Aggregate testing is coarse
         verify(mockCruncher, times(threads.length)).compute(anyInt());
         verify(mockReporter, times(threads.length)).report(anyInt(), anyInt());
 
-        verify(mockCruncher, times(1)).compute(3);
-        verify(mockReporter, times(1)).report(9, 3);
+        // Individual testing is granular
+        for (int i = 0; i < threads.length; i++) {
+            verify(mockCruncher, times(1)).compute(i);
+            verify(mockReporter, times(1)).report(i * i, i);
+        }
     }
 }
