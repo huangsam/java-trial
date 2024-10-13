@@ -12,4 +12,4 @@ Useful resources:
 - <https://docs.gradle.org/current/userguide/platforms.html>
 - <https://www.youtube.com/codingwithjohn>
 - <https://github.com/akullpp/awesome-java>
-- <https://dev.to/nehasoni__/the-curated-list-of-ultimate-java-resources-5amk
+- <https://dev.to/nehasoni__/the-curated-list-of-ultimate-java-resources-5amk>
