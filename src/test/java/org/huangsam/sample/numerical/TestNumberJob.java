@@ -5,6 +5,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -33,19 +35,28 @@ public class TestNumberJob {
         Thread thread = new Thread(
                 new NumberJob(expectedId, new NumberCruncher(), mockReporter));
         thread.start();
+
         thread.join();
+        assertFalse(thread.isAlive());
 
         verify(mockReporter).report(16, expectedId);
     }
 
     @Test
-    void testCruncherInterrupted() {
-        int expectedId = 4;
+    void testCruncherInterrupted() throws InterruptedException {
+        int expectedId = 5;
 
         Thread thread = new Thread(
                 new NumberJob(expectedId, new NumberCruncher(), mockReporter));
         thread.start();
+
         thread.interrupt();
+        assertTrue(thread.isInterrupted());
+        assertTrue(thread.isAlive());
+
+        thread.join();
+        assertFalse(thread.isInterrupted());
+        assertFalse(thread.isAlive());
 
         verify(mockReporter).report(NumberCruncher.ERROR_RESULT, expectedId);
     }
