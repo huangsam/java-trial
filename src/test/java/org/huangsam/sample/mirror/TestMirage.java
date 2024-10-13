@@ -35,9 +35,14 @@ public class TestMirage {
     }
 
     @Test
-    void testMirageHasSameSpecs() {
-        Mirage other = new Mirage(new MysteryCar(4, 0));
-        assertTrue(mirage.car().hasSameSpecs(other.car()));
+    void testMiragesHaveSameSpecs() {
+        assertTrue(mirage.car().hasSameSpecs(new MysteryCar(4, 0)));
+    }
+
+    @Test
+    void testMiragesHaveDifferentSpecs() {
+        assertFalse(mirage.car().hasSameSpecs(new MysteryCar(6, 0)));
+        assertFalse(mirage.car().hasSameSpecs(new MysteryCar(4, 1)));
     }
 
     @Test
