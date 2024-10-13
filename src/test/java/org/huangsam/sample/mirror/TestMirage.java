@@ -11,6 +11,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -56,11 +57,15 @@ public class TestMirage {
         assertNotNull(field);
 
         field.setAccessible(true);
+        assertTrue(field.canAccess(car));
+
         field.set(car, expectedWheels);
         Integer wheels = (Integer) field.get(car);
         assertEquals(expectedWheels, wheels);
 
         field.setAccessible(false);
+        assertFalse(field.canAccess(car));
+
         assertThrows(IllegalAccessException.class, () -> field.get(car));
     }
 
@@ -72,9 +77,13 @@ public class TestMirage {
         assertNotNull(method);
 
         method.setAccessible(true);
+        assertTrue(method.canAccess(car));
+
         method.invoke(car);
 
         method.setAccessible(false);
+        assertFalse(method.canAccess(car));
+
         assertThrows(IllegalAccessException.class, () -> method.invoke(car));
     }
 
