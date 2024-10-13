@@ -15,6 +15,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Testing out some basic reflection concepts. Obviously, this can get more
+ * involved and complex - just look at how the Spring framework has evolved!
+ * The pros of reflection is the flexibility to create and modify classes
+ * at runtime. The cons of reflection is its heavy reliance on strings, as
+ * noted in these tests.
+ *
+ * @see <a href="https://www.youtube.com/watch?v=bhhMJSKNCQY">YouTube video</a>
+ */
 public class TestMirage {
     private static Mirage mirage;
 
