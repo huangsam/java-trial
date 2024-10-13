@@ -1,4 +1,4 @@
-package org.huangsam.sample.threading;
+package org.huangsam.sample.numerical;
 
 public class NumberReporter {
     public void report(Integer result, Integer id) {

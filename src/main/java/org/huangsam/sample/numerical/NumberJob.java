@@ -1,4 +1,4 @@
-package org.huangsam.sample.threading;
+package org.huangsam.sample.numerical;
 
 public class NumberJob implements Runnable {
     private final int id;

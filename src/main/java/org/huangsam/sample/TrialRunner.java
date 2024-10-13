@@ -1,8 +1,8 @@
 package org.huangsam.sample;
 
-import org.huangsam.sample.threading.NumberCruncher;
-import org.huangsam.sample.threading.NumberJob;
-import org.huangsam.sample.threading.NumberReporter;
+import org.huangsam.sample.numerical.NumberCruncher;
+import org.huangsam.sample.numerical.NumberJob;
+import org.huangsam.sample.numerical.NumberReporter;
 
 public class TrialRunner {
     public static void main(String[] args) throws InterruptedException {

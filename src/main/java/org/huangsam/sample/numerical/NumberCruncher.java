@@ -1,4 +1,4 @@
-package org.huangsam.sample.threading;
+package org.huangsam.sample.numerical;
 
 public class NumberCruncher {
     public static final int ERROR_RESULT = -1;

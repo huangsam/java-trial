@@ -1,4 +1,4 @@
-package org.huangsam.sample.threading;
+package org.huangsam.sample.numerical;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
