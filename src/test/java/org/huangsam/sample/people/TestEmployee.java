@@ -1,10 +1,7 @@
 package org.huangsam.sample.people;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -14,8 +11,11 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Inspired by content regarding Java Streams, which have been available
@@ -29,11 +29,10 @@ import org.junit.jupiter.api.Test;
  */
 public class TestEmployee {
     private static final Employee[] TEST_ARRAY = {
-        new Employee(1, "Jeff Bezos", 100000.0),
-        new Employee(2, "Bill Gates", 200000.0),
-        new Employee(3, "Mark Zuckerberg", 300000.0),
-        new Employee(4, "Tim Cook", 400000.0)
-    };
+            new Employee(1, "Jeff Bezos", 100000.0),
+            new Employee(2, "Bill Gates", 200000.0),
+            new Employee(3, "Mark Zuckerberg", 300000.0),
+            new Employee(4, "Tim Cook", 400000.0)};
 
     // https://stackoverflow.com/a/16748184
     private static final List<Employee> TEST_LIST = Arrays.asList(TEST_ARRAY);

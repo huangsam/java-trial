@@ -1,8 +1,8 @@
 package org.huangsam.sample;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Getting a grasp of the JUnit suite from a Java perspective.
