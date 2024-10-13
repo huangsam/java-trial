@@ -10,6 +10,14 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * Here we are testing how Mockito works in a pure Java setting.
+ * We are mainly trying out core static methods such as
+ * {@code verify} and {@code when}.
+ *
+ * @see <a href="https://www.baeldung.com/mockito-junit-5-extension">Baeldung post</a>
+ * @see <a href="https://www.digitalocean.com/community/tutorials/mockito-verify">DO post</a>
+ */
 @ExtendWith(MockitoExtension.class)
 public class TestNumberJob {
     @Mock
