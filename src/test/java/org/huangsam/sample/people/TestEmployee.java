@@ -11,9 +11,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
- * Inspired by content regarding Java Streams in Java 8. Testing things
- * based off of {@code Streams.of}, as well as trying the various methods
- * like {@code map}, {@code forEach}, etc.
+ * Inspired by content regarding Java Streams, which have been available
+ * since Java 8. We are trying the various Stream methods like {@code of},
+ * {@code map}, {@code toList} and {@code filter}.
  *
  * @see <a href="https://stackify.com/streams-guide-java-8/">Stackify post</a>
  */
