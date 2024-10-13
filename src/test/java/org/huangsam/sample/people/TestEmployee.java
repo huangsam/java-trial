@@ -1,9 +1,11 @@
 package org.huangsam.sample.people;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -101,5 +103,23 @@ public class TestEmployee {
                 .filter(emp -> emp.getSalary() > 100000.0)
                 .count();
         assertEquals(3L, count);
+    }
+
+    @Test
+    void flatMapEmployeeNames() {
+        List<List<String>> namesNested = Arrays.asList(
+                Arrays.asList("Jeff", "Bezos"),
+                Arrays.asList("Bill", "Gates"),
+                Arrays.asList("Mark", "Zuckerberg"));
+
+        List<String> namesFlattened = namesNested.stream()
+                .flatMap(Collection::stream)
+                .toList();
+
+        assertEquals(namesFlattened.size(), namesNested.size() * 2);
+
+        assertInstanceOf(List.class, namesNested.get(0));
+
+        assertInstanceOf(String.class, namesFlattened.get(0));
     }
 }
