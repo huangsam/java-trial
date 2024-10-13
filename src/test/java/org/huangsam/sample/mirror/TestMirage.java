@@ -7,13 +7,12 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -53,8 +52,9 @@ public class TestMirage {
 
         MysteryCar car = mirage.car();
 
-        Field field = mirage.getCarField("wheels");
-        assertNotNull(field);
+        Optional<Field> optionalField = mirage.getCarField("wheels");
+        assertTrue(optionalField.isPresent());
+        Field field = optionalField.get();
 
         field.setAccessible(true);
         assertTrue(field.canAccess(car));
@@ -73,8 +73,9 @@ public class TestMirage {
     void testInvokePrivateMethod() throws IllegalAccessException, InvocationTargetException {
         MysteryCar car = mirage.car();
 
-        Method method = mirage.getCarMethod("jump");
-        assertNotNull(method);
+        Optional<Method> optionalMethod = mirage.getCarMethod("jump");
+        assertTrue(optionalMethod.isPresent());
+        Method method = optionalMethod.get();
 
         method.setAccessible(true);
         assertTrue(method.canAccess(car));
@@ -88,12 +89,14 @@ public class TestMirage {
     }
 
     @Test
-    void testNullField() {
-        assertNull(mirage.getCarField("foo"));
+    void testEmptyField() {
+        Optional<Field> result = mirage.getCarField("foo");
+        assertTrue(result.isEmpty());
     }
 
     @Test
-    void testNullMethod() {
-        assertNull(mirage.getCarMethod("foo"));
+    void testEmptyMethod() {
+        Optional<Method> result = mirage.getCarMethod("foo");
+        assertTrue(result.isEmpty());
     }
 }

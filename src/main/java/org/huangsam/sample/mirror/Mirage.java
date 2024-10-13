@@ -1,29 +1,27 @@
 package org.huangsam.sample.mirror;
 
-import javax.annotation.Nullable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Optional;
 
 public record Mirage(MysteryCar car) {
     public Field[] getCarFields() {
         return car.getClass().getDeclaredFields();
     }
 
-    @Nullable
-    public Field getCarField(String fieldName) {
+    public Optional<Field> getCarField(String fieldName) {
         try {
-            return car.getClass().getDeclaredField(fieldName);
+            return Optional.of(car.getClass().getDeclaredField(fieldName));
         } catch (NoSuchFieldException e) {
-            return null;
+            return Optional.empty();
         }
     }
 
-    @Nullable
-    public Method getCarMethod(String methodName) {
+    public Optional<Method> getCarMethod(String methodName) {
         try {
-            return car.getClass().getDeclaredMethod(methodName);
+            return Optional.of(car.getClass().getDeclaredMethod(methodName));
         } catch (NoSuchMethodException e) {
-            return null;
+            return Optional.empty();
         }
     }
 }
