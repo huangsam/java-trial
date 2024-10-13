@@ -46,17 +46,6 @@ public class TestEmployee {
     }
 
     @Test
-    void testIncreaseSalary() {
-        TEST_LIST.forEach(e -> {
-            double originalSalary = e.getSalary();
-            e.increaseSalary(10.0);
-            assertEquals(e.getSalary(), originalSalary + 10.0);
-            e.increaseSalary(-10.0); // Reset for future tests
-            assertEquals(e.getSalary(), originalSalary);
-        });
-    }
-
-    @Test
     void testEmployeeIdToEmployeeStream() {
         Integer[] empIds = {1, 2, 3};
         List<Employee> employeesFromRepo = Stream.of(empIds).map(TEST_REPO::findById).toList();
@@ -98,5 +87,19 @@ public class TestEmployee {
                 .orElse(null);
         assertNotNull(employee);
         assertEquals("Mark Zuckerberg", employee.getName());
+    }
+
+    @Test
+    void testIncreaseSalaryViaPeekThenCount() {
+        long count = TEST_LIST.stream()
+                .peek(emp -> {
+                    emp.increaseSalary(20.0);
+                    assertEquals(20, emp.getSalary() % 100);
+                    emp.increaseSalary(-20.0);
+                    assertEquals(0, emp.getSalary() % 100);
+                })
+                .filter(emp -> emp.getSalary() > 100000.0)
+                .count();
+        assertEquals(3L, count);
     }
 }
