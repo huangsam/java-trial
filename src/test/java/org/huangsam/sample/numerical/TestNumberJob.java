@@ -27,16 +27,27 @@ public class TestNumberJob {
     private NumberReporter mockReporter;
 
     @Test
-    void testCruncherRanInJob() throws InterruptedException {
+    void testCruncherCompleted() throws InterruptedException {
         int expectedId = 4;
-        int expectedResult = 16;
 
         Thread thread = new Thread(
                 new NumberJob(expectedId, new NumberCruncher(), mockReporter));
         thread.start();
         thread.join();
 
-        verify(mockReporter).report(expectedResult, expectedId);
+        verify(mockReporter).report(16, expectedId);
+    }
+
+    @Test
+    void testCruncherInterrupted() {
+        int expectedId = 4;
+
+        Thread thread = new Thread(
+                new NumberJob(expectedId, new NumberCruncher(), mockReporter));
+        thread.start();
+        thread.interrupt();
+
+        verify(mockReporter).report(NumberCruncher.ERROR_RESULT, expectedId);
     }
 
     @Test
