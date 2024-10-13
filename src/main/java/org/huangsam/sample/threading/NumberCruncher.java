@@ -6,7 +6,9 @@ public class NumberCruncher {
     public int compute(int input) {
         try {
             Thread.sleep(BUILTIN_DELAY * input);
-        } catch (InterruptedException ignored) {}
+        } catch (InterruptedException e) {
+            return -1;
+        }
         return input * input;
     }
 }
