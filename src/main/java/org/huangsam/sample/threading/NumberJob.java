@@ -4,9 +4,9 @@ public class NumberJob implements Runnable {
     private final int id;
     private final NumberCruncher cruncher;
 
-    public NumberJob(NumberCruncher worker, int input) {
-        id = input;
-        cruncher = worker;
+    public NumberJob(int id, NumberCruncher cruncher) {
+        this.id = id;
+        this.cruncher = cruncher;
     }
 
     @Override

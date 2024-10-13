@@ -1,12 +1,18 @@
 [versions]
 checkstyle = "10.18.2"
 junit-jupiter = "5.11.2"
+mockito = "5.14.1"
 task-tree = "3.0.0"
 
 [libraries]
 checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.ref = "checkstyle" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
 junit-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+mockito-junit = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
 
 [plugins]
 task-tree = { id = "com.dorongold.task-tree", version.ref = "task-tree" }
+
+[bundles]
+mockito-all = ["mockito-core", "mockito-junit"]

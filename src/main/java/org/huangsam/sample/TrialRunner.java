@@ -13,7 +13,7 @@ public class TrialRunner {
 
         for (int i = 0; i < threads.length; i++) {
             threads[i] = new Thread(
-                    new NumberJob(new NumberCruncher(), i));
+                    new NumberJob(i, new NumberCruncher()));
             threads[i].start();
         }
 

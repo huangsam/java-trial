@@ -12,6 +12,7 @@ repositories {
 dependencies {
     implementation libs.checkstyle
     testImplementation libs.junit.jupiter
+    testImplementation libs.bundles.mockito.all
     testRuntimeOnly libs.junit.launcher
 }
 
