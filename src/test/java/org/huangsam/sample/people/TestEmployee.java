@@ -1,6 +1,7 @@
 package org.huangsam.sample.people;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +22,8 @@ public class TestEmployee {
     private static final Employee[] TEST_ARRAY = {
         new Employee(1, "Jeff Bezos", 100000.0),
         new Employee(2, "Bill Gates", 200000.0),
-        new Employee(3, "Mark Zuckerberg", 300000.0)
+        new Employee(3, "Mark Zuckerberg", 300000.0),
+        new Employee(4, "Tim Cook", 400000.0)
     };
 
     // https://stackoverflow.com/a/16748184
@@ -44,11 +46,13 @@ public class TestEmployee {
     }
 
     @Test
-    void testSalaryIncrement() {
+    void testIncreaseSalary() {
         TEST_LIST.forEach(e -> {
             double originalSalary = e.getSalary();
-            e.salaryIncrement(10.0);
+            e.increaseSalary(10.0);
             assertEquals(e.getSalary(), originalSalary + 10.0);
+            e.increaseSalary(-10.0); // Reset for future tests
+            assertEquals(e.getSalary(), originalSalary);
         });
     }
 
@@ -66,7 +70,7 @@ public class TestEmployee {
     }
 
     @Test
-    void testFilterStream() {
+    void testFilterEmployeesFromStream() {
         Integer[] employeeIds = {1, 2, 3};
         List<Employee> employees = Stream.of(employeeIds)
                 .map(TEST_REPO::findById)
@@ -81,5 +85,18 @@ public class TestEmployee {
 
         assertEquals("Bill Gates", first.getName());
         assertEquals("Mark Zuckerberg", second.getName());
+    }
+
+    @Test
+    void testFindFirstEmployeeFromStream() {
+        Integer[] employeeIds = {1, 2, 3, 4};
+        Employee employee = Stream.of(employeeIds)
+                .map(TEST_REPO::findById)
+                .filter(Objects::nonNull)
+                .filter(emp -> emp.getSalary() > 200000.0)
+                .findFirst()
+                .orElse(null);
+        assertNotNull(employee);
+        assertEquals("Mark Zuckerberg", employee.getName());
     }
 }

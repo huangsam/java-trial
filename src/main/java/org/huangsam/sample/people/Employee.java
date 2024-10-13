@@ -23,7 +23,7 @@ public class Employee {
         return salary;
     }
 
-    public void salaryIncrement(double increment) {
+    public void increaseSalary(double increment) {
         this.salary += increment;
     }
 }
