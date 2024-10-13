@@ -11,3 +11,4 @@ Useful resources:
 - <https://docs.oracle.com/en/java/javase/21/>
 - <https://docs.gradle.org/current/userguide/platforms.html>
 - <https://www.youtube.com/codingwithjohn>
+- <https://github.com/akullpp/awesome-java>
