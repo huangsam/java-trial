@@ -1,12 +1,16 @@
 package org.huangsam.sample.people;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -106,7 +110,7 @@ public class TestEmployee {
     }
 
     @Test
-    void flatMapEmployeeNames() {
+    void testFlatMapEmployeeNames() {
         List<List<String>> namesNested = Arrays.asList(
                 Arrays.asList("Jeff", "Bezos"),
                 Arrays.asList("Bill", "Gates"),
@@ -121,5 +125,38 @@ public class TestEmployee {
         assertInstanceOf(List.class, namesNested.get(0));
 
         assertInstanceOf(String.class, namesFlattened.get(0));
+    }
+
+    @Test
+    void testMinAndMaxSalary() {
+        Employee cheap = TEST_LIST.stream()
+                .min(Comparator.comparing(Employee::getSalary))
+                .orElseThrow(NoSuchElementException::new);
+        Employee pricey = TEST_LIST.stream()
+                .max(Comparator.comparing(Employee::getSalary))
+                .orElseThrow(NoSuchElementException::new);
+        assertEquals(100000.0, cheap.getSalary());
+        assertEquals(400000.0, pricey.getSalary());
+    }
+
+    @Test
+    void testDistinctValuesFromIntegers() {
+        List<Integer> distinct = Stream.of(2, 5, 3, 2, 4, 3)
+                .distinct()
+                .toList();
+        assertEquals(distinct, Arrays.asList(2, 5, 3, 4));
+    }
+
+    @Test
+    void testBooleanMatchesOnEmployees() {
+        assertTrue(TEST_LIST
+                .stream()
+                .allMatch(emp -> emp.getSalary() > 0.0));
+        assertFalse(TEST_LIST
+                .stream()
+                .anyMatch(emp -> emp.getId() > 10));
+        assertTrue(TEST_LIST
+                .stream()
+                .noneMatch(emp -> emp.getName().equals("Foo Bar")));
     }
 }
