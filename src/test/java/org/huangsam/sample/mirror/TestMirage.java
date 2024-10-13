@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -78,10 +79,12 @@ public class TestMirage {
     }
 
     @Test
-    void testGetCarMethod() {
-        String expected = "drive";
-        Method method = mirage.getCarMethod(expected);
-        assertNotNull(method);
-        assertEquals(expected, method.getName());
+    void testNullField() {
+        assertNull(mirage.getCarField("foo"));
+    }
+
+    @Test
+    void testNullMethod() {
+        assertNull(mirage.getCarMethod("foo"));
     }
 }
