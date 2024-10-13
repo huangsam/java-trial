@@ -16,14 +16,8 @@ dependencies {
     testRuntimeOnly libs.junit.launcher
 }
 
-tasks.named('test', Test) {
+test {
     useJUnitPlatform()
-
-    maxHeapSize = '1G'
-
-    testLogging {
-        events "passed"
-    }
 }
 
 application {
