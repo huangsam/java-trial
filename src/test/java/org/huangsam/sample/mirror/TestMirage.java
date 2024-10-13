@@ -53,8 +53,7 @@ public class TestMirage {
         MysteryCar car = mirage.car();
 
         Optional<Field> optionalField = mirage.getCarField("wheels");
-        assertTrue(optionalField.isPresent());
-        Field field = optionalField.get();
+        Field field = optionalField.orElseThrow();
 
         field.setAccessible(true);
         assertTrue(field.canAccess(car));
@@ -74,8 +73,7 @@ public class TestMirage {
         MysteryCar car = mirage.car();
 
         Optional<Method> optionalMethod = mirage.getCarMethod("jump");
-        assertTrue(optionalMethod.isPresent());
-        Method method = optionalMethod.get();
+        Method method = optionalMethod.orElseThrow();
 
         method.setAccessible(true);
         assertTrue(method.canAccess(car));
