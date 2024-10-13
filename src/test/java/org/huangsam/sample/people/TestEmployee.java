@@ -151,14 +151,11 @@ public class TestEmployee {
 
     @Test
     void testBooleanMatchesOnEmployees() {
-        assertTrue(TEST_LIST
-                .stream()
+        assertTrue(TEST_LIST.stream()
                 .allMatch(emp -> emp.getSalary() > 0.0));
-        assertFalse(TEST_LIST
-                .stream()
+        assertFalse(TEST_LIST.stream()
                 .anyMatch(emp -> emp.getId() > 10));
-        assertTrue(TEST_LIST
-                .stream()
+        assertTrue(TEST_LIST.stream()
                 .noneMatch(emp -> emp.getName().equals("Foo Bar")));
     }
 }
