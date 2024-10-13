@@ -19,8 +19,11 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Inspired by content regarding Java Streams, which have been available
- * since Java 8. We are trying the various Stream methods like {@code of},
- * {@code map}, {@code toList} and {@code filter}.
+ * since Java 8. We are trying the various Stream methods like
+ * {@code map} and {@code filter}.
+ * <br>
+ * Note that terminal operations is how streams do not get ignored. These
+ * are methods like {@code forEach}, {@code collect} and {@code reduce()}.
  *
  * @see <a href="https://stackify.com/streams-guide-java-8/">Stackify post</a>
  */
