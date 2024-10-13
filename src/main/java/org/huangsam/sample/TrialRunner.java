@@ -1,7 +1,7 @@
 package org.huangsam.sample;
 
-import org.huangsam.sample.io.NumberCruncher;
-import org.huangsam.sample.io.NumberFetcher;
+import org.huangsam.sample.threading.NumberCruncher;
+import org.huangsam.sample.threading.NumberFetcher;
 
 public class TrialRunner {
     public static void main(String[] args) throws InterruptedException {
