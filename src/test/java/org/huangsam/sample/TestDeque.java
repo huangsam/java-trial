@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
  * the purpose of a stack and a queue. Getting the hang of its
  * methods can be useful for a large variety of scenarios.
  */
-public class TestArrayDeque {
+public class TestDeque {
     private static final Deque<Integer> DEQUE = new ArrayDeque<>();
 
     @BeforeEach
