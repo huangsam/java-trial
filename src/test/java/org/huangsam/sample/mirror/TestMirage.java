@@ -84,14 +84,14 @@ public class TestMirage {
     void testInvokePrivateMethod() throws IllegalAccessException, InvocationTargetException {
         MysteryCar car = mirage.car();
 
-        Optional<Method> optionalMethod = mirage.getCarMethod("jump");
+        Optional<Method> optionalMethod = mirage.getCarMethod("getMileInfo");
         Method method = optionalMethod.orElseThrow();
 
         method.setAccessible(true);
         assertTrue(method.canAccess(car));
 
         String result = (String) method.invoke(car);
-        assertEquals("Jump after 0 miles", result);
+        assertEquals("Traveled 0 miles", result);
 
         method.setAccessible(false);
         assertFalse(method.canAccess(car));

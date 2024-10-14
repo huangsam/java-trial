@@ -18,7 +18,8 @@ public class MysteryCar {
         return wheels == other.wheels && miles == other.miles;
     }
 
-    private String jump() {
-        return "Jump after " + miles + " miles";
+    // Left as private to test the power of reflection!
+    private String getMileInfo() {
+        return "Traveled " + miles + " miles";
     }
 }
