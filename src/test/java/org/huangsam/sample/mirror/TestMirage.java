@@ -90,7 +90,8 @@ public class TestMirage {
         method.setAccessible(true);
         assertTrue(method.canAccess(car));
 
-        method.invoke(car);
+        String result = (String) method.invoke(car);
+        assertEquals("Jump after 0 miles", result);
 
         method.setAccessible(false);
         assertFalse(method.canAccess(car));

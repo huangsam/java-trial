@@ -18,7 +18,7 @@ public class MysteryCar {
         return wheels == other.wheels && miles == other.miles;
     }
 
-    private void jump() {
-        System.out.println("Jump after " + miles + " miles");
+    private String jump() {
+        return "Jump after " + miles + " miles";
     }
 }
