@@ -14,15 +14,11 @@ public class MysteryCar {
         this.miles = miles;
     }
 
-    public void drive() {
-        System.out.println("Drive with " + wheels + " wheels");
+    public boolean hasSameSpecs(MysteryCar other) {
+        return wheels == other.wheels && miles == other.miles;
     }
 
     private void jump() {
         System.out.println("Jump after " + miles + " miles");
-    }
-
-    public boolean hasSameSpecs(MysteryCar other) {
-        return wheels == other.wheels && miles == other.miles;
     }
 }
