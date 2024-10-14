@@ -2,7 +2,19 @@
 
 Playground for LTS features from Java 8 through 21.
 
-Useful resources:
+## Getting started
+
+Here are the only two commands you need to know:
+
+```bash
+# Run the main application
+./gradlew run
+
+# Run the test suite
+./gradlew test
+```
+
+## Useful resources
 
 - <https://javaalmanac.io/features/>
 - <https://docs.oracle.com/javase/8/>
