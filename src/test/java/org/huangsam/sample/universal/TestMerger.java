@@ -13,10 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TestMerger {
     private static final Merger<Integer> MERGER = new Merger<>();
 
-    private static final List<Integer> L1 =
-            new ArrayList<>(Arrays.asList(3, 7, 2, 9, 8));
-    private static final List<Integer> L2 =
-            new ArrayList<>(Arrays.asList(1, 10, 4));
+    private static final List<Integer> L1 = Arrays.asList(3, 7, 2, 9, 8);
+    private static final List<Integer> L2 = Arrays.asList(1, 10, 4);
 
     private static final Set<Integer> S1 = new HashSet<>(L1);
     private static final Set<Integer> S2 = new HashSet<>(L2);
