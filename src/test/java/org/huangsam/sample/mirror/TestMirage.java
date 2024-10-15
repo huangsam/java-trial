@@ -71,8 +71,7 @@ public class TestMirage {
         assertTrue(field.canAccess(car));
 
         field.set(car, expectedWheels);
-        Integer wheels = (Integer) field.get(car);
-        assertEquals(expectedWheels, wheels);
+        assertEquals(expectedWheels, (Integer) field.get(car));
 
         field.setAccessible(false);
         assertFalse(field.canAccess(car));
@@ -90,8 +89,7 @@ public class TestMirage {
         method.setAccessible(true);
         assertTrue(method.canAccess(car));
 
-        String result = (String) method.invoke(car);
-        assertEquals("Traveled 0 miles", result);
+        assertEquals("Traveled 0 miles", (String) method.invoke(car));
 
         method.setAccessible(false);
         assertFalse(method.canAccess(car));
