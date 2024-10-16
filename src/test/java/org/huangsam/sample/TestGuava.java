@@ -27,17 +27,21 @@ public class TestGuava {
         bookStore.add(key);
         bookStore.add(key);
         bookStore.add(key);
+
         assertTrue(bookStore.contains(key));
         assertEquals(3, bookStore.count(key));
 
         bookStore.remove(key);
+
         assertEquals(2, bookStore.count(key));
 
         int expectedCount = 50;
         bookStore.setCount(key, expectedCount);
+
         assertEquals(expectedCount, bookStore.count(key));
 
         int expectedNewCount = 100;
+
         assertTrue(bookStore.setCount(key, expectedCount, expectedNewCount));
         assertFalse(bookStore.setCount(key, expectedCount, expectedNewCount));
 
@@ -51,6 +55,7 @@ public class TestGuava {
         numberRangeSet.add(Range.closed(0, 2));
         numberRangeSet.add(Range.closed(3, 5));
         numberRangeSet.add(Range.closed(6, 8));
+
         assertTrue(numberRangeSet.contains(1));
         assertFalse(numberRangeSet.contains(9));
     }
