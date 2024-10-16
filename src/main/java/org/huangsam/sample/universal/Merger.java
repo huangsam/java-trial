@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Merger<T extends Comparable<T>> {
+public class Merger<T> {
     public List<T> mergeList(List<T> list1, List<T> list2) {
         List<T> mergedList = new ArrayList<>(list1.size() + list2.size());
         mergedList.addAll(list1);
