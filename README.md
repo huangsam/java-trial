@@ -1,6 +1,11 @@
 # Java Trial
 
-Playground for LTS features from Java 8 through 21.
+Playground for common features and libraries. Spans Java 8 through 17.
+
+| Category  | Description                                      |
+|-----------|--------------------------------------------------|
+| Features  | Optionals, records, reflection, streams, threads |
+| Libraries | Mockito                                          |
 
 ## Getting started
 
