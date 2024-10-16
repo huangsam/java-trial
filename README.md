@@ -13,7 +13,7 @@ Features tested:
 Libraries tested:
 
 - [x] Gson
-- [ ] Guava
+- [x] Guava
 - [x] JUnit
 - [x] Mockito
 - [x] SL4J

@@ -1,6 +1,7 @@
 [versions]
 checkstyle = "10.18.2"
 gson = "2.11.0"
+guava = "33.3.1-jre"
 junit-jupiter = "5.11.2"
 logback = "1.5.8"
 mockito = "5.14.1"
@@ -10,6 +11,7 @@ task-tree = "3.0.0"
 [libraries]
 checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.ref = "checkstyle" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+guava = { module = "com.google.guava:guava", version.ref = "guava" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
 junit-launcher = { module = "org.junit.platform:junit-platform-launcher" }
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }

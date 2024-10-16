@@ -12,6 +12,7 @@ repositories {
 dependencies {
     implementation libs.checkstyle
     implementation libs.gson
+    implementation libs.guava
     implementation libs.logback.classic
     implementation libs.sl4j.api
     testImplementation libs.bundles.mockito.all
