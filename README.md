@@ -12,7 +12,7 @@ Features tested:
 
 Libraries tested:
 
-- [ ] Gson
+- [x] Gson
 - [ ] Guava
 - [x] JUnit
 - [x] Mockito
