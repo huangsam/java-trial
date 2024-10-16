@@ -5,6 +5,7 @@ import com.google.common.collect.Multiset;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -32,6 +33,10 @@ public class TestGuava {
         int expectedCount = 50;
         bookStore.setCount(key, expectedCount);
         assertEquals(expectedCount, bookStore.count(key));
+
+        int expectedNewCount = 100;
+        assertTrue(bookStore.setCount(key, expectedCount, expectedNewCount));
+        assertFalse(bookStore.setCount(key, expectedCount, expectedNewCount));
 
         assertThrows(IllegalArgumentException.class, () -> bookStore.setCount(key, -1));
     }
