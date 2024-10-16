@@ -1,15 +1,19 @@
 [versions]
 checkstyle = "10.18.2"
 junit-jupiter = "5.11.2"
+logback = "1.5.8"
 mockito = "5.14.1"
+sl4j = "2.0.16"
 task-tree = "3.0.0"
 
 [libraries]
 checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.ref = "checkstyle" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
 junit-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
 mockito-junit = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
+sl4j-api = { module = "org.slf4j:slf4j-api", version.ref = "sl4j" }
 
 [plugins]
 task-tree = { id = "com.dorongold.task-tree", version.ref = "task-tree" }

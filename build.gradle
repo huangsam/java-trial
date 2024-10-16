@@ -11,8 +11,10 @@ repositories {
 
 dependencies {
     implementation libs.checkstyle
-    testImplementation libs.junit.jupiter
+    implementation libs.logback.classic
+    implementation libs.sl4j.api
     testImplementation libs.bundles.mockito.all
+    testImplementation libs.junit.jupiter
     testRuntimeOnly libs.junit.launcher
 }
 
