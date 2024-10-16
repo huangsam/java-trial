@@ -2,6 +2,9 @@ package org.huangsam.sample;
 
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multiset;
+import com.google.common.collect.Range;
+import com.google.common.collect.RangeSet;
+import com.google.common.collect.TreeRangeSet;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -39,5 +42,16 @@ public class TestGuava {
         assertFalse(bookStore.setCount(key, expectedCount, expectedNewCount));
 
         assertThrows(IllegalArgumentException.class, () -> bookStore.setCount(key, -1));
+    }
+
+    @Test
+    void testRangeSet() {
+        RangeSet<Integer> numberRangeSet = TreeRangeSet.create();
+
+        numberRangeSet.add(Range.closed(0, 2));
+        numberRangeSet.add(Range.closed(3, 5));
+        numberRangeSet.add(Range.closed(6, 8));
+        assertTrue(numberRangeSet.contains(1));
+        assertFalse(numberRangeSet.contains(9));
     }
 }
