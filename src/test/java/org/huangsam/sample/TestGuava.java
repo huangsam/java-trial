@@ -16,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * Google Guava is a useful set of utilities and data structures.
  *
  * @see <a href="https://www.baeldung.com/guava-multiset">Baeldung on Multiset</a>
+ * @see <a href="https://www.baeldung.com/guava-rangeset">Baeldung on RangeSet</a>
  */
 public class TestGuava {
     @Test
