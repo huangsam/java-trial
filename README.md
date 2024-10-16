@@ -2,10 +2,21 @@
 
 Playground for common features and libraries. Spans Java 8 through 17.
 
-| Category  | Description                                      |
-|-----------|--------------------------------------------------|
-| Features  | Optionals, records, reflection, streams, threads |
-| Libraries | Gson, Guava, JUnit, Log4j, Mockito               |
+Features tested:
+
+- [x] Optionals
+- [x] Records
+- [x] Reflection
+- [x] Streams
+- [x] Threads
+
+Libraries tested:
+
+- [ ] Gson
+- [ ] Guava
+- [x] JUnit
+- [x] Mockito
+- [x] SL4J
 
 ## Getting started
 
