@@ -2,7 +2,7 @@ package org.huangsam.sample.numerical;
 
 public class NumberCruncher {
     public static final int ERROR_RESULT = -1;
-    private static final long BUILTIN_DELAY = 500L;
+    private static final long BUILTIN_DELAY = 250L;
 
     public int compute(int input) {
         try {
