@@ -59,5 +59,22 @@ public class TestGuava {
 
         assertTrue(numberRangeSet.contains(1));
         assertFalse(numberRangeSet.contains(9));
+
+        numberRangeSet.clear();
+        numberRangeSet.add(Range.closed(0, 5));
+        numberRangeSet.remove(Range.closed(1, 4));
+        assertTrue(numberRangeSet.contains(0));
+        assertFalse(numberRangeSet.contains(1));
+        assertFalse(numberRangeSet.contains(4));
+        assertTrue(numberRangeSet.contains(5));
+
+        numberRangeSet.clear();
+        numberRangeSet.add(Range.closed(0, 2));
+        numberRangeSet.add(Range.closed(3, 5));
+        numberRangeSet.add(Range.closed(6, 8));
+
+        Range<Integer> span = numberRangeSet.span();
+        assertEquals(0, span.lowerEndpoint().intValue());
+        assertEquals(8, span.upperEndpoint().intValue());
     }
 }
