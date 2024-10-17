@@ -1,10 +1,10 @@
 package org.huangsam.sample.numerical;
 
 public class NumberCruncher {
-    public static final int ERROR_RESULT = -1;
+    public static final long ERROR_RESULT = -1L;
     private static final long BUILTIN_DELAY = 250L;
 
-    public int compute(int input) {
+    public Long compute(long input) {
         try {
             Thread.sleep(BUILTIN_DELAY * input);
         } catch (InterruptedException e) {

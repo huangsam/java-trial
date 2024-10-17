@@ -8,6 +8,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -28,6 +29,10 @@ public class TestNumberJob {
     @Mock
     private NumberReporter mockReporter;
 
+    private long squared(int input) {
+        return (long) input * input;
+    }
+
     @Test
     void testCruncherWithCompleteResult() throws InterruptedException {
         int expectedId = 4;
@@ -39,7 +44,7 @@ public class TestNumberJob {
         thread.join();
         assertFalse(thread.isAlive());
 
-        verify(mockReporter).report(16, expectedId);
+        verify(mockReporter).report(squared(expectedId), expectedId);
     }
 
     @Test
@@ -65,7 +70,7 @@ public class TestNumberJob {
     void testCruncherRanMultipleTimes() throws InterruptedException {
         Thread[] threads = {null, null, null, null};
         for (int i = 0; i < threads.length; i++) {
-            when(mockCruncher.compute(i)).thenReturn(i * i);
+            when(mockCruncher.compute(i)).thenReturn(squared(i));
             threads[i] = new Thread(new NumberJob(i, mockCruncher, mockReporter));
         }
 
@@ -77,13 +82,13 @@ public class TestNumberJob {
         }
 
         // Aggregate testing is coarse
-        verify(mockCruncher, times(threads.length)).compute(anyInt());
-        verify(mockReporter, times(threads.length)).report(anyInt(), anyInt());
+        verify(mockCruncher, times(threads.length)).compute(anyLong());
+        verify(mockReporter, times(threads.length)).report(anyLong(), anyInt());
 
         // Individual testing is granular
         for (int i = 0; i < threads.length; i++) {
             verify(mockCruncher, times(1)).compute(i);
-            verify(mockReporter, times(1)).report(i * i, i);
+            verify(mockReporter, times(1)).report(squared(i), i);
         }
     }
 }
