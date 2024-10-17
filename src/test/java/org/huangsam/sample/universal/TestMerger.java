@@ -2,12 +2,13 @@ package org.huangsam.sample.universal;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TestMerger {
     private static final Merger<Integer> MERGER = new Merger<>();
@@ -17,17 +18,22 @@ public class TestMerger {
 
     @Test
     void testMergeList() {
-        Collection<Integer> mergedSame = MERGER.mergeAs(C1, C1, ArrayList.class);
-        Collection<Integer> mergedDifferent = MERGER.mergeAs(C1, C2, ArrayList.class);
+        Collection<Integer> mergedSame = MERGER.mergeAs(C1, C1, List.class);
+        Collection<Integer> mergedDifferent = MERGER.mergeAs(C1, C2, List.class);
         assertEquals(C1.size() + C1.size(), mergedSame.size());
         assertEquals(C1.size() + C2.size(), mergedDifferent.size());
     }
 
     @Test
     void testMergeSet() {
-        Collection<Integer> mergedSame = MERGER.mergeAs(C1, C1, HashSet.class);
-        Collection<Integer> mergedDifferent = MERGER.mergeAs(C1, C2, HashSet.class);
+        Collection<Integer> mergedSame = MERGER.mergeAs(C1, C1, Set.class);
+        Collection<Integer> mergedDifferent = MERGER.mergeAs(C1, C2, Set.class);
         assertEquals(C1.size(), mergedSame.size());
         assertEquals(C1.size() + C2.size(), mergedDifferent.size());
+    }
+
+    @Test
+    void testMergeInvalidType() {
+        assertThrows(IllegalArgumentException.class, () -> MERGER.mergeAs(C1, C1, Number.class));
     }
 }
