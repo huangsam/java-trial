@@ -9,6 +9,7 @@ Features tested:
 - [x] Reflection
 - [x] Streams
 - [x] Threads
+- [x] Time
 
 Libraries tested:
 

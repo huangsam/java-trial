@@ -7,6 +7,11 @@ import java.time.LocalTime;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Tests for the java.time library.
+ *
+ * @see <a href="https://www.baeldung.com/java-8-date-time-intro">Bealdung on time</a>
+ */
 public class TestTime {
     private static final LocalTime SIX = LocalTime.of(6, 0);
 
