@@ -5,6 +5,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -29,30 +30,35 @@ public class TestNumberJob {
     @Mock
     private NumberReporter mockReporter;
 
+    private static int TOY_ID = 5;
+
     private long squared(int input) {
         return (long) input * input;
     }
 
     @Test
-    void testCruncherWithCompleteResult() throws InterruptedException {
-        int expectedId = 4;
+    void testJobRunsWithoutErrors() {
+        Thread thread = new Thread(new NumberJob(TOY_ID, new NumberCruncher(), new NumberReporter()));
+        assertDoesNotThrow(() -> {
+            thread.start();
+            thread.join();
+        });
+    }
 
-        Thread thread = new Thread(
-                new NumberJob(expectedId, new NumberCruncher(), mockReporter));
+    @Test
+    void testCruncherWithCompleteResult() throws InterruptedException {
+        Thread thread = new Thread(new NumberJob(TOY_ID, new NumberCruncher(), mockReporter));
         thread.start();
 
         thread.join();
         assertFalse(thread.isAlive());
 
-        verify(mockReporter).report(squared(expectedId), expectedId);
+        verify(mockReporter).report(squared(TOY_ID), TOY_ID);
     }
 
     @Test
     void testCruncherWithErrorResult() throws InterruptedException {
-        int expectedId = 5;
-
-        Thread thread = new Thread(
-                new NumberJob(expectedId, new NumberCruncher(), mockReporter));
+        Thread thread = new Thread(new NumberJob(TOY_ID, new NumberCruncher(), mockReporter));
         thread.start();
 
         thread.interrupt();
@@ -63,7 +69,7 @@ public class TestNumberJob {
         assertFalse(thread.isInterrupted());
         assertFalse(thread.isAlive());
 
-        verify(mockReporter).report(NumberCruncher.ERROR_RESULT, expectedId);
+        verify(mockReporter).report(NumberCruncher.ERROR_RESULT, TOY_ID);
     }
 
     @Test
