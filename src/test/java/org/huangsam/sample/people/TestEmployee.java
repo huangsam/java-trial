@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * {@code map} and {@code filter}.
  * <br>
  * Note that terminal operations is how streams do not get ignored. These
- * are methods like {@code forEach}, {@code collect} and {@code reduce()}.
+ * are methods like {@code forEach}, {@code collect} and {@code reduce}.
  *
  * @see <a href="https://stackify.com/streams-guide-java-8/">Stackify post</a>
  */
