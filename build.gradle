@@ -31,8 +31,8 @@ jacocoTestReport {
         xml.required = true
         html.required = true
     }
+    // https://www.baeldung.com/jacoco-report-exclude
     afterEvaluate {
-        // https://www.baeldung.com/jacoco-report-exclude
         classDirectories.setFrom(files(classDirectories.files.collect {
             fileTree(dir: it, exclude: 'org/huangsam/sample/TrialRunner.class')
         }))
