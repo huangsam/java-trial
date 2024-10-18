@@ -89,5 +89,6 @@ public class TestTime {
         LocalTime finalTime = SIX_TIME.plus(Duration.ofSeconds(expectedDuration));
 
         assertEquals(expectedDuration, Duration.between(SIX_TIME, finalTime).getSeconds());
+        assertEquals(expectedDuration, ChronoUnit.SECONDS.between(SIX_TIME, finalTime));
     }
 }
