@@ -29,7 +29,10 @@ public class TrialRunner {
                 .map(i -> service.submit(new NumberJob(i, cruncher, reporter)))
                 .forEach(future -> {
                     try {
-                        future.get();
+                        Object result = future.get();
+                        if (result != null) {
+                            LOG.warn("Expected nothing but got {}", result);
+                        }
                     } catch (InterruptedException | ExecutionException e) {
                         LOG.error(e.getMessage(), e);
                     }
