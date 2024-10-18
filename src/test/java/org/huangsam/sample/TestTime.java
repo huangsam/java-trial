@@ -67,14 +67,17 @@ public class TestTime {
     void testZonedTimeHasUtcZone() {
         ZoneId expectedZone = ZoneId.of(UTC_ID);
         ZonedDateTime dateTime = ZonedDateTime.of(SPECIAL_DATETIME, expectedZone);
+
         assertEquals(expectedZone, dateTime.getZone());
     }
 
     @Test
     void testPeriodsAndDates() {
         int expectedDays = 5;
+
         LocalDate initialDate = LocalDate.parse("2007-05-10");
         LocalDate finalDate = initialDate.plus(Period.ofDays(expectedDays));
+
         assertEquals(expectedDays, Period.between(initialDate, finalDate).getDays());
         assertEquals(expectedDays, ChronoUnit.DAYS.between(initialDate, finalDate));
     }
