@@ -106,14 +106,14 @@ public class TestConcurrency {
     }
 
     private static Thread countThread(CountDownLatch latch) {
-        return new Thread(new CountWorker(latch));
+        return new Thread(new CountTask(latch));
     }
 
     private static Thread cyclicThread(CyclicBarrier barrier) {
-        return new Thread(new CyclicWorker(barrier));
+        return new Thread(new CyclicTask(barrier));
     }
 
-    private record CountWorker(CountDownLatch latch) implements Runnable {
+    private record CountTask(CountDownLatch latch) implements Runnable {
         @Override
         public void run() {
             LOG.debug("Run countdown logic");
@@ -121,7 +121,7 @@ public class TestConcurrency {
         }
     }
 
-    private record CyclicWorker(CyclicBarrier barrier) implements Runnable {
+    private record CyclicTask(CyclicBarrier barrier) implements Runnable {
         @Override
         public void run() {
             try {

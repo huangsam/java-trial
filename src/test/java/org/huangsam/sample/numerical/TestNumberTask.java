@@ -23,7 +23,7 @@ import static org.mockito.Mockito.when;
  * @see <a href="https://www.digitalocean.com/community/tutorials/mockito-verify">DO post</a>
  */
 @ExtendWith(MockitoExtension.class)
-public class TestNumberJob {
+public class TestNumberTask {
     @Mock
     private NumberCruncher mockCruncher;
 
@@ -38,7 +38,7 @@ public class TestNumberJob {
 
     @Test
     void testJobRunsWithoutErrors() {
-        Thread thread = new Thread(new NumberJob(TOY_ID, new NumberCruncher(), new NumberReporter()));
+        Thread thread = new Thread(new NumberTask(TOY_ID, new NumberCruncher(), new NumberReporter()));
         assertDoesNotThrow(() -> {
             thread.start();
             thread.join();
@@ -47,7 +47,7 @@ public class TestNumberJob {
 
     @Test
     void testCruncherWithCompleteResult() throws InterruptedException {
-        Thread thread = new Thread(new NumberJob(TOY_ID, new NumberCruncher(), mockReporter));
+        Thread thread = new Thread(new NumberTask(TOY_ID, new NumberCruncher(), mockReporter));
         thread.start();
 
         thread.join();
@@ -58,7 +58,7 @@ public class TestNumberJob {
 
     @Test
     void testCruncherWithErrorResult() throws InterruptedException {
-        Thread thread = new Thread(new NumberJob(TOY_ID, new NumberCruncher(), mockReporter));
+        Thread thread = new Thread(new NumberTask(TOY_ID, new NumberCruncher(), mockReporter));
         thread.start();
 
         thread.interrupt();
@@ -77,7 +77,7 @@ public class TestNumberJob {
         Thread[] threads = {null, null, null, null};
         for (int i = 0; i < threads.length; i++) {
             when(mockCruncher.compute(i)).thenReturn(squared(i));
-            threads[i] = new Thread(new NumberJob(i, mockCruncher, mockReporter));
+            threads[i] = new Thread(new NumberTask(i, mockCruncher, mockReporter));
         }
 
         for (Thread thread : threads) {

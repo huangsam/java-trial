@@ -1,7 +1,7 @@
 package org.huangsam.sample;
 
 import org.huangsam.sample.numerical.NumberCruncher;
-import org.huangsam.sample.numerical.NumberJob;
+import org.huangsam.sample.numerical.NumberTask;
 import org.huangsam.sample.numerical.NumberReporter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +26,7 @@ public class TrialRunner {
         NumberReporter reporter = new NumberReporter();
 
         Stream.iterate(0, i -> i < threadCount, i -> i + 1)
-                .map(i -> service.submit(new NumberJob(i, cruncher, reporter)))
+                .map(i -> service.submit(new NumberTask(i, cruncher, reporter)))
                 .forEach(future -> {
                     try {
                         Object result = future.get();
