@@ -1,8 +1,8 @@
 package org.huangsam.sample;
 
 import org.huangsam.sample.numerical.NumberCruncher;
-import org.huangsam.sample.numerical.NumberTask;
 import org.huangsam.sample.numerical.NumberReporter;
+import org.huangsam.sample.numerical.NumberTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
