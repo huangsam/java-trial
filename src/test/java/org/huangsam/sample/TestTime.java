@@ -11,6 +11,7 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -90,5 +91,12 @@ public class TestTime {
 
         assertEquals(expectedDuration, Duration.between(SIX_TIME, finalTime).getSeconds());
         assertEquals(expectedDuration, ChronoUnit.SECONDS.between(SIX_TIME, finalTime));
+    }
+
+    @Test
+    void testStringFromDateTime() {
+        String localDateString = SPECIAL_DATETIME.format(DateTimeFormatter.ISO_DATE);
+
+        assertEquals("2000-01-01", localDateString);
     }
 }
