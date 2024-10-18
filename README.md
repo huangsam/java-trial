@@ -10,6 +10,7 @@ Features tested:
 - [x] Streams
 - [x] Threads
 - [x] Time
+- [x] Try With Resources
 
 Libraries tested:
 
