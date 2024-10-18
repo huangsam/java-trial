@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Tests for the java.time library.
+ * Tests for the {@code java.time} library.
  *
  * @see <a href="https://www.baeldung.com/java-8-date-time-intro">Bealdung on time</a>
  */
