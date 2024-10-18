@@ -17,7 +17,7 @@ public class TestMerger {
     private static final Collection<Integer> C2 = Arrays.asList(1, 10, 4);
 
     @Test
-    void testMergeList() {
+    void testMergeAsList() {
         Collection<Integer> mergedSame = MERGER.mergeAs(C1, C1, List.class);
         Collection<Integer> mergedDifferent = MERGER.mergeAs(C1, C2, List.class);
         assertEquals(C1.size() + C1.size(), mergedSame.size());
@@ -25,7 +25,7 @@ public class TestMerger {
     }
 
     @Test
-    void testMergeSet() {
+    void testMergeAsSet() {
         Collection<Integer> mergedSame = MERGER.mergeAs(C1, C1, Set.class);
         Collection<Integer> mergedDifferent = MERGER.mergeAs(C1, C2, Set.class);
         assertEquals(C1.size(), mergedSame.size());
@@ -33,7 +33,7 @@ public class TestMerger {
     }
 
     @Test
-    void testMergeInvalidType() {
+    void testMergeAsIllegal() {
         assertThrows(IllegalArgumentException.class, () -> MERGER.mergeAs(C1, C1, Number.class));
     }
 }
