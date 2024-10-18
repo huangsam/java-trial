@@ -2,6 +2,7 @@ package org.huangsam.sample;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -76,5 +77,14 @@ public class TestTime {
         LocalDate finalDate = initialDate.plus(Period.ofDays(expectedDays));
         assertEquals(expectedDays, Period.between(initialDate, finalDate).getDays());
         assertEquals(expectedDays, ChronoUnit.DAYS.between(initialDate, finalDate));
+    }
+
+    @Test
+    void testDurationAndTimes() {
+        long expectedDuration = 30L;
+
+        LocalTime finalTime = SIX_TIME.plus(Duration.ofSeconds(expectedDuration));
+
+        assertEquals(expectedDuration, Duration.between(SIX_TIME, finalTime).getSeconds());
     }
 }
