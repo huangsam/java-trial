@@ -1,4 +1,4 @@
-package org.huangsam.sample;
+package org.huangsam.sample.google;
 
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multiset;
