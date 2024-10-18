@@ -38,12 +38,17 @@ public class TestConcurrency {
     @Test
     void testExecutorService() throws InterruptedException, ExecutionException {
         ExecutorService service = Executors.newFixedThreadPool(2);
-        Future<Integer> future = service.submit(() -> {
+        Future<Integer> future1 = service.submit(() -> {
             Thread.sleep(SLEEP_IN_MS);
             return 1;
         });
+        Future<Integer> future2 = service.submit(() -> {
+            Thread.sleep(SLEEP_IN_MS);
+            return 2;
+        });
 
-        assertEquals(1, future.get());
+        assertEquals(1, future1.get());
+        assertEquals(2, future2.get());
 
         service.shutdown();
     }
@@ -71,7 +76,7 @@ public class TestConcurrency {
     void testCyclicBarrier() {
         Thread[] threads = {null, null, null};
 
-        CyclicBarrier barrier = new CyclicBarrier(threads.length, () -> LOG.info("All previous tasks are completed"));
+        CyclicBarrier barrier = new CyclicBarrier(threads.length, () -> LOG.info("All tasks are completed"));
 
         for (int i = 0; i < threads.length; i++) {
             threads[i] = new Thread(new CyclicWorker(barrier));
