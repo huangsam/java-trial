@@ -110,7 +110,7 @@ public class TestConcurrency {
             try {
                 LOG.debug("Wait for barrier");
                 barrier.await();
-                LOG.debug("Barrier is released");
+                LOG.debug("Run after barrier");
             } catch (InterruptedException | BrokenBarrierException e) {
                 LOG.error(e.getMessage(), e);
             }
