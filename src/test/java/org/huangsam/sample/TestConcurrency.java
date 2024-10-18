@@ -71,9 +71,7 @@ public class TestConcurrency {
     void testCyclicBarrier() {
         Thread[] threads = {null, null, null};
 
-        CyclicBarrier barrier = new CyclicBarrier(threads.length, () -> {
-            LOG.info("All previous tasks are completed");
-        });
+        CyclicBarrier barrier = new CyclicBarrier(threads.length, () -> LOG.info("All previous tasks are completed"));
 
         for (int i = 0; i < threads.length; i++) {
             threads[i] = new Thread(new CyclicWorker(barrier));
