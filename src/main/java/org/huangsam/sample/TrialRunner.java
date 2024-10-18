@@ -29,8 +29,8 @@ public class TrialRunner {
             config.load(in);
         }
 
-        String helloString = (String) config.get(KEY_HELLO);
-        String byeString = (String) config.get(KEY_BYE);
+        String helloString = config.getProperty(KEY_HELLO);
+        String byeString = config.getProperty(KEY_BYE);
 
         LOG.info(helloString);
 
