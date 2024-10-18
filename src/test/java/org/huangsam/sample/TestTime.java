@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -18,6 +21,8 @@ public class TestTime {
     private static final LocalTime SIX_TIME = LocalTime.of(6, 0);
 
     private static final LocalDateTime START_DATETIME = LocalDateTime.of(2000, Month.JANUARY, 1, 0, 0);
+
+    private static final String UTC_ID = "UTC";
 
     @Test
     void testLocalTimeOffSet() {
@@ -46,5 +51,18 @@ public class TestTime {
         assertEquals(LocalDateTime.parse("2000-01-01T00:00:00"), START_DATETIME);
         assertEquals(LocalDateTime.parse("2000-01-02T00:00:00"), START_DATETIME.plusDays(1));
         assertEquals(LocalDateTime.parse("1999-12-31T00:00:00"), START_DATETIME.minusDays(1));
+    }
+
+    @Test
+    void testUtcZoneIsStandard() {
+        assertTrue(ZoneId.getAvailableZoneIds().contains(UTC_ID));
+        assertEquals(ZoneId.of(UTC_ID), ZoneId.ofOffset(UTC_ID, ZoneOffset.UTC));
+    }
+
+    @Test
+    void testUtcTime() {
+        ZoneId utc = ZoneId.of(UTC_ID);
+        ZonedDateTime dateTime = ZonedDateTime.of(START_DATETIME, utc);
+        assertEquals(utc, dateTime.getZone());
     }
 }
