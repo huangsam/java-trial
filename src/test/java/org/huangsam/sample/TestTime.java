@@ -2,12 +2,15 @@ package org.huangsam.sample;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
+import java.time.Period;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -20,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class TestTime {
     private static final LocalTime SIX_TIME = LocalTime.of(6, 0);
 
-    private static final LocalDateTime START_DATETIME = LocalDateTime.of(2000, Month.JANUARY, 1, 0, 0);
+    private static final LocalDateTime SPECIAL_DATETIME = LocalDateTime.of(2000, Month.JANUARY, 1, 0, 0);
 
     private static final String UTC_ID = "UTC";
 
@@ -48,9 +51,9 @@ public class TestTime {
 
     @Test
     void testLocalDateTimeOffset() {
-        assertEquals(LocalDateTime.parse("2000-01-01T00:00:00"), START_DATETIME);
-        assertEquals(LocalDateTime.parse("2000-01-02T00:00:00"), START_DATETIME.plusDays(1));
-        assertEquals(LocalDateTime.parse("1999-12-31T00:00:00"), START_DATETIME.minusDays(1));
+        assertEquals(LocalDateTime.parse("2000-01-01T00:00:00"), SPECIAL_DATETIME);
+        assertEquals(LocalDateTime.parse("2000-01-02T00:00:00"), SPECIAL_DATETIME.plusDays(1));
+        assertEquals(LocalDateTime.parse("1999-12-31T00:00:00"), SPECIAL_DATETIME.minusDays(1));
     }
 
     @Test
@@ -60,9 +63,18 @@ public class TestTime {
     }
 
     @Test
-    void testUtcTime() {
-        ZoneId utc = ZoneId.of(UTC_ID);
-        ZonedDateTime dateTime = ZonedDateTime.of(START_DATETIME, utc);
-        assertEquals(utc, dateTime.getZone());
+    void testZonedTimeHasUtcZone() {
+        ZoneId expectedZone = ZoneId.of(UTC_ID);
+        ZonedDateTime dateTime = ZonedDateTime.of(SPECIAL_DATETIME, expectedZone);
+        assertEquals(expectedZone, dateTime.getZone());
+    }
+
+    @Test
+    void testPeriodsAndDates() {
+        int expectedDays = 5;
+        LocalDate initialDate = LocalDate.parse("2007-05-10");
+        LocalDate finalDate = initialDate.plus(Period.ofDays(expectedDays));
+        assertEquals(expectedDays, Period.between(initialDate, finalDate).getDays());
+        assertEquals(expectedDays, ChronoUnit.DAYS.between(initialDate, finalDate));
     }
 }
