@@ -71,6 +71,7 @@ public class TestConcurrency {
         List<Thread> workers = Stream.generate(() -> new Thread(new CountWorker(latch))).limit(expectedWorkers).toList();
 
         assertEquals(expectedWorkers, workers.size());
+        assertEquals(expectedWorkers, latch.getCount());
 
         workers.forEach(Thread::start);
 
