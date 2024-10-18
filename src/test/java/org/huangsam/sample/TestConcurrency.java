@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CountDownLatch;
@@ -18,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
@@ -66,12 +66,16 @@ public class TestConcurrency {
 
     @Test
     void testCountDownLatch() throws InterruptedException {
-        int expectedWorkers = 5;
-        CountDownLatch latch = new CountDownLatch(expectedWorkers);
-        List<Thread> workers = Stream.generate(() -> new Thread(new CountWorker(latch))).limit(expectedWorkers).toList();
+        int expectedWorkers = 3;
 
-        assertEquals(expectedWorkers, workers.size());
+        CountDownLatch latch = new CountDownLatch(expectedWorkers);
+        List<Thread> workers = Stream
+                .generate(() -> countThread(latch))
+                .limit(expectedWorkers)
+                .toList();
+
         assertEquals(expectedWorkers, latch.getCount());
+        assertEquals(expectedWorkers, workers.size());
 
         workers.forEach(Thread::start);
 
@@ -84,17 +88,29 @@ public class TestConcurrency {
 
     @Test
     void testCyclicBarrier() {
-        Thread[] threads = {null, null, null};
+        int expectedWorkers = 3;
 
-        CyclicBarrier barrier = new CyclicBarrier(threads.length, () -> LOG.info("All tasks are completed"));
+        CyclicBarrier barrier = new CyclicBarrier(expectedWorkers, () -> LOG.info("All tasks are completed"));
+        List<Thread> workers = Stream
+                .generate(() -> cyclicThread(barrier))
+                .limit(expectedWorkers)
+                .toList();
 
-        for (int i = 0; i < threads.length; i++) {
-            threads[i] = new Thread(new CyclicWorker(barrier));
-        }
+        assertEquals(expectedWorkers, workers.size());
 
-        if (!barrier.isBroken()) {
-            Arrays.stream(threads).forEach(Thread::start);
-        }
+        assertFalse(barrier.isBroken());
+
+        workers.forEach(Thread::start);
+
+        assertFalse(barrier.isBroken());
+    }
+
+    private static Thread countThread(CountDownLatch latch) {
+        return new Thread(new CountWorker(latch));
+    }
+
+    private static Thread cyclicThread(CyclicBarrier barrier) {
+        return new Thread(new CyclicWorker(barrier));
     }
 
     private record CountWorker(CountDownLatch latch) implements Runnable {
