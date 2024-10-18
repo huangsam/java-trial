@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
  * Testing Java concurrency primitives.
@@ -65,10 +66,18 @@ public class TestConcurrency {
 
     @Test
     void testCountDownLatch() throws InterruptedException {
-        CountDownLatch latch = new CountDownLatch(5);
-        List<Thread> workers = Stream.generate(() -> new Thread(new CountWorker(latch))).limit(5).toList();
+        int expectedWorkers = 5;
+        CountDownLatch latch = new CountDownLatch(expectedWorkers);
+        List<Thread> workers = Stream.generate(() -> new Thread(new CountWorker(latch))).limit(expectedWorkers).toList();
+
+        assertEquals(expectedWorkers, workers.size());
+
         workers.forEach(Thread::start);
+
+        assertNotEquals(0, latch.getCount());
+
         latch.await();
+
         assertEquals(0, latch.getCount());
     }
 
