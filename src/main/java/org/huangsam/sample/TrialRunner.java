@@ -6,8 +6,8 @@ import org.huangsam.sample.numerical.NumberTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -18,15 +18,19 @@ import java.util.stream.Stream;
 public class TrialRunner {
     private static final Logger LOG = LoggerFactory.getLogger(TrialRunner.class);
 
-    private static final String CONFIG_LOCATION = "./src/main/resources/config.properties";
+    private static final String CFG_NAME = "config.properties";
+    private static final String KEY_HELLO = "helloString";
+    private static final String KEY_BYE = "byeString";
 
     public static void main(String[] args) throws InterruptedException, IOException {
         Properties config = new Properties();
 
-        config.load(new FileInputStream(CONFIG_LOCATION));
+        try (InputStream in = TrialRunner.class.getClassLoader().getResourceAsStream(CFG_NAME)) {
+            config.load(in);
+        }
 
-        String helloString = (String) config.get("helloString");
-        String byeString = (String) config.get("byeString");
+        String helloString = (String) config.get(KEY_HELLO);
+        String byeString = (String) config.get(KEY_BYE);
 
         LOG.info(helloString);
 
