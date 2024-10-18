@@ -92,14 +92,14 @@ public class TestConcurrency {
 
     private record CyclicWorker(CyclicBarrier barrier) implements Runnable {
         @Override
-            public void run() {
-                try {
-                    LOG.debug("Wait for barrier");
-                    barrier.await();
-                    LOG.debug("Barrier is released");
-                } catch (InterruptedException | BrokenBarrierException e) {
-                    LOG.error(e.getMessage(), e);
-                }
+        public void run() {
+            try {
+                LOG.debug("Wait for barrier");
+                barrier.await();
+                LOG.debug("Barrier is released");
+            } catch (InterruptedException | BrokenBarrierException e) {
+                LOG.error(e.getMessage(), e);
             }
         }
+    }
 }
