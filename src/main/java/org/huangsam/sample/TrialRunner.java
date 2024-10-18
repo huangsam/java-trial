@@ -25,6 +25,7 @@ public class TrialRunner {
     public static void main(String[] args) throws InterruptedException, IOException {
         Properties config = new Properties();
 
+        // https://www.baeldung.com/java-try-with-resources
         try (InputStream in = TrialRunner.class.getClassLoader().getResourceAsStream(CFG_NAME)) {
             config.load(in);
         }
