@@ -6,23 +6,41 @@ import org.huangsam.sample.numerical.NumberReporter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
+
 public class TrialRunner {
     private static final Logger LOG = LoggerFactory.getLogger(TrialRunner.class);
 
     public static void main(String[] args) throws InterruptedException {
         LOG.info("Hello world");
 
-        Thread[] threads = {null, null, null, null, null, null};
+        int threadCount = 5;
 
-        for (int i = 0; i < threads.length; i++) {
-            threads[i] = new Thread(new NumberJob(i, new NumberCruncher(), new NumberReporter()));
-            threads[i].start();
+        ExecutorService service = Executors.newFixedThreadPool(threadCount);
+
+        NumberCruncher cruncher = new NumberCruncher();
+        NumberReporter reporter = new NumberReporter();
+
+        Stream.iterate(0, i -> i < threadCount, i -> i + 1)
+                .map(i -> service.submit(new NumberJob(i, cruncher, reporter)))
+                .forEach(future -> {
+                    try {
+                        future.get();
+                    } catch (InterruptedException | ExecutionException e) {
+                        LOG.error(e.getMessage(), e);
+                    }
+                });
+
+        service.shutdown();
+
+        if (service.awaitTermination(5L, TimeUnit.SECONDS)) {
+            LOG.info("Bye world :)");
+        } else {
+            LOG.warn("Bye world :(");
         }
-
-        for (Thread thread : threads) {
-            thread.join();
-        }
-
-        LOG.info("Bye world");
     }
 }
