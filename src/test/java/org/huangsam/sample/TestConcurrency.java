@@ -81,41 +81,25 @@ public class TestConcurrency {
             Arrays.stream(threads).forEach(Thread::start);
         }
     }
-}
 
-class CountWorker implements Runnable {
-    private static final Logger LOG = LoggerFactory.getLogger(CountWorker.class);
-
-    private final CountDownLatch latch;
-
-    public CountWorker(CountDownLatch latch) {
-        this.latch = latch;
-    }
-
-    @Override
-    public void run() {
-        LOG.debug("Run countdown logic");
-        latch.countDown();
-    }
-}
-
-class CyclicWorker implements Runnable {
-    private static final Logger LOG = LoggerFactory.getLogger(CyclicWorker.class);
-
-    private final CyclicBarrier barrier;
-
-    public CyclicWorker(CyclicBarrier barrier) {
-        this.barrier = barrier;
-    }
-
-    @Override
-    public void run() {
-        try {
-            LOG.debug("Wait for barrier");
-            barrier.await();
-            LOG.debug("Barrier is released");
-        } catch (InterruptedException | BrokenBarrierException e) {
-            LOG.error(e.getMessage(), e);
+    private record CountWorker(CountDownLatch latch) implements Runnable {
+        @Override
+        public void run() {
+            LOG.debug("Run countdown logic");
+            latch.countDown();
         }
     }
+
+    private record CyclicWorker(CyclicBarrier barrier) implements Runnable {
+        @Override
+            public void run() {
+                try {
+                    LOG.debug("Wait for barrier");
+                    barrier.await();
+                    LOG.debug("Barrier is released");
+                } catch (InterruptedException | BrokenBarrierException e) {
+                    LOG.error(e.getMessage(), e);
+                }
+            }
+        }
 }
