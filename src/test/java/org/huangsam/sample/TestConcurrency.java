@@ -35,17 +35,21 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 public class TestConcurrency {
     private static final Logger LOG = LoggerFactory.getLogger(TestConcurrency.class);
 
-    private static final long SLEEP_IN_MS = 250L;
+    private static final long WORK_IN_MS = 250L;
+    private static final long POLL_IN_MS = 125L;
+
+    private static final int FEW_COUNT = 3;
+    private static final int MANY_COUNT = FEW_COUNT * 4;
 
     @Test
     void testExecutorService() throws InterruptedException, ExecutionException {
         ExecutorService service = Executors.newFixedThreadPool(2);
         Future<Integer> future1 = service.submit(() -> {
-            Thread.sleep(SLEEP_IN_MS);
+            Thread.sleep(WORK_IN_MS);
             return 1;
         });
         Future<Integer> future2 = service.submit(() -> {
-            Thread.sleep(SLEEP_IN_MS);
+            Thread.sleep(WORK_IN_MS);
             return 2;
         });
 
@@ -58,7 +62,7 @@ public class TestConcurrency {
     @Test
     void testScheduledExecutorService() throws InterruptedException, ExecutionException {
         ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
-        Future<Integer> future = service.schedule(() -> 1, SLEEP_IN_MS, TimeUnit.MILLISECONDS);
+        Future<Integer> future = service.schedule(() -> 1, WORK_IN_MS, TimeUnit.MILLISECONDS);
 
         assertEquals(1, future.get());
 
@@ -67,16 +71,14 @@ public class TestConcurrency {
 
     @Test
     void testCountDownLatch() throws InterruptedException {
-        int expectedWorkers = 3;
-
-        CountDownLatch latch = new CountDownLatch(expectedWorkers);
+        CountDownLatch latch = new CountDownLatch(FEW_COUNT);
         List<Thread> workers = Stream
                 .generate(() -> countThread(latch))
-                .limit(expectedWorkers)
+                .limit(FEW_COUNT)
                 .toList();
 
-        assertEquals(expectedWorkers, latch.getCount());
-        assertEquals(expectedWorkers, workers.size());
+        assertEquals(FEW_COUNT, latch.getCount());
+        assertEquals(FEW_COUNT, workers.size());
 
         workers.forEach(Thread::start);
 
@@ -89,15 +91,13 @@ public class TestConcurrency {
 
     @Test
     void testCyclicBarrier() {
-        int expectedWorkers = 3;
-
-        CyclicBarrier barrier = new CyclicBarrier(expectedWorkers, () -> LOG.info("All tasks are completed"));
+        CyclicBarrier barrier = new CyclicBarrier(FEW_COUNT, () -> LOG.info("All tasks are completed"));
         List<Thread> workers = Stream
                 .generate(() -> cyclicThread(barrier))
-                .limit(expectedWorkers)
+                .limit(FEW_COUNT)
                 .toList();
 
-        assertEquals(expectedWorkers, workers.size());
+        assertEquals(FEW_COUNT, workers.size());
 
         assertFalse(barrier.isBroken());
 
@@ -108,11 +108,28 @@ public class TestConcurrency {
 
     @Test
     void testSemaphore() {
-        int expectedPermits = 10;
-        Semaphore semaphore = new Semaphore(expectedPermits);
+        Semaphore semaphore = new Semaphore(FEW_COUNT);
 
-        assertEquals(expectedPermits, semaphore.availablePermits());
-        assertEquals(0, semaphore.getQueueLength());
+        assertEquals(FEW_COUNT, semaphore.availablePermits());
+
+        List<Thread> workers = Stream
+                .generate(() -> semaThread(semaphore))
+                .limit(MANY_COUNT)
+                .toList();
+
+        workers.forEach(Thread::start);
+
+        assertEquals(0, semaphore.availablePermits());
+
+        workers.forEach(worker -> {
+            try {
+                worker.join();
+            } catch (InterruptedException e) {
+                LOG.error(e.getMessage(), e);
+            }
+        });
+
+        assertEquals(FEW_COUNT, semaphore.availablePermits());
     }
 
     private static Thread countThread(CountDownLatch latch) {
@@ -123,9 +140,19 @@ public class TestConcurrency {
         return new Thread(new CyclicTask(barrier));
     }
 
+    private static Thread semaThread(Semaphore semaphore) {
+        return new Thread(new SemaphoreTask(semaphore));
+    }
+
     private record CountTask(CountDownLatch latch) implements Runnable {
         @Override
         public void run() {
+            try {
+                Thread.sleep(WORK_IN_MS);
+            } catch (InterruptedException e) {
+                LOG.error(e.getMessage(), e);
+            }
+
             LOG.debug("Run countdown logic");
             latch.countDown();
         }
@@ -136,11 +163,39 @@ public class TestConcurrency {
         public void run() {
             try {
                 LOG.debug("Wait for barrier");
+                Thread.sleep(WORK_IN_MS);
                 barrier.await();
                 LOG.debug("Run after barrier");
             } catch (InterruptedException | BrokenBarrierException e) {
                 LOG.error(e.getMessage(), e);
             }
+        }
+    }
+
+    private record SemaphoreTask(Semaphore semaphore) implements Runnable {
+        @Override
+        public void run() {
+            int attemptCount = 0;
+            boolean isAcquired = false;
+            do {
+                try {
+                    isAcquired = semaphore.tryAcquire(POLL_IN_MS, TimeUnit.MILLISECONDS);
+                } catch (InterruptedException e) {
+                    LOG.error(e.getMessage(), e);
+                }
+                attemptCount++;
+            } while (!isAcquired);
+
+            LOG.debug("Acquire semaphore after {} attempts", attemptCount);
+
+            try {
+                Thread.sleep(WORK_IN_MS);
+            } catch (InterruptedException e) {
+                LOG.error(e.getMessage(), e);
+            }
+
+            LOG.debug("Release semaphore");
+            semaphore.release();
         }
     }
 }
