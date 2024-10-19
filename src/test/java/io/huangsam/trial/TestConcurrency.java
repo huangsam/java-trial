@@ -3,6 +3,7 @@ package io.huangsam.trial;
 import io.huangsam.trial.runners.CountRunner;
 import io.huangsam.trial.runners.CyclicRunner;
 import io.huangsam.trial.runners.SemaphoreRunner;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -110,7 +111,7 @@ public class TestConcurrency {
         workers.forEach(worker -> assertFalse(worker.isAlive()));
     }
 
-    @Test
+    @RepeatedTest(5)
     void testStartingSemaphoreThreads() {
         Semaphore semaphore = new Semaphore(FEW_COUNT);
         List<Thread> workers = Stream
