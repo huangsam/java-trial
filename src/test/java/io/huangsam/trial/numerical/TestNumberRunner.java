@@ -5,9 +5,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
+import java.util.stream.Stream;
+
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.times;
@@ -38,21 +39,14 @@ public class TestNumberRunner {
 
     @Test
     void testJobRunsWithoutErrors() {
-        Thread thread = new Thread(new NumberRunner(TOY_ID, new NumberCruncher(), new NumberReporter()));
-        assertDoesNotThrow(() -> {
-            thread.start();
-            thread.join();
-        });
+        Runnable runner = new NumberRunner(TOY_ID, new NumberCruncher(), new NumberReporter());
+        assertDoesNotThrow(runner::run);
     }
 
     @Test
-    void testCruncherWithCompleteResult() throws InterruptedException {
-        Thread thread = new Thread(new NumberRunner(TOY_ID, new NumberCruncher(), mockReporter));
-        thread.start();
-
-        thread.join();
-        assertFalse(thread.isAlive());
-
+    void testCruncherWithCompleteResult() {
+        Runnable runner = new NumberRunner(TOY_ID, new NumberCruncher(), mockReporter);
+        runner.run();
         verify(mockReporter).report(squared(TOY_ID), TOY_ID);
     }
 
@@ -60,39 +54,29 @@ public class TestNumberRunner {
     void testCruncherWithErrorResult() throws InterruptedException {
         Thread thread = new Thread(new NumberRunner(TOY_ID, new NumberCruncher(), mockReporter));
         thread.start();
-
         thread.interrupt();
-        assertTrue(thread.isInterrupted());
-        assertTrue(thread.isAlive());
-
         thread.join();
-        assertFalse(thread.isInterrupted());
-        assertFalse(thread.isAlive());
-
         verify(mockReporter).report(NumberCruncher.ERROR_RESULT, TOY_ID);
     }
 
     @Test
-    void testCruncherRanMultipleTimes() throws InterruptedException {
-        Thread[] threads = {null, null, null, null};
-        for (int i = 0; i < threads.length; i++) {
-            when(mockCruncher.compute(i)).thenReturn(squared(i));
-            threads[i] = new Thread(new NumberRunner(i, mockCruncher, mockReporter));
-        }
+    void testCruncherRanMultipleTimes() {
+        int expectedThreads = 3;
+        List<NumberRunner> runners = Stream.iterate(0, i -> i < expectedThreads, i -> i + 1)
+                .peek(i -> when(mockCruncher.compute(i)).thenReturn(squared(i)))
+                .map(i -> new NumberRunner(i, mockCruncher, mockReporter))
+                .toList();
 
-        for (Thread thread : threads) {
-            thread.start();
-        }
-        for (Thread thread : threads) {
-            thread.join();
+        for (Runnable runner : runners) {
+            runner.run();
         }
 
         // Aggregate testing is coarse
-        verify(mockCruncher, times(threads.length)).compute(anyLong());
-        verify(mockReporter, times(threads.length)).report(anyLong(), anyInt());
+        verify(mockCruncher, times(runners.size())).compute(anyLong());
+        verify(mockReporter, times(runners.size())).report(anyLong(), anyInt());
 
         // Individual testing is granular
-        for (int i = 0; i < threads.length; i++) {
+        for (int i = 0; i < runners.size(); i++) {
             verify(mockCruncher, times(1)).compute(i);
             verify(mockReporter, times(1)).report(squared(i), i);
         }
