@@ -4,7 +4,7 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 public class SemaphoreRunner extends AbstractRunner {
-    private static int MAX_ATTEMPTS = 10;
+    private static final int MAX_ATTEMPTS = 10;
 
     private final Semaphore semaphore;
     private int attempts = 0;
