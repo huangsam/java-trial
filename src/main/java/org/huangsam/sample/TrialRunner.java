@@ -59,8 +59,8 @@ public class TrialRunner {
         service.shutdown();
 
         String exitMessage = config.getProperty(PROP_EXIT);
-        String emoji = service.awaitTermination(5L, TimeUnit.SECONDS) ? EMOJI_HAPPY : EMOJI_SAD;
+        String exitEmoji = service.awaitTermination(5L, TimeUnit.SECONDS) ? EMOJI_HAPPY : EMOJI_SAD;
 
-        LOG.info("{} {}", exitMessage, emoji);
+        LOG.info("{} {}", exitMessage, exitEmoji);
     }
 }
