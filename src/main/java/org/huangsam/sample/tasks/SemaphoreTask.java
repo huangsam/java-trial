@@ -4,8 +4,6 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 public class SemaphoreTask extends AbstractTask {
-    private static final long POLL_IN_MS = 125L;
-
     private final Semaphore semaphore;
     private int attempts = 0;
 
@@ -18,7 +16,7 @@ public class SemaphoreTask extends AbstractTask {
         boolean acquired = false;
         do {
             try {
-                acquired = semaphore.tryAcquire(POLL_IN_MS, TimeUnit.MILLISECONDS);
+                acquired = semaphore.tryAcquire(50L, TimeUnit.MILLISECONDS);
             } catch (InterruptedException e) {
                 log().error(e.getMessage(), e);
             }
