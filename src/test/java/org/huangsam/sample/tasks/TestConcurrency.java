@@ -74,7 +74,6 @@ public class TestConcurrency {
                 .toList();
 
         assertEquals(FEW_COUNT, latch.getCount());
-        assertEquals(FEW_COUNT, workers.size());
 
         workers.forEach(Thread::start);
 
@@ -95,11 +94,17 @@ public class TestConcurrency {
 
         assertEquals(FEW_COUNT, workers.size());
 
-        assertFalse(barrier.isBroken());
-
         workers.forEach(Thread::start);
 
-        assertFalse(barrier.isBroken());
+        workers.forEach(worker -> {
+            try {
+                worker.join();
+            } catch (InterruptedException e) {
+                LOG.error(e.getMessage(), e);
+            }
+        });
+
+        workers.forEach(worker -> assertFalse(worker.isAlive()));
     }
 
     @Test
@@ -107,6 +112,7 @@ public class TestConcurrency {
         Semaphore semaphore = new Semaphore(FEW_COUNT);
 
         assertEquals(FEW_COUNT, semaphore.availablePermits());
+        assertEquals(0, semaphore.getQueueLength());
 
         List<Thread> workers = Stream
                 .generate(() -> semaThread(semaphore))
@@ -116,6 +122,7 @@ public class TestConcurrency {
         workers.forEach(Thread::start);
 
         assertEquals(0, semaphore.availablePermits());
+        assertNotEquals(0, semaphore.getQueueLength());
 
         workers.forEach(worker -> {
             try {
@@ -126,6 +133,7 @@ public class TestConcurrency {
         });
 
         assertEquals(FEW_COUNT, semaphore.availablePermits());
+        assertEquals(0, semaphore.getQueueLength());
     }
 
     private static Thread countThread(CountDownLatch latch) {
