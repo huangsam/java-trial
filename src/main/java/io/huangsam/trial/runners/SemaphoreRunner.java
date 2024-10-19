@@ -33,6 +33,8 @@ public class SemaphoreRunner extends AbstractRunner {
 
         if (acquired) {
             super.run();
+        } else {
+            log().warn("Cannot acquire semaphore after {} attempts", attempts);
         }
     }
 
