@@ -7,6 +7,6 @@ public class NumberReporter {
     private static final Logger LOG = LoggerFactory.getLogger(NumberReporter.class);
 
     public void report(Long result, Integer id) {
-        LOG.info("Crunched {} with thread {}", result, id);
+        LOG.info("Crunched {} with id {}", result, id);
     }
 }

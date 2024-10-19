@@ -2,7 +2,7 @@ package org.huangsam.sample;
 
 import org.huangsam.sample.numerical.NumberCruncher;
 import org.huangsam.sample.numerical.NumberReporter;
-import org.huangsam.sample.numerical.NumberTask;
+import org.huangsam.sample.numerical.NumberRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,8 +15,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
-public class TrialRunner {
-    private static final Logger LOG = LoggerFactory.getLogger(TrialRunner.class);
+public class JavaTrial {
+    private static final Logger LOG = LoggerFactory.getLogger(JavaTrial.class);
 
     private static final String CFG_NAME = "config.properties";
 
@@ -30,7 +30,7 @@ public class TrialRunner {
         Properties config = new Properties();
 
         // https://www.baeldung.com/java-try-with-resources
-        try (InputStream in = TrialRunner.class.getClassLoader().getResourceAsStream(CFG_NAME)) {
+        try (InputStream in = JavaTrial.class.getClassLoader().getResourceAsStream(CFG_NAME)) {
             config.load(in);
         }
 
@@ -38,13 +38,13 @@ public class TrialRunner {
 
         LOG.info(enterMessage);
 
-        int threadCount = 5;
+        int threadCount = 4;
         ExecutorService service = Executors.newFixedThreadPool(threadCount);
         NumberCruncher cruncher = new NumberCruncher();
         NumberReporter reporter = new NumberReporter();
 
-        Stream.iterate(0, i -> i < threadCount, i -> i + 1)
-                .map(i -> service.submit(new NumberTask(i, cruncher, reporter)))
+        Stream.iterate(1, i -> i < threadCount, i -> i + 1)
+                .map(i -> service.submit(new NumberRunner(i, cruncher, reporter)))
                 .forEach(future -> {
                     try {
                         Object result = future.get();
@@ -59,7 +59,7 @@ public class TrialRunner {
         service.shutdown();
 
         String exitMessage = config.getProperty(PROP_EXIT);
-        String exitEmoji = service.awaitTermination(5L, TimeUnit.SECONDS) ? EMOJI_HAPPY : EMOJI_SAD;
+        String exitEmoji = service.awaitTermination(1L, TimeUnit.SECONDS) ? EMOJI_HAPPY : EMOJI_SAD;
 
         LOG.info("{} {}", exitMessage, exitEmoji);
     }

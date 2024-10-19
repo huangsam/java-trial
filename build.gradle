@@ -40,5 +40,5 @@ jacocoTestReport {
 }
 
 application {
-    mainClass = 'org.huangsam.sample.TrialRunner'
+    mainClass = 'org.huangsam.sample.JavaTrial'
 }
