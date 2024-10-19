@@ -12,8 +12,8 @@ import java.util.concurrent.Semaphore;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestRunners {
     private static final Logger LOG = LoggerFactory.getLogger(TestRunners.class);
@@ -50,7 +50,7 @@ public class TestRunners {
             worker.join();
         }
 
-        workers.forEach(worker -> assertFalse(worker.isAlive()));
+        assertTrue(workers.stream().noneMatch(Thread::isAlive));
     }
 
     @RepeatedTest(3)
