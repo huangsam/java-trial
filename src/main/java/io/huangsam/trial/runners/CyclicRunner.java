@@ -1,9 +1,14 @@
 package io.huangsam.trial.runners;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
 public class CyclicRunner extends AbstractRunner {
+    private static final Logger LOG = LoggerFactory.getLogger(AbstractRunner.class);
+
     private final CyclicBarrier barrier;
 
     public CyclicRunner(CyclicBarrier barrier) {
@@ -23,5 +28,10 @@ public class CyclicRunner extends AbstractRunner {
         } catch (InterruptedException | BrokenBarrierException e) {
             throw new RuntimeException("Abort during barrier blockage", e);
         }
+    }
+
+    @Override
+    Logger log() {
+        return LOG;
     }
 }

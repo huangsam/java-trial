@@ -1,7 +1,6 @@
 package io.huangsam.trial.runners;
 
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public abstract class AbstractRunner implements Runnable {
     @Override
@@ -23,7 +22,5 @@ public abstract class AbstractRunner implements Runnable {
 
     abstract void afterWork();
 
-    Logger log() {
-        return LoggerFactory.getLogger(getClass());
-    }
+    abstract Logger log();
 }

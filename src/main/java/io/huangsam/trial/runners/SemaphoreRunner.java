@@ -1,9 +1,14 @@
 package io.huangsam.trial.runners;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 public class SemaphoreRunner extends AbstractRunner {
+    private static final Logger LOG = LoggerFactory.getLogger(SemaphoreRunner.class);
+
     private static final int MAX_ATTEMPTS = 10;
 
     private final Semaphore semaphore;
@@ -24,14 +29,11 @@ public class SemaphoreRunner extends AbstractRunner {
             }
 
             attempts++;
+        } while (!acquired && attempts < MAX_ATTEMPTS);
 
-            if (attempts == MAX_ATTEMPTS) {
-                log().warn("Failed to acquire semaphore after {} attempts", attempts);
-                return;
-            }
-        } while (!acquired);
-
-        super.run();
+        if (acquired) {
+            super.run();
+        }
     }
 
     @Override
@@ -43,6 +45,11 @@ public class SemaphoreRunner extends AbstractRunner {
     void afterWork() {
         log().debug("Release semaphore");
         semaphore.release();
+    }
+
+    @Override
+    Logger log() {
+        return LOG;
     }
 
     private long getTimeout() {
