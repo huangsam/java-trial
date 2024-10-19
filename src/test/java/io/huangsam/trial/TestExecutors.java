@@ -20,6 +20,8 @@ public class TestExecutors {
     void testExecutorIsInvoked() throws InterruptedException {
         Invoker invoker = new Invoker();
 
+        assertFalse(invoker.isInvoked());
+
         invoker.execute(() -> {
         });
 
@@ -29,7 +31,7 @@ public class TestExecutors {
     }
 
     @Test
-    void testExecutorServiceTerminates() throws InterruptedException, ExecutionException {
+    void testExecutorServiceIsFinished() throws InterruptedException, ExecutionException {
         ExecutorService service = Executors.newFixedThreadPool(2);
         Future<Integer> future1 = service.submit(() -> {
             Thread.sleep(50L);
@@ -44,15 +46,37 @@ public class TestExecutors {
         assertEquals(2, future2.get());
 
         assertFalse(service.isTerminated());
+        assertFalse(service.isShutdown());
 
         service.shutdown();
 
         assertTrue(service.awaitTermination(100L, TimeUnit.MILLISECONDS));
+
         assertTrue(service.isTerminated());
+        assertTrue(service.isShutdown());
     }
 
     @Test
-    void testScheduledExecutorServiceTerminates() throws InterruptedException, ExecutionException {
+    void testExecutorServiceIsStuck() throws InterruptedException {
+        ExecutorService service = Executors.newFixedThreadPool(2);
+        service.submit(() -> {
+            Thread.sleep(1000000L);
+            return 1;
+        });
+
+        assertFalse(service.isTerminated());
+        assertFalse(service.isShutdown());
+
+        service.shutdown();
+
+        assertFalse(service.awaitTermination(100L, TimeUnit.MILLISECONDS));
+
+        assertFalse(service.isTerminated());
+        assertTrue(service.isShutdown());
+    }
+
+    @Test
+    void testScheduledServiceIsFinished() throws InterruptedException, ExecutionException {
         ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
         ScheduledFuture<Integer> future = service.schedule(() -> 1, 50L, TimeUnit.MILLISECONDS);
 
