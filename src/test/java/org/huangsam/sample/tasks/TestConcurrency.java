@@ -34,8 +34,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 public class TestConcurrency {
     private static final Logger LOG = LoggerFactory.getLogger(TestConcurrency.class);
 
-    private static final long WORK_IN_MS = 250L;
-
     private static final int FEW_COUNT = 3;
     private static final int MANY_COUNT = FEW_COUNT * 4;
 
@@ -43,11 +41,11 @@ public class TestConcurrency {
     void testExecutorService() throws InterruptedException, ExecutionException {
         ExecutorService service = Executors.newFixedThreadPool(2);
         Future<Integer> future1 = service.submit(() -> {
-            Thread.sleep(WORK_IN_MS);
+            Thread.sleep(100L);
             return 1;
         });
         Future<Integer> future2 = service.submit(() -> {
-            Thread.sleep(WORK_IN_MS);
+            Thread.sleep(125L);
             return 2;
         });
 
@@ -60,7 +58,7 @@ public class TestConcurrency {
     @Test
     void testScheduledExecutorService() throws InterruptedException, ExecutionException {
         ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
-        Future<Integer> future = service.schedule(() -> 1, WORK_IN_MS, TimeUnit.MILLISECONDS);
+        Future<Integer> future = service.schedule(() -> 1, 500L, TimeUnit.MILLISECONDS);
 
         assertEquals(1, future.get());
 
