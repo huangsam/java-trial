@@ -13,6 +13,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
@@ -103,6 +104,15 @@ public class TestConcurrency {
         workers.forEach(Thread::start);
 
         assertFalse(barrier.isBroken());
+    }
+
+    @Test
+    void testSemaphore() {
+        int expectedPermits = 10;
+        Semaphore semaphore = new Semaphore(expectedPermits);
+
+        assertEquals(expectedPermits, semaphore.availablePermits());
+        assertEquals(0, semaphore.getQueueLength());
     }
 
     private static Thread countThread(CountDownLatch latch) {
