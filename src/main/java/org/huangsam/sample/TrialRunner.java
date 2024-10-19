@@ -19,8 +19,12 @@ public class TrialRunner {
     private static final Logger LOG = LoggerFactory.getLogger(TrialRunner.class);
 
     private static final String CFG_NAME = "config.properties";
+
     private static final String KEY_HELLO = "helloString";
     private static final String KEY_BYE = "byeString";
+
+    private static final String EMOJI_HAPPY = ":)";
+    private static final String EMOJI_SAD = ":(";
 
     public static void main(String[] args) throws InterruptedException, IOException {
         Properties config = new Properties();
@@ -57,7 +61,7 @@ public class TrialRunner {
 
         service.shutdown();
 
-        String emoji = service.awaitTermination(5L, TimeUnit.SECONDS) ? ":)" : ":(";
+        String emoji = service.awaitTermination(5L, TimeUnit.SECONDS) ? EMOJI_HAPPY : EMOJI_SAD;
 
         LOG.info("{} {}", byeString, emoji);
     }
