@@ -38,7 +38,7 @@ public class TestMerger {
     }
 
     @Test
-    void testMergeAsIllegal() {
+    void testMergeAsIllegalType() {
         assertThrows(IllegalArgumentException.class, () -> MERGER.mergeAs(C1, C1, Number.class));
     }
 }
