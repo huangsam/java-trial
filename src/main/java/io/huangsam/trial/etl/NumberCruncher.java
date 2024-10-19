@@ -1,4 +1,4 @@
-package io.huangsam.trial.numerical;
+package io.huangsam.trial.etl;
 
 public class NumberCruncher {
     public static final long ERROR_RESULT = -1L;

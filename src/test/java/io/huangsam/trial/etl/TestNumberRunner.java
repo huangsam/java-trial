@@ -1,4 +1,4 @@
-package io.huangsam.trial.numerical;
+package io.huangsam.trial.etl;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

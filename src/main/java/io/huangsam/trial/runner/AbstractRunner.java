@@ -1,4 +1,4 @@
-package io.huangsam.trial.runners;
+package io.huangsam.trial.runner;
 
 import org.slf4j.Logger;
 

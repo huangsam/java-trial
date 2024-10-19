@@ -1,4 +1,4 @@
-package io.huangsam.trial.numerical;
+package io.huangsam.trial.etl;
 
 public class NumberRunner implements Runnable {
     private final int id;

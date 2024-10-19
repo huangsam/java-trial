@@ -1,8 +1,8 @@
 package io.huangsam.trial;
 
-import io.huangsam.trial.numerical.NumberCruncher;
-import io.huangsam.trial.numerical.NumberReporter;
-import io.huangsam.trial.numerical.NumberRunner;
+import io.huangsam.trial.etl.NumberCruncher;
+import io.huangsam.trial.etl.NumberReporter;
+import io.huangsam.trial.etl.NumberRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
