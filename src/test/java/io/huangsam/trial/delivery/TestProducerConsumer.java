@@ -18,7 +18,7 @@ public class TestProducerConsumer {
     private static final int PILL_RATIO = CONSUMER_COUNT / PRODUCER_COUNT;
 
     @RepeatedTest(3)
-    void testBlockingQueue() throws InterruptedException {
+    void testBlockingQueueIsEmpty() throws InterruptedException {
         BlockingQueue<Integer> queue = new LinkedBlockingQueue<>(BOUND);
 
         List<Thread> producers = Stream.iterate(0, i -> i < PRODUCER_COUNT, i -> i + 1)
