@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestExecutors {
     @Test
-    void testExecutor() throws InterruptedException {
+    void testExecutorIsInvoked() throws InterruptedException {
         Invoker invoker = new Invoker();
 
         invoker.execute(() -> {
@@ -29,7 +29,7 @@ public class TestExecutors {
     }
 
     @Test
-    void testExecutorService() throws InterruptedException, ExecutionException {
+    void testExecutorServiceTerminates() throws InterruptedException, ExecutionException {
         ExecutorService service = Executors.newFixedThreadPool(2);
         Future<Integer> future1 = service.submit(() -> {
             Thread.sleep(50L);
@@ -52,7 +52,7 @@ public class TestExecutors {
     }
 
     @Test
-    void testScheduledExecutorService() throws InterruptedException, ExecutionException {
+    void testScheduledExecutorServiceTerminates() throws InterruptedException, ExecutionException {
         ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
         ScheduledFuture<Integer> future = service.schedule(() -> 1, 50L, TimeUnit.MILLISECONDS);
 
