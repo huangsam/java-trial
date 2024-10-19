@@ -43,7 +43,7 @@ public class JavaTrial {
         NumberCruncher cruncher = new NumberCruncher();
         NumberReporter reporter = new NumberReporter();
 
-        Stream.iterate(1, i -> i < threadCount, i -> i + 1)
+        Stream.iterate(1, i -> i <= threadCount, i -> i + 1)
                 .map(i -> service.submit(new NumberRunner(i, cruncher, reporter)))
                 .forEach(future -> {
                     try {
