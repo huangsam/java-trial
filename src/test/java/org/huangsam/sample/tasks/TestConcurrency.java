@@ -1,11 +1,10 @@
-package org.huangsam.sample;
+package org.huangsam.sample.tasks;
 
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
-import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ExecutionException;
@@ -36,7 +35,6 @@ public class TestConcurrency {
     private static final Logger LOG = LoggerFactory.getLogger(TestConcurrency.class);
 
     private static final long WORK_IN_MS = 250L;
-    private static final long POLL_IN_MS = 125L;
 
     private static final int FEW_COUNT = 3;
     private static final int MANY_COUNT = FEW_COUNT * 4;
@@ -70,7 +68,7 @@ public class TestConcurrency {
     }
 
     @Test
-    void testCountDownLatch() throws InterruptedException {
+    void testStartingCountThreads() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(FEW_COUNT);
         List<Thread> workers = Stream
                 .generate(() -> countThread(latch))
@@ -90,8 +88,8 @@ public class TestConcurrency {
     }
 
     @Test
-    void testCyclicBarrier() {
-        CyclicBarrier barrier = new CyclicBarrier(FEW_COUNT, () -> LOG.info("All tasks are completed"));
+    void testStartingCyclicThreads() {
+        CyclicBarrier barrier = new CyclicBarrier(FEW_COUNT, () -> LOG.info("Invoke barrier action"));
         List<Thread> workers = Stream
                 .generate(() -> cyclicThread(barrier))
                 .limit(FEW_COUNT)
@@ -107,7 +105,7 @@ public class TestConcurrency {
     }
 
     @Test
-    void testSemaphore() {
+    void testStartingSemaphoreThreads() {
         Semaphore semaphore = new Semaphore(FEW_COUNT);
 
         assertEquals(FEW_COUNT, semaphore.availablePermits());
@@ -142,60 +140,5 @@ public class TestConcurrency {
 
     private static Thread semaThread(Semaphore semaphore) {
         return new Thread(new SemaphoreTask(semaphore));
-    }
-
-    private record CountTask(CountDownLatch latch) implements Runnable {
-        @Override
-        public void run() {
-            try {
-                Thread.sleep(WORK_IN_MS);
-            } catch (InterruptedException e) {
-                LOG.error(e.getMessage(), e);
-            }
-
-            LOG.debug("Run countdown logic");
-            latch.countDown();
-        }
-    }
-
-    private record CyclicTask(CyclicBarrier barrier) implements Runnable {
-        @Override
-        public void run() {
-            try {
-                LOG.debug("Wait for barrier");
-                Thread.sleep(WORK_IN_MS);
-                barrier.await();
-                LOG.debug("Run after barrier");
-            } catch (InterruptedException | BrokenBarrierException e) {
-                LOG.error(e.getMessage(), e);
-            }
-        }
-    }
-
-    private record SemaphoreTask(Semaphore semaphore) implements Runnable {
-        @Override
-        public void run() {
-            int attemptCount = 0;
-            boolean isAcquired = false;
-            do {
-                try {
-                    isAcquired = semaphore.tryAcquire(POLL_IN_MS, TimeUnit.MILLISECONDS);
-                } catch (InterruptedException e) {
-                    LOG.error(e.getMessage(), e);
-                }
-                attemptCount++;
-            } while (!isAcquired);
-
-            LOG.debug("Acquire semaphore after {} attempts", attemptCount);
-
-            try {
-                Thread.sleep(WORK_IN_MS);
-            } catch (InterruptedException e) {
-                LOG.error(e.getMessage(), e);
-            }
-
-            LOG.debug("Release semaphore");
-            semaphore.release();
-        }
     }
 }
