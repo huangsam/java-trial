@@ -18,10 +18,10 @@ public class CyclicTask extends AbstractTask {
     @Override
     void afterWork() {
         try {
-            barrier.await();
-            log().debug("Run after barrier");
+            int arrivalIndex = barrier.await();
+            log().debug("Run after barrier arrived with index {}", arrivalIndex);
         } catch (InterruptedException | BrokenBarrierException e) {
-            throw new RuntimeException();
+            throw new RuntimeException("Abort during barrier blockage", e);
         }
     }
 }
