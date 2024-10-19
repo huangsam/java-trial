@@ -59,7 +59,7 @@ public class JavaTrial {
         service.shutdown();
 
         String exitMessage = config.getProperty(PROP_EXIT);
-        String exitEmoji = service.awaitTermination(1L, TimeUnit.SECONDS) ? EMOJI_HAPPY : EMOJI_SAD;
+        String exitEmoji = service.awaitTermination(1000L, TimeUnit.MILLISECONDS) ? EMOJI_HAPPY : EMOJI_SAD;
 
         LOG.info("{} {}", exitMessage, exitEmoji);
     }
