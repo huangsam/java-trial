@@ -12,11 +12,26 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TestMath {
     @Test
     void testAdd() {
-        assertEquals(1 + 1, 2);
+        assertEquals(2, 1 + 1);
+    }
+
+    @Test
+    void testSubtract() {
+        assertEquals(3, 5 - 2);
     }
 
     @Test
     void testMultiply() {
-        assertEquals(2 * 2, 4);
+        assertEquals(4, 2 * 2);
+    }
+
+    @Test
+    void testDivide() {
+        assertEquals(5, 40 / 8);
+    }
+
+    @Test
+    void testModulus() {
+        assertEquals(6, 56 % 10);
     }
 }
