@@ -17,6 +17,7 @@ public abstract class AbstractRunner implements Runnable {
     abstract void beforeWork();
 
     void doWork() throws InterruptedException {
+        log().info("Run core business logic");
         Thread.sleep(250L);
     }
 
