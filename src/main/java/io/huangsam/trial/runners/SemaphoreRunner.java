@@ -47,7 +47,8 @@ public class SemaphoreRunner extends AbstractRunner {
         boolean result = false;
         do {
             try {
-                result = semaphore.tryAcquire(getTimeout(), TimeUnit.MILLISECONDS);
+                long timeout = (long) (50.0 * Math.pow(1.5, attempts - 1));
+                result = semaphore.tryAcquire(timeout, TimeUnit.MILLISECONDS);
             } catch (InterruptedException e) {
                 log().error(e.getMessage(), e);
             }
@@ -55,9 +56,5 @@ public class SemaphoreRunner extends AbstractRunner {
             attempts++;
         } while (!result && attempts < MAX_ATTEMPTS);
         return result;
-    }
-
-    private long getTimeout() {
-        return (long) (50.0 * Math.pow(1.5, attempts - 1));
     }
 }
