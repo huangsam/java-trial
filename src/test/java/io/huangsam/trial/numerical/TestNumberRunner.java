@@ -30,7 +30,7 @@ public class TestNumberRunner {
     @Mock
     private NumberReporter mockReporter;
 
-    private static int TOY_ID = 5;
+    private static final int TOY_ID = 5;
 
     private long squared(int input) {
         return (long) input * input;
