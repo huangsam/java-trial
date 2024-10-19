@@ -1,11 +1,11 @@
-package org.huangsam.sample.tasks;
+package org.huangsam.sample.runners;
 
 import java.util.concurrent.CountDownLatch;
 
-public class CountTask extends AbstractTask {
+public class CountRunner extends AbstractRunner {
     private final CountDownLatch latch;
 
-    public CountTask(CountDownLatch latch) {
+    public CountRunner(CountDownLatch latch) {
         this.latch = latch;
     }
 

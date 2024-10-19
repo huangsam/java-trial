@@ -1,5 +1,8 @@
-package org.huangsam.sample.tasks;
+package org.huangsam.sample;
 
+import org.huangsam.sample.runners.CountRunner;
+import org.huangsam.sample.runners.CyclicRunner;
+import org.huangsam.sample.runners.SemaphoreRunner;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -136,14 +139,14 @@ public class TestConcurrency {
     }
 
     private static Thread countThread(CountDownLatch latch) {
-        return new Thread(new CountTask(latch));
+        return new Thread(new CountRunner(latch));
     }
 
     private static Thread cyclicThread(CyclicBarrier barrier) {
-        return new Thread(new CyclicTask(barrier));
+        return new Thread(new CyclicRunner(barrier));
     }
 
     private static Thread semaThread(Semaphore semaphore) {
-        return new Thread(new SemaphoreTask(semaphore));
+        return new Thread(new SemaphoreRunner(semaphore));
     }
 }

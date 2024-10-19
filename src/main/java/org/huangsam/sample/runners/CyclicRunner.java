@@ -1,12 +1,12 @@
-package org.huangsam.sample.tasks;
+package org.huangsam.sample.runners;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
-public class CyclicTask extends AbstractTask {
+public class CyclicRunner extends AbstractRunner {
     private final CyclicBarrier barrier;
 
-    public CyclicTask(CyclicBarrier barrier) {
+    public CyclicRunner(CyclicBarrier barrier) {
         this.barrier = barrier;
     }
 

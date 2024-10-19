@@ -1,13 +1,13 @@
-package org.huangsam.sample.tasks;
+package org.huangsam.sample.runners;
 
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
-public class SemaphoreTask extends AbstractTask {
+public class SemaphoreRunner extends AbstractRunner {
     private final Semaphore semaphore;
     private int attempts = 0;
 
-    public SemaphoreTask(Semaphore semaphore) {
+    public SemaphoreRunner(Semaphore semaphore) {
         this.semaphore = semaphore;
     }
 

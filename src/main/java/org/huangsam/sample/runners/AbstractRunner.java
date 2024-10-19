@@ -1,9 +1,9 @@
-package org.huangsam.sample.tasks;
+package org.huangsam.sample.runners;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class AbstractTask implements Runnable {
+public abstract class AbstractRunner implements Runnable {
     @Override
     public void run() {
         try {
