@@ -58,6 +58,6 @@ public class SemaphoreRunner extends AbstractRunner {
     }
 
     private long getTimeout() {
-        return (long) (50.0 * Math.pow(2, attempts - 1));
+        return (long) (50.0 * Math.pow(1.5, attempts - 1));
     }
 }
