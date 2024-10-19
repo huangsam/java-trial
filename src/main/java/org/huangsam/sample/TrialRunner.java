@@ -34,15 +34,12 @@ public class TrialRunner {
             config.load(in);
         }
 
-        String helloString = config.getProperty(PROP_ENTER);
-        String byeString = config.getProperty(PROP_EXIT);
+        String enterMessage = config.getProperty(PROP_ENTER);
 
-        LOG.info(helloString);
+        LOG.info(enterMessage);
 
         int threadCount = 5;
-
         ExecutorService service = Executors.newFixedThreadPool(threadCount);
-
         NumberCruncher cruncher = new NumberCruncher();
         NumberReporter reporter = new NumberReporter();
 
@@ -61,8 +58,9 @@ public class TrialRunner {
 
         service.shutdown();
 
+        String exitMessage = config.getProperty(PROP_EXIT);
         String emoji = service.awaitTermination(5L, TimeUnit.SECONDS) ? EMOJI_HAPPY : EMOJI_SAD;
 
-        LOG.info("{} {}", byeString, emoji);
+        LOG.info("{} {}", exitMessage, emoji);
     }
 }
