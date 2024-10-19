@@ -7,6 +7,7 @@ Features tested:
 - [x] Concurrency
 - [x] Generics
 - [x] Optionals
+- [x] Properties
 - [x] Records
 - [x] Reflection
 - [x] Streams
