@@ -20,18 +20,7 @@ public class SemaphoreRunner extends AbstractRunner {
 
     @Override
     public void run() {
-        boolean acquired = false;
-        do {
-            try {
-                acquired = semaphore.tryAcquire(getTimeout(), TimeUnit.MILLISECONDS);
-            } catch (InterruptedException e) {
-                log().error(e.getMessage(), e);
-            }
-
-            attempts++;
-        } while (!acquired && attempts < MAX_ATTEMPTS);
-
-        if (acquired) {
+        if (acquireSemaphore()) {
             super.run();
         } else {
             log().warn("Cannot acquire semaphore after {} attempts", attempts);
@@ -52,6 +41,20 @@ public class SemaphoreRunner extends AbstractRunner {
     @Override
     Logger log() {
         return LOG;
+    }
+
+    private boolean acquireSemaphore() {
+        boolean result = false;
+        do {
+            try {
+                result = semaphore.tryAcquire(getTimeout(), TimeUnit.MILLISECONDS);
+            } catch (InterruptedException e) {
+                log().error(e.getMessage(), e);
+            }
+
+            attempts++;
+        } while (!result && attempts < MAX_ATTEMPTS);
+        return result;
     }
 
     private long getTimeout() {
