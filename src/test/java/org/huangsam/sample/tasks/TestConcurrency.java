@@ -110,14 +110,13 @@ public class TestConcurrency {
     @Test
     void testStartingSemaphoreThreads() {
         Semaphore semaphore = new Semaphore(FEW_COUNT);
-
-        assertEquals(FEW_COUNT, semaphore.availablePermits());
-        assertEquals(0, semaphore.getQueueLength());
-
         List<Thread> workers = Stream
                 .generate(() -> semaThread(semaphore))
                 .limit(MANY_COUNT)
                 .toList();
+
+        assertEquals(FEW_COUNT, semaphore.availablePermits());
+        assertEquals(0, semaphore.getQueueLength());
 
         workers.forEach(Thread::start);
 
