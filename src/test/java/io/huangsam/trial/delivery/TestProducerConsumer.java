@@ -21,13 +21,13 @@ public class TestProducerConsumer {
     void testBlockingQueueIsEmpty() throws InterruptedException {
         BlockingQueue<Integer> queue = new LinkedBlockingQueue<>(BOUND);
 
-        List<Thread> producers = Stream.iterate(0, i -> i < PRODUCER_COUNT, i -> i + 1)
-                .map(i -> new Thread(new NumbersProducer(queue, PILL_VALUE, PILL_RATIO)))
+        List<Thread> producers = Stream.generate(() -> new Thread(new NumbersProducer(queue, PILL_VALUE, PILL_RATIO)))
+                .limit(PRODUCER_COUNT)
                 .peek(Thread::start)
                 .toList();
 
-        List<Thread> consumers = Stream.iterate(0, j -> j < CONSUMER_COUNT, j -> j + 1)
-                .map(j -> new Thread(new NumbersConsumer(queue, PILL_VALUE)))
+        List<Thread> consumers = Stream.generate(() -> new Thread(new NumbersConsumer(queue, PILL_VALUE)))
+                .limit(CONSUMER_COUNT)
                 .peek(Thread::start)
                 .toList();
 
