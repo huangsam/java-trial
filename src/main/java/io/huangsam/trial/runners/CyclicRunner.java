@@ -7,7 +7,7 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
 public class CyclicRunner extends AbstractRunner {
-    private static final Logger LOG = LoggerFactory.getLogger(AbstractRunner.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CyclicRunner.class);
 
     private final CyclicBarrier barrier;
 
