@@ -4,12 +4,13 @@ Playground for common features and libraries. Spans Java 8 through 17.
 
 Features tested:
 
+- [x] Concurrency
+- [x] Generics
 - [x] Optionals
 - [x] Records
 - [x] Reflection
 - [x] Streams
-- [x] Threads
-- [x] Time
+- [x] Time constructs
 - [x] Try With Resources
 
 Libraries tested:
