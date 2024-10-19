@@ -10,6 +10,13 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * An involved example of the product-consumer pattern. We have more consumers
+ * than producers. Producers will create enough sentinel values such that the
+ * consumers will stop.
+ *
+ * @see <a href="https://www.baeldung.com/java-blocking-queue">Baeldung on BlockingQueue</a>
+ */
 public class TestProducerConsumer {
     private static final int BOUND = 10;
     private static final int PRODUCER_COUNT = 2;

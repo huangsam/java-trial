@@ -15,6 +15,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * {@code CountDownLatch}, {@code CyclicBarrier} and {@code Semaphore}
+ * primitives control the execution flow of classes that implement the
+ * {@code Runnable} interface. They operate differently from {@code Executor}
+ * and {@code ExecutorService} as we can see from the tests below.
+ *
+ * @see <a href="https://www.baeldung.com/java-util-concurrent">Baeldung intro</a>
+ * @see <a href="https://www.baeldung.com/java-countdown-latch">Baeldung on countdown</a>
+ * @see <a href="https://www.baeldung.com/java-cyclic-barrier">Baeldung on cyclic</a>
+ * @see <a href="https://www.baeldung.com/java-semaphore">Baeldung on semaphore</a>
+ */
 public class TestRunners {
     private static final Logger LOG = LoggerFactory.getLogger(TestRunners.class);
 

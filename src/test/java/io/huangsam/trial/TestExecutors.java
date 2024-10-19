@@ -15,6 +15,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Executor and ExecutorService are likely the easiest ways to
+ * get familiar with async programming.
+ *
+ * @see <a href="https://www.baeldung.com/java-util-concurrent">Baeldung intro</a>
+ */
 public class TestExecutors {
     @Test
     void testExecutorIsInvoked() throws InterruptedException {
