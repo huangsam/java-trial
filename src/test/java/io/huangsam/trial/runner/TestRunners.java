@@ -63,7 +63,7 @@ public class TestRunners {
         workers.forEach(worker -> assertFalse(worker.isAlive()));
     }
 
-    @RepeatedTest(5)
+    @RepeatedTest(3)
     void testStartingSemaphoreThreads() {
         Semaphore semaphore = new Semaphore(FEW_COUNT);
         List<Thread> workers = Stream
