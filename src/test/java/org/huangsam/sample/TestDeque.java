@@ -18,38 +18,38 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * methods can be useful for a large variety of scenarios.
  */
 public class TestDeque {
-    private static final Deque<Integer> DEQUE = new ArrayDeque<>();
+    private final Deque<Integer> deque = new ArrayDeque<>();
 
     @BeforeEach
     void resetDeque() {
-        DEQUE.clear();
-        Stream.of(1, 2, 3).forEach(DEQUE::add);
+        deque.clear();
+        Stream.of(1, 2, 3).forEach(deque::add);
     }
 
     @Test
     void testDequeSize() {
-        assertEquals(3, DEQUE.size());
+        assertEquals(3, deque.size());
     }
 
     @Test
     void testDequePeekFirstAndLast() {
-        assertEquals(1, DEQUE.peekFirst());
-        assertEquals(3, DEQUE.peekLast());
+        assertEquals(1, deque.peekFirst());
+        assertEquals(3, deque.peekLast());
     }
 
     @Test
     void testDequeOfferThenPeek() {
-        DEQUE.offerFirst(-99);
-        DEQUE.offerLast(99);
-        assertEquals(-99, DEQUE.peekFirst());
-        assertEquals(99, DEQUE.peekLast());
+        deque.offerFirst(-99);
+        deque.offerLast(99);
+        assertEquals(-99, deque.peekFirst());
+        assertEquals(99, deque.peekLast());
     }
 
     @Test
     void testDequePop() {
-        assertEquals(1, DEQUE.pop());
-        assertEquals(2, DEQUE.pop());
-        assertEquals(3, DEQUE.pop());
-        assertThrows(NoSuchElementException.class, DEQUE::pop);
+        assertEquals(1, deque.pop());
+        assertEquals(2, deque.pop());
+        assertEquals(3, deque.pop());
+        assertThrows(NoSuchElementException.class, deque::pop);
     }
 }
