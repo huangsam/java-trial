@@ -20,8 +20,8 @@ public class TrialRunner {
 
     private static final String CFG_NAME = "config.properties";
 
-    private static final String KEY_HELLO = "helloString";
-    private static final String KEY_BYE = "byeString";
+    private static final String PROP_ENTER = "enterMessage";
+    private static final String PROP_EXIT = "exitMessage";
 
     private static final String EMOJI_HAPPY = ":)";
     private static final String EMOJI_SAD = ":(";
@@ -34,8 +34,8 @@ public class TrialRunner {
             config.load(in);
         }
 
-        String helloString = config.getProperty(KEY_HELLO);
-        String byeString = config.getProperty(KEY_BYE);
+        String helloString = config.getProperty(PROP_ENTER);
+        String byeString = config.getProperty(PROP_EXIT);
 
         LOG.info(helloString);
 
