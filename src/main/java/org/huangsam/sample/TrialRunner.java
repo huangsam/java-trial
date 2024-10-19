@@ -20,8 +20,8 @@ public class TrialRunner {
 
     private static final String CFG_NAME = "config.properties";
 
-    private static final String PROP_ENTER = "enterMessage";
-    private static final String PROP_EXIT = "exitMessage";
+    private static final String PROP_ENTER = "banner.enter";
+    private static final String PROP_EXIT = "banner.exit";
 
     private static final String EMOJI_HAPPY = ":)";
     private static final String EMOJI_SAD = ":(";
