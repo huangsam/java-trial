@@ -24,14 +24,9 @@ public class TestRunners {
     @Test
     void testStartingCountThreads() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(FEW_COUNT);
-        List<Thread> workers = Stream
-                .generate(() -> countThread(latch))
+        Stream.generate(() -> countThread(latch))
                 .limit(FEW_COUNT)
-                .toList();
-
-        assertEquals(FEW_COUNT, latch.getCount());
-
-        workers.forEach(Thread::start);
+                .forEach(Thread::start);
 
         assertNotEquals(0, latch.getCount());
 
@@ -41,51 +36,38 @@ public class TestRunners {
     }
 
     @Test
-    void testStartingCyclicThreads() {
+    void testStartingCyclicThreads() throws InterruptedException {
         CyclicBarrier barrier = new CyclicBarrier(FEW_COUNT, () -> LOG.info("Invoke barrier action"));
         List<Thread> workers = Stream
                 .generate(() -> cyclicThread(barrier))
                 .limit(FEW_COUNT)
+                .peek(Thread::start)
                 .toList();
 
         assertEquals(FEW_COUNT, workers.size());
 
-        workers.forEach(Thread::start);
-
-        workers.forEach(worker -> {
-            try {
-                worker.join();
-            } catch (InterruptedException e) {
-                LOG.error(e.getMessage(), e);
-            }
-        });
+        for (Thread worker : workers) {
+            worker.join();
+        }
 
         workers.forEach(worker -> assertFalse(worker.isAlive()));
     }
 
     @RepeatedTest(3)
-    void testStartingSemaphoreThreads() {
+    void testStartingSemaphoreThreads() throws InterruptedException {
         Semaphore semaphore = new Semaphore(FEW_COUNT);
         List<Thread> workers = Stream
                 .generate(() -> semaThread(semaphore))
                 .limit(MANY_COUNT)
+                .peek(Thread::start)
                 .toList();
-
-        assertEquals(FEW_COUNT, semaphore.availablePermits());
-        assertEquals(0, semaphore.getQueueLength());
-
-        workers.forEach(Thread::start);
 
         assertEquals(0, semaphore.availablePermits());
         assertNotEquals(0, semaphore.getQueueLength());
 
-        workers.forEach(worker -> {
-            try {
-                worker.join();
-            } catch (InterruptedException e) {
-                LOG.error(e.getMessage(), e);
-            }
-        });
+        for (Thread worker : workers) {
+            worker.join();
+        }
 
         assertEquals(FEW_COUNT, semaphore.availablePermits());
         assertEquals(0, semaphore.getQueueLength());
