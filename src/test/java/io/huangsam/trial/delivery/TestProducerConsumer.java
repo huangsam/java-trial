@@ -8,6 +8,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestProducerConsumer {
     private static final int BOUND = 10;
@@ -39,5 +40,8 @@ public class TestProducerConsumer {
         }
 
         assertEquals(0, queue.size());
+
+        assertTrue(producers.stream().noneMatch(Thread::isAlive));
+        assertTrue(consumers.stream().noneMatch(Thread::isAlive));
     }
 }
