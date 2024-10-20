@@ -10,10 +10,8 @@ import java.util.TreeSet;
 
 public class Merger<T extends Comparable<T>> {
     public Collection<T> mergeAs(Collection<T> c1, Collection<T> c2, Class<?> as) {
-        Collection<T> merged;
-
         String className = as.getName();
-        merged = switch (className) {
+        Collection<T> merged = switch (className) {
             case "java.util.ArrayDeque" -> new ArrayDeque<>();
             case "java.util.ArrayList" -> new ArrayList<>();
             case "java.util.HashSet" -> new HashSet<>();
