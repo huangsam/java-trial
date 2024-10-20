@@ -36,12 +36,16 @@ Here are the only two commands you need to know:
 
 ## Useful resources
 
-- <https://javaalmanac.io/features/>
+Official resources:
+
 - <https://docs.oracle.com/javase/8/>
 - <https://docs.oracle.com/en/java/javase/11/>
 - <https://docs.oracle.com/en/java/javase/17/>
 - <https://docs.oracle.com/en/java/javase/21/>
+
+Community resources:
+
+- <https://javaalmanac.io/features/>
 - <https://docs.gradle.org/current/userguide/platforms.html>
 - <https://www.youtube.com/codingwithjohn>
 - <https://github.com/akullpp/awesome-java>
-- <https://dev.to/nehasoni__/the-curated-list-of-ultimate-java-resources-5amk>
