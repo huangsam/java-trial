@@ -47,11 +47,10 @@ public class JavaTrial {
                 .map(i -> service.submit(new NumberRunner(i, cruncher, reporter)))
                 .forEach(future -> {
                     try {
-                        Object result = future.get();
-                        if (result != null) {
-                            LOG.warn("Expected nothing but got {}", result);
-                        }
-                    } catch (InterruptedException | ExecutionException e) {
+                        future.get();
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                    } catch (ExecutionException e) {
                         LOG.error(e.getMessage(), e);
                     }
                 });

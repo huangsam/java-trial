@@ -10,7 +10,7 @@ public abstract class AbstractRunner implements Runnable {
             doWork();
             afterWork();
         } catch (Exception e) {
-            log().error(e.getMessage(), e);
+            Thread.currentThread().interrupt();
         }
     }
 

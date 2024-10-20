@@ -28,7 +28,7 @@ public class NumbersConsumer implements Runnable {
                 LOG.info("Got result {}", number);
             }
         } catch (InterruptedException e) {
-            LOG.error(e.getMessage(), e);
+            Thread.currentThread().interrupt();
         }
     }
 }

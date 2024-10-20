@@ -50,7 +50,7 @@ public class SemaphoreRunner extends AbstractRunner {
                 long timeout = (long) (50.0 * Math.pow(1.5, attempts - 1));
                 result = semaphore.tryAcquire(timeout, TimeUnit.MILLISECONDS);
             } catch (InterruptedException e) {
-                log().error(e.getMessage(), e);
+                Thread.currentThread().interrupt();
             }
 
             attempts++;
