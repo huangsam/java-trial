@@ -23,15 +23,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class TestExecutors {
     @Test
-    void testExecutorIsInvoked() throws InterruptedException {
-        Invoker invoker = new Invoker();
+    void testSerialExecutorIsInvoked() {
+        SerialInvoker invoker = new SerialInvoker();
 
         assertFalse(invoker.isInvoked());
 
         invoker.execute(() -> {
         });
-
-        Thread.sleep(100L);
 
         assertTrue(invoker.isInvoked());
     }
@@ -96,7 +94,7 @@ public class TestExecutors {
         assertTrue(service.isTerminated());
     }
 
-    private static class Invoker implements Executor {
+    private static class SerialInvoker implements Executor {
         private Boolean invoked = false;
 
         @Override
