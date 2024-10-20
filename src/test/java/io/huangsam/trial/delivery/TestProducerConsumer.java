@@ -2,9 +2,11 @@ package io.huangsam.trial.delivery;
 
 import org.junit.jupiter.api.RepeatedTest;
 
-import java.util.List;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -28,27 +30,23 @@ public class TestProducerConsumer {
     void testBlockingQueueIsEmpty() throws InterruptedException {
         BlockingQueue<Integer> queue = new LinkedBlockingQueue<>(BOUND);
 
-        List<Thread> producers = Stream.generate(() -> new Thread(new NumbersProducer(queue, PILL_VALUE, PILL_RATIO)))
+        ExecutorService producerService = Executors.newFixedThreadPool(PRODUCER_COUNT);
+        ExecutorService consumerService = Executors.newFixedThreadPool(CONSUMER_COUNT);
+
+        Stream.generate(() -> new NumbersProducer(queue, PILL_VALUE, PILL_RATIO))
                 .limit(PRODUCER_COUNT)
-                .peek(Thread::start)
-                .toList();
+                .forEach(producerService::submit);
 
-        List<Thread> consumers = Stream.generate(() -> new Thread(new NumbersConsumer(queue, PILL_VALUE)))
+        Stream.generate(() -> new NumbersConsumer(queue, PILL_VALUE))
                 .limit(CONSUMER_COUNT)
-                .peek(Thread::start)
-                .toList();
+                .forEach(consumerService::submit);
 
-        for (Thread producer : producers) {
-            producer.join();
-        }
+        producerService.shutdown();
+        consumerService.shutdown();
 
-        for (Thread consumer : consumers) {
-            consumer.join();
-        }
+        assertTrue(producerService.awaitTermination(100L, TimeUnit.MILLISECONDS));
+        assertTrue(consumerService.awaitTermination(100L, TimeUnit.MILLISECONDS));
 
         assertEquals(0, queue.size());
-
-        assertTrue(producers.stream().noneMatch(Thread::isAlive));
-        assertTrue(consumers.stream().noneMatch(Thread::isAlive));
     }
 }
