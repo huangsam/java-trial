@@ -14,6 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * {@code Merger<T>} shows the power of a method which exists under a class
  * with generic typing. Note that generics can have more than one type, but
  * we want to keep things simple with a type that is comparable.
+ *
+ * @see <a href="https://www.youtube.com/watch?v=K1iu1kXkVoA">YouTube on Generics</a>
  */
 public class TestMerger {
     private static final Merger<Integer> MERGER = new Merger<>();
