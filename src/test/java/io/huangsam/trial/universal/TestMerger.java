@@ -2,7 +2,6 @@ package io.huangsam.trial.universal;
 
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -23,7 +22,7 @@ public class TestMerger {
     private static final Collection<Integer> C2 = Arrays.asList(1, 10, 4);
 
     @Test
-    void testMergeAsList() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    void testMergeAsArrayList() {
         Collection<Integer> mergedSame = MERGER.mergeAs(C1, C1, ArrayList.class);
         Collection<Integer> mergedDifferent = MERGER.mergeAs(C1, C2, ArrayList.class);
         assertEquals(C1.size() + C1.size(), mergedSame.size());
@@ -31,7 +30,7 @@ public class TestMerger {
     }
 
     @Test
-    void testMergeAsSet() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    void testMergeAsHashSet() {
         Collection<Integer> mergedSame = MERGER.mergeAs(C1, C1, HashSet.class);
         Collection<Integer> mergedDifferent = MERGER.mergeAs(C1, C2, HashSet.class);
         assertEquals(C1.size(), mergedSame.size());
