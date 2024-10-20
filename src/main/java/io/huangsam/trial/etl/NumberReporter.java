@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 public class NumberReporter {
     private static final Logger LOG = LoggerFactory.getLogger(NumberReporter.class);
 
-    public void report(Long result, Integer id) {
-        LOG.info("Crunched {} with id {}", result, id);
+    public void report(Long result, Long input) {
+        LOG.info("Crunched {} with input {}", result, input);
     }
 }

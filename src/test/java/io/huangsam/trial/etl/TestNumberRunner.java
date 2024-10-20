@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -31,11 +30,7 @@ public class TestNumberRunner {
     @Mock
     private NumberReporter mockReporter;
 
-    private static final int TOY_ID = 5;
-
-    private long squared(int input) {
-        return (long) input * input;
-    }
+    private static final long TOY_ID = 5L;
 
     @Test
     void testJobRunsWithoutErrors() {
@@ -62,7 +57,7 @@ public class TestNumberRunner {
     @Test
     void testCruncherRanMultipleTimes() {
         int expectedThreads = 3;
-        List<NumberRunner> runners = Stream.iterate(0, i -> i < expectedThreads, i -> i + 1)
+        List<NumberRunner> runners = Stream.iterate(0L, i -> i < expectedThreads, i -> i + 1)
                 .peek(i -> when(mockCruncher.compute(i)).thenReturn(squared(i)))
                 .map(i -> new NumberRunner(i, mockCruncher, mockReporter))
                 .toList();
@@ -73,12 +68,16 @@ public class TestNumberRunner {
 
         // Aggregate testing is coarse
         verify(mockCruncher, times(runners.size())).compute(anyLong());
-        verify(mockReporter, times(runners.size())).report(anyLong(), anyInt());
+        verify(mockReporter, times(runners.size())).report(anyLong(), anyLong());
 
         // Individual testing is granular
-        for (int i = 0; i < runners.size(); i++) {
+        for (long i = 0; i < runners.size(); i++) {
             verify(mockCruncher, times(1)).compute(i);
             verify(mockReporter, times(1)).report(squared(i), i);
         }
+    }
+
+    private long squared(long input) {
+        return input * input;
     }
 }

@@ -18,7 +18,7 @@ import java.util.stream.Stream;
 public class JavaTrial {
     private static final Logger LOG = LoggerFactory.getLogger(JavaTrial.class);
 
-    private static final String CFG_NAME = "config.properties";
+    private static final String CONFIG_NAME = "config.properties";
 
     private static final String PROP_ENTER = "banner.enter";
     private static final String PROP_EXIT = "banner.exit";
@@ -30,7 +30,7 @@ public class JavaTrial {
         Properties config = new Properties();
 
         // https://www.baeldung.com/java-try-with-resources
-        try (InputStream in = JavaTrial.class.getClassLoader().getResourceAsStream(CFG_NAME)) {
+        try (InputStream in = JavaTrial.class.getClassLoader().getResourceAsStream(CONFIG_NAME)) {
             config.load(in);
         }
 
@@ -43,7 +43,7 @@ public class JavaTrial {
         NumberCruncher cruncher = new NumberCruncher();
         NumberReporter reporter = new NumberReporter();
 
-        Stream.iterate(1, i -> i <= threadCount, i -> i + 1)
+        Stream.iterate(1L, i -> i <= threadCount, i -> i + 1)
                 .map(i -> service.submit(new NumberRunner(i, cruncher, reporter)))
                 .forEach(future -> {
                     try {
