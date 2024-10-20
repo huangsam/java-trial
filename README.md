@@ -42,7 +42,6 @@ Official resources:
 - <https://docs.oracle.com/javase/8/>
 - <https://docs.oracle.com/en/java/javase/11/>
 - <https://docs.oracle.com/en/java/javase/17/>
-- <https://docs.oracle.com/en/java/javase/21/>
 
 Community resources:
 
