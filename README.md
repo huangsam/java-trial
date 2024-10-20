@@ -27,10 +27,10 @@ Libraries tested:
 Here are the only two commands you need to know:
 
 ```bash
-# Run the main application
+# Run application
 ./gradlew run
 
-# Run the test suite
+# Run tests
 ./gradlew test
 ```
 
