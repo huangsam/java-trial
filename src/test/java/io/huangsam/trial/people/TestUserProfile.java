@@ -24,9 +24,9 @@ public class TestUserProfile {
     void testUserProfileGetters() {
         UserProfile profile = new UserProfile("Foo Bar", "foo.bar@example.com", 1);
 
-        assertEquals("Foo Bar", profile.getName());
-        assertEquals("foo.bar@example.com", profile.getEmail());
-        assertEquals(1, profile.getAge());
+        assertEquals("Foo Bar", profile.name());
+        assertEquals("foo.bar@example.com", profile.email());
+        assertEquals(1, profile.age());
     }
 
     @Test
@@ -37,7 +37,7 @@ public class TestUserProfile {
         UserProfile[] profiles = gson.fromJson(jsonContent, UserProfile[].class);
 
         assertEquals(2, profiles.length);
-        assertTrue(Arrays.stream(profiles).allMatch(profile -> profile.getName().contains("Doe")));
+        assertTrue(Arrays.stream(profiles).allMatch(profile -> profile.name().contains("Doe")));
     }
 
     @Test
@@ -57,7 +57,7 @@ public class TestUserProfile {
         }
 
         assertEquals(2, profiles.size());
-        assertTrue(profiles.stream().allMatch(profile -> profile.getName().contains("Doe")));
+        assertTrue(profiles.stream().allMatch(profile -> profile.name().contains("Doe")));
     }
 
     @Test
@@ -76,7 +76,7 @@ public class TestUserProfile {
         }
 
         assertEquals(2, profiles.size());
-        assertTrue(profiles.stream().allMatch(profile -> profile.getName().contains("Doe")));
+        assertTrue(profiles.stream().allMatch(profile -> profile.name().contains("Doe")));
     }
 
     private UserProfile parseProfileFromCsvLine(String line) {
