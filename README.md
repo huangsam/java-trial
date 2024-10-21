@@ -14,7 +14,7 @@ Features tested:
 - [x] Reflection
 - [x] Streams
 - [x] Time constructs
-- [x] Try With Resources
+- [x] Try with resources
 
 Libraries tested:
 
