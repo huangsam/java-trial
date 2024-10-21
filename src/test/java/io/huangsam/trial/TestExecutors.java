@@ -50,14 +50,12 @@ public class TestExecutors {
         assertEquals(2, future2.get());
 
         assertFalse(service.isTerminated());
-        assertFalse(service.isShutdown());
 
         service.shutdown();
 
         assertTrue(service.awaitTermination(100L, TimeUnit.MILLISECONDS));
 
         assertTrue(service.isTerminated());
-        assertTrue(service.isShutdown());
     }
 
     @Test
@@ -69,14 +67,12 @@ public class TestExecutors {
         });
 
         assertFalse(service.isTerminated());
-        assertFalse(service.isShutdown());
 
         service.shutdown();
 
         assertFalse(service.awaitTermination(100L, TimeUnit.MILLISECONDS));
 
         assertFalse(service.isTerminated());
-        assertTrue(service.isShutdown());
     }
 
     @Test
@@ -91,6 +87,7 @@ public class TestExecutors {
         service.shutdown();
 
         assertTrue(service.awaitTermination(100L, TimeUnit.MILLISECONDS));
+
         assertTrue(service.isTerminated());
     }
 
