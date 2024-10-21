@@ -7,12 +7,13 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -50,12 +51,18 @@ public class TestMirage {
         Field[] fields = mirage.getCarFields();
         assertEquals(2, fields.length);
 
-        Set<String> fieldNames = Arrays.stream(fields)
-                .map(Field::getName)
-                .collect(Collectors.toSet());
+        Map<String, Field> fieldMap = Arrays.stream(fields)
+                .collect(Collectors.toMap(Field::getName, field -> field));
 
-        assertTrue(fieldNames.contains("wheels"));
-        assertTrue(fieldNames.contains("miles"));
+        Field wheelsField = fieldMap.get("wheels");
+        Field milesField = fieldMap.get("miles");
+
+        assertNotNull(wheelsField);
+        assertNotNull(milesField);
+
+        // https://www.youtube.com/watch?v=DkZr7_c9ry8
+        assertTrue(wheelsField.isAnnotationPresent(SimpleStuff.class));
+        assertFalse(milesField.isAnnotationPresent(SimpleStuff.class));
     }
 
     @Test

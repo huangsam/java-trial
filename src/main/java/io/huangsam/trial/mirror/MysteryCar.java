@@ -1,7 +1,7 @@
 package io.huangsam.trial.mirror;
 
 public class MysteryCar {
-    private final int wheels;
+    @SimpleStuff private final int wheels;
     private final int miles;
 
     public MysteryCar() {
