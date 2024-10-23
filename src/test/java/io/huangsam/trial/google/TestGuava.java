@@ -111,5 +111,7 @@ public class TestGuava {
                 .call(() -> Futures.getDone(nameFuture) + " " + Futures.getDone(idFuture), listeningExecutor);
 
         assertEquals("Bob 1", allInFuture.get());
+
+        service.shutdown();
     }
 }
