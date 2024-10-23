@@ -29,6 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  *
  * @see <a href="https://www.baeldung.com/guava-multiset">Baeldung on Multiset</a>
  * @see <a href="https://www.baeldung.com/guava-rangeset">Baeldung on RangeSet</a>
+ * @see <a href="https://www.baeldung.com/guava-futures-listenablefuture">Baeldung on futures</a>
  */
 public class TestGuava {
     public static final Logger LOG = LoggerFactory.getLogger(TestGuava.class);
