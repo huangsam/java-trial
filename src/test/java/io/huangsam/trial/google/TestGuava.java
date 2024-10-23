@@ -87,7 +87,7 @@ public class TestGuava {
     }
 
     @Test
-    void testListenableFuture() throws ExecutionException, InterruptedException {
+    void testListenableBasic() throws ExecutionException, InterruptedException {
         ListeningExecutorService service = MoreExecutors.listeningDecorator(Executors.newSingleThreadExecutor());
 
         ListenableFuture<Integer> future = service.submit(() -> 1);
