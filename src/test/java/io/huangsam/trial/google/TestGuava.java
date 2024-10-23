@@ -5,7 +5,13 @@ import com.google.common.collect.Multiset;
 import com.google.common.collect.Range;
 import com.google.common.collect.RangeSet;
 import com.google.common.collect.TreeRangeSet;
+import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.common.util.concurrent.MoreExecutors;
 import org.junit.jupiter.api.Test;
+
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -76,5 +82,18 @@ public class TestGuava {
         Range<Integer> span = numberRangeSet.span();
         assertEquals(0, span.lowerEndpoint().intValue());
         assertEquals(8, span.upperEndpoint().intValue());
+    }
+
+    @Test
+    void testListenableFuture() throws ExecutionException, InterruptedException {
+        ListeningExecutorService service = MoreExecutors.listeningDecorator(Executors.newSingleThreadExecutor());
+
+        ListenableFuture<Integer> future = service.submit(() -> 1);
+
+        Integer result = future.get();
+
+        assertEquals(1, result);
+
+        service.shutdown();
     }
 }
