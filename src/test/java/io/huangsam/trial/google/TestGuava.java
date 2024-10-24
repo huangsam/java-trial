@@ -1,10 +1,14 @@
 package io.huangsam.trial.google;
 
+import com.google.common.base.Joiner;
+import com.google.common.base.Splitter;
 import com.google.common.collect.HashMultiset;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Multiset;
 import com.google.common.collect.Range;
 import com.google.common.collect.RangeSet;
 import com.google.common.collect.TreeRangeSet;
+import com.google.common.math.LongMath;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -15,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -144,6 +149,26 @@ public class TestGuava {
         assertEquals("Bob 1", allInFuture.get());
 
         service.shutdown();
+    }
+
+    @Test
+    void testStringWithJoiner() {
+        List<String> names = Lists.newArrayList("Alice", "Bob", "Charlie");
+        String joinedNames = Joiner.on(", ").join(names);
+        assertEquals("Alice, Bob, Charlie", joinedNames);
+    }
+
+    @Test
+    void testStringWithSplitter() {
+        String sentence = "This is a sample sentence.";
+        List<String> words = Splitter.on(' ').splitToList(sentence);
+        assertTrue(words.stream().noneMatch(word -> word.contains(" ")));
+    }
+
+    @Test
+    void testSomeLongMath() {
+        assertEquals(120L, LongMath.factorial(5));
+        assertTrue(LongMath.isPowerOfTwo(16L));
     }
 
     private ListeningExecutorService getListeningService() {
