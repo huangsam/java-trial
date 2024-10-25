@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Using data structures like List, Map, Stack, Set are pretty common.
@@ -23,7 +24,7 @@ public class TestDeque {
     @BeforeEach
     void resetDeque() {
         deque.clear();
-        Stream.of(1, 2, 3).forEach(deque::add);
+        Stream.of(1, 2, 3).forEach(deque::addLast);
     }
 
     @Test
@@ -38,18 +39,25 @@ public class TestDeque {
     }
 
     @Test
-    void testDequeOfferThenPeek() {
-        deque.offerFirst(-99);
-        deque.offerLast(99);
-        assertEquals(-99, deque.peekFirst());
-        assertEquals(99, deque.peekLast());
+    void testDequeOfferFirstAndLast() {
+        assertTrue(deque.offerFirst(-99));
+        assertTrue(deque.offerLast(99));
     }
 
     @Test
-    void testDequePop() {
-        assertEquals(1, deque.pop());
-        assertEquals(2, deque.pop());
-        assertEquals(3, deque.pop());
+    void testDequeRemoveFirstAndLast() {
+        assertEquals(1, deque.removeFirst());
+        assertEquals(3, deque.removeLast());
+        assertEquals(2, deque.removeLast());
+        assertThrows(NoSuchElementException.class, deque::removeFirst);
+        assertThrows(NoSuchElementException.class, deque::removeLast);
+    }
+
+    @Test
+    void testDequeRemoveLast() {
+        assertEquals(3, deque.removeLast());
+        assertEquals(2, deque.removeLast());
+        assertEquals(1, deque.removeLast());
         assertThrows(NoSuchElementException.class, deque::pop);
     }
 }
