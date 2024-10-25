@@ -26,8 +26,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @see <a href="https://www.baeldung.com/java-cyclic-barrier">Baeldung on cyclic</a>
  * @see <a href="https://www.baeldung.com/java-semaphore">Baeldung on semaphore</a>
  */
-public class TestRunners {
-    private static final Logger LOG = LoggerFactory.getLogger(TestRunners.class);
+public class TestRunner {
+    private static final Logger LOG = LoggerFactory.getLogger(TestRunner.class);
 
     private static final int FEW_COUNT = 3;
     private static final int MANY_COUNT = FEW_COUNT * 4;

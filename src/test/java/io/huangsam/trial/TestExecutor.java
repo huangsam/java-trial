@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  *
  * @see <a href="https://www.baeldung.com/java-util-concurrent">Baeldung intro</a>
  */
-public class TestExecutors {
+public class TestExecutor {
     @Test
     void testSerialExecutorIsInvoked() {
         SerialInvoker invoker = new SerialInvoker();
