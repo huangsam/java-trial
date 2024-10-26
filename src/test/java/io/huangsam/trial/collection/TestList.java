@@ -8,7 +8,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestList {
     private final List<Integer> list = new ArrayList<>();
@@ -45,5 +47,14 @@ public class TestList {
 
         assertEquals(-1, subList.get(1));
         assertEquals(-1, list.get(2));
+    }
+
+    @Test
+    void testContainsCalls() {
+        assertTrue(list.contains(3));
+        assertFalse(list.contains(-1));
+
+        assertTrue(list.containsAll(Arrays.asList(1, 2, 3, 5, 8)));
+        assertFalse(list.containsAll(Arrays.asList(1, 9, 10)));
     }
 }
