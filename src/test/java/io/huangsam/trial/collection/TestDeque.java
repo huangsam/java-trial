@@ -1,4 +1,4 @@
-package io.huangsam.trial.container;
+package io.huangsam.trial.collection;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
