@@ -20,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * get familiar with async programming.
  *
  * @see <a href="https://www.baeldung.com/java-util-concurrent">Baeldung intro</a>
+ * @see <a href="https://www.baeldung.com/java-executor-service-tutorial">Baeldung on service</a>
  */
 public class TestExecutor {
     @Test
