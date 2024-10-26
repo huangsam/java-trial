@@ -1,6 +1,5 @@
 package io.huangsam.trial.universal;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -12,7 +11,6 @@ public class Merger<T extends Comparable<T>> {
     public Collection<T> mergeAs(Collection<T> c1, Collection<T> c2, Class<?> as) {
         String className = as.getName();
         Collection<T> merged = switch (className) {
-            case "java.util.ArrayDeque" -> new ArrayDeque<>();
             case "java.util.ArrayList" -> new ArrayList<>();
             case "java.util.HashSet" -> new HashSet<>();
             case "java.util.LinkedHashSet" -> new LinkedHashSet<>();
