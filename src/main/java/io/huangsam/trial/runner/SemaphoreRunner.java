@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 public class SemaphoreRunner extends AbstractRunner {
     private static final Logger LOG = LoggerFactory.getLogger(SemaphoreRunner.class);
 
-    private static final int MAX_ATTEMPTS = 10;
+    private static final int MAX_ATTEMPTS = 5;
 
     private final Semaphore semaphore;
     private int attempts = 0;
@@ -47,7 +47,7 @@ public class SemaphoreRunner extends AbstractRunner {
         boolean result = false;
         do {
             try {
-                long timeout = (long) (50.0 * Math.pow(1.5, attempts - 1));
+                long timeout = (long) (50.0 * Math.pow(1.25, attempts - 1));
                 result = semaphore.tryAcquire(timeout, TimeUnit.MILLISECONDS);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();

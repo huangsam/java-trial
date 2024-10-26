@@ -30,7 +30,7 @@ public class TestRunner {
     private static final Logger LOG = LoggerFactory.getLogger(TestRunner.class);
 
     private static final int FEW_COUNT = 3;
-    private static final int MANY_COUNT = FEW_COUNT * 4;
+    private static final int MANY_COUNT = FEW_COUNT * 10;
 
     @Test
     void testStartingCountThreads() throws InterruptedException {
@@ -75,6 +75,9 @@ public class TestRunner {
 
         assertEquals(0, semaphore.availablePermits());
         assertNotEquals(0, semaphore.getQueueLength());
+
+        Thread lastWorker = workers.get(workers.size() - 1);
+        lastWorker.interrupt();
 
         for (Thread worker : workers) {
             worker.join();
