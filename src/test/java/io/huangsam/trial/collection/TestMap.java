@@ -1,6 +1,7 @@
 package io.huangsam.trial.collection;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -9,22 +10,19 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class TestMap {
-    private Map<Integer, Integer> mapping;
+    private final Map<Integer, Integer> mapping = new HashMap<>();
 
     @BeforeEach
     void setUpMapping() {
-        if (mapping == null) {
-            mapping = new HashMap<>();
-        } else {
-            mapping.clear();
-        }
+        mapping.clear();
     }
 
     @ParameterizedTest
     @ValueSource(ints = {5, 10, 15})
-    void testMapFillAndVerifyEntries(int expectedSize) {
+    void testFillAndVerifyValues(int expectedSize) {
         Stream.iterate(3, num -> num + 6)
                 .limit(expectedSize)
                 .forEach(num -> mapping.put(num, num * 2));
@@ -41,5 +39,33 @@ public class TestMap {
             assertEquals(0, val % 3);
             assertEquals(0, val % 2);
         });
+    }
+
+    @Test
+    void testPutNewAndOldKeys() {
+        assertNull(mapping.putIfAbsent(5, 24));
+        assertEquals(24, mapping.putIfAbsent(5, 18));
+        assertEquals(24, mapping.putIfAbsent(5, 6));
+        assertEquals(24, mapping.get(5));
+    }
+
+    @Test
+    void testComputeNewAndOldKeys() {
+        assertEquals(60, mapping.computeIfAbsent(1, k -> k * 60));
+        assertEquals(60, mapping.computeIfAbsent(1, k -> k * 30));
+        assertEquals(60, mapping.get(1));
+    }
+
+    @Test
+    void testReplaceAllValues() {
+        mapping.put(3, 4);
+        mapping.put(5, 6);
+        mapping.put(7, 8);
+
+        mapping.replaceAll((k, v) -> k * v);
+
+        assertEquals(12, mapping.get(3));
+        assertEquals(30, mapping.get(5));
+        assertEquals(56, mapping.get(7));
     }
 }
