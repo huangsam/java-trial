@@ -16,7 +16,7 @@ public class TestMap {
     private final Map<Integer, Integer> mapping = new HashMap<>();
 
     @BeforeEach
-    void setUpMapping() {
+    void resetMapping() {
         mapping.clear();
     }
 
