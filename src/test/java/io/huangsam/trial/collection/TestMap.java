@@ -57,6 +57,13 @@ public class TestMap {
     }
 
     @Test
+    void testGetNewAndOldValues() {
+        mapping.put(1, 1);
+        assertEquals(1, mapping.getOrDefault(1, 8));
+        assertEquals(8, mapping.getOrDefault(2, 8));
+    }
+
+    @Test
     void testReplaceAllValues() {
         mapping.put(3, 4);
         mapping.put(5, 6);
