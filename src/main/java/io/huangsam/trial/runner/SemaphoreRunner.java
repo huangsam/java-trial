@@ -49,8 +49,7 @@ public class SemaphoreRunner extends AbstractRunner {
         boolean result = false;
         do {
             try {
-                long timeout = backOff.next();
-                result = semaphore.tryAcquire(timeout, TimeUnit.MILLISECONDS);
+                result = semaphore.tryAcquire(backOff.next(), TimeUnit.MILLISECONDS);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
