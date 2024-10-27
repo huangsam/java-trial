@@ -12,10 +12,12 @@ public class SemaphoreRunner extends AbstractRunner {
     private static final int MAX_ATTEMPTS = 5;
 
     private final Semaphore semaphore;
+    private final Backoff backOff;
     private int attempts = 0;
 
     public SemaphoreRunner(Semaphore semaphore) {
         this.semaphore = semaphore;
+        this.backOff = new Backoff(50.0, 1.25);
     }
 
     @Override
@@ -47,7 +49,7 @@ public class SemaphoreRunner extends AbstractRunner {
         boolean result = false;
         do {
             try {
-                long timeout = (long) (50.0 * Math.pow(1.25, attempts - 1));
+                long timeout = backOff.next();
                 result = semaphore.tryAcquire(timeout, TimeUnit.MILLISECONDS);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -56,5 +58,21 @@ public class SemaphoreRunner extends AbstractRunner {
             attempts++;
         } while (!result && attempts < MAX_ATTEMPTS);
         return result;
+    }
+
+    private static class Backoff {
+        private double base;
+        private final double factor;
+
+        Backoff(double base, double factor) {
+            this.base = base;
+            this.factor = factor;
+        }
+
+        long next() {
+            long timeout = (long) base;
+            base *= factor;
+            return timeout;
+        }
     }
 }
