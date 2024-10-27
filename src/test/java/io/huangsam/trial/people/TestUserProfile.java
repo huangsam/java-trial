@@ -20,6 +20,14 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Let's load {@code UserProfile} records via JSON, CXV and XML files. It's common
+ * to do file operations to grab data and process them, so we're doing exactly that.
+ *
+ * @see <a href="https://www.baeldung.com/java-json">Baeldung on JSON</a>
+ * @see <a href="https://www.baeldung.com/java-csv">Baeldung on CSV</a>
+ * @see <a href="https://www.baeldung.com/java-xml">Baeldung on XML</a>
+ */
 public class TestUserProfile {
     @Test
     void testUserProfileGetters() {
