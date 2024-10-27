@@ -28,9 +28,6 @@ public class TestSemaphoreRunner extends AbstractTestRunner {
         assertEquals(0, semaphore.availablePermits());
         assertNotEquals(0, semaphore.getQueueLength());
 
-        Thread lastWorker = workers.get(workers.size() - 1);
-        lastWorker.interrupt();
-
         for (Thread worker : workers) {
             worker.join();
         }
