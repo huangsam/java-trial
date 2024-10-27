@@ -2,9 +2,10 @@ package io.huangsam.trial.collection;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -20,7 +21,25 @@ public class TestSet {
         assertFalse(evenSet.contains(1));
         assertTrue(oddSet.contains(1));
 
-        assertTrue(evenSet.containsAll(Arrays.asList(4, 6)));
-        assertFalse(oddSet.containsAll(Arrays.asList(4, 6)));
+        assertTrue(evenSet.containsAll(Set.of(4, 6)));
+        assertFalse(oddSet.containsAll(Set.of(4, 6)));
+    }
+
+    @Test
+    void testRetainsAllValues() {
+        Set<Integer> set = new HashSet<>(evenSet);
+
+        set.retainAll(evenSet);
+
+        assertEquals(evenSet.size(), set.size());
+    }
+
+    @Test
+    void testRetainsNoValues() {
+        Set<Integer> set = new HashSet<>(evenSet);
+
+        set.retainAll(oddSet);
+
+        assertEquals(0, set.size());
     }
 }
