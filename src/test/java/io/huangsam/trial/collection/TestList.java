@@ -46,7 +46,10 @@ public class TestList {
     void testSubListAndSetValue() {
         List<Integer> subList = list.subList(1, 3);
 
+        assertEquals(2, subList.size());
+
         assertEquals(2, subList.get(0));
+        assertEquals(3, subList.get(1));
 
         subList.set(1, -1);
 
