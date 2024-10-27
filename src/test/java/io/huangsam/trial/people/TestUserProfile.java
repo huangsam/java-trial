@@ -9,10 +9,8 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -40,10 +38,9 @@ public class TestUserProfile {
 
     @Test
     void testLoadUserProfileFromJson() throws IOException {
-        String jsonFilePath = "src/test/resources/test.json";
-        String jsonContent = new String(Files.readAllBytes(Paths.get(jsonFilePath)));
-        Gson gson = new Gson();
-        UserProfile[] profiles = gson.fromJson(jsonContent, UserProfile[].class);
+        InputStream jsonStream = getStream("test.json");
+        String jsonContent = new String(jsonStream.readAllBytes());
+        UserProfile[] profiles = new Gson().fromJson(jsonContent, UserProfile[].class);
 
         assertEquals(2, profiles.length);
         assertTrue(Arrays.stream(profiles).allMatch(profile -> profile.name().contains("Doe")));
@@ -51,8 +48,8 @@ public class TestUserProfile {
 
     @Test
     void testLoadUserProfileFromCsv() throws IOException {
-        String csvFilePath = "src/test/resources/test.csv";
-        String csvContent = new String(Files.readAllBytes(Paths.get(csvFilePath)));
+        InputStream csvStream = getStream("test.csv");
+        String csvContent = new String(csvStream.readAllBytes());
         String[] lines = csvContent.split("\n");
 
         assertEquals(3, lines.length);
@@ -62,15 +59,15 @@ public class TestUserProfile {
                 .map(this::parseProfileFromCsvLine)
                 .toList();
 
-        assertEquals(2, profiles.size());
+        assertEquals(lines.length - 1, profiles.size());
         assertTrue(profiles.stream().allMatch(profile -> profile.name().contains("Doe")));
     }
 
     @Test
     void testLoadUserProfileFromXml() throws Exception {
-        String xmlFilePath = "src/test/resources/test.xml";
+        InputStream xmlStream = getStream("test.xml");
         DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        Document doc = builder.parse(new File(xmlFilePath));
+        Document doc = builder.parse(xmlStream);
         doc.getDocumentElement().normalize();
         NodeList nodeList = doc.getElementsByTagName("user");
 
@@ -94,5 +91,9 @@ public class TestUserProfile {
         String email = element.getElementsByTagName("email").item(0).getTextContent();
         int age = Integer.parseInt(element.getElementsByTagName("age").item(0).getTextContent());
         return new UserProfile(name, email, age);
+    }
+
+    private InputStream getStream(String name) {
+        return getClass().getClassLoader().getResourceAsStream(name);
     }
 }
