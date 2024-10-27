@@ -12,6 +12,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * A {@code List} is the most common data structure that people encounter.
+ * It is commonly used as an ordered collection, and folks commonly process
+ * items one-by-one with them or grab just one entry from a particular index.
+ */
 public class TestList {
     private final List<Integer> list = new ArrayList<>();
 

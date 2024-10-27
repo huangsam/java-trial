@@ -13,10 +13,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Using data structures like List, Map, Stack, Set are pretty common.
- * At the same time, it's good to touch a Deque as it serves both
- * the purpose of a stack and a queue. Getting the hang of its
- * methods can be useful for a large variety of scenarios.
+ * A {@code Deque} serves the purpose of a stack and a queue. Getting familiar with
+ * its methods can prove useful when you need the flexibility of both data
+ * structures.
  */
 public class TestDeque {
     private final Deque<Integer> deque = new ArrayDeque<>();

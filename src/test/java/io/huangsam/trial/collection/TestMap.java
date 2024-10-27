@@ -12,6 +12,11 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+/**
+ * A {@code Map} is a data structure for setting keys and values. It can be
+ * perceived as a lookup table, saving computed results in well-defined keys so
+ * that the same work does not need to be repeated.
+ */
 public class TestMap {
     private final Map<Integer, Integer> mapping = new HashMap<>();
 
