@@ -18,25 +18,15 @@ import java.util.stream.Stream;
 public class JavaTrial {
     private static final Logger LOG = LoggerFactory.getLogger(JavaTrial.class);
 
-    private static final String CONFIG_NAME = "config.properties";
-
-    private static final String PROP_ENTER = "banner.enter";
-    private static final String PROP_EXIT = "banner.exit";
-
-    private static final String EMOJI_HAPPY = ":)";
-    private static final String EMOJI_SAD = ":(";
-
     public static void main(String[] args) throws InterruptedException, IOException {
         Properties config = new Properties();
 
         // https://www.baeldung.com/java-try-with-resources
-        try (InputStream in = JavaTrial.class.getClassLoader().getResourceAsStream(CONFIG_NAME)) {
-            config.load(in);
+        try (InputStream propertyStream = getPropertyStream()) {
+            config.load(propertyStream);
         }
 
-        String enterMessage = config.getProperty(PROP_ENTER);
-
-        LOG.info(enterMessage);
+        LOG.info(config.getProperty("banner.enter"));
 
         int threadCount = 4;
         ExecutorService service = Executors.newFixedThreadPool(threadCount);
@@ -57,9 +47,12 @@ public class JavaTrial {
 
         service.shutdown();
 
-        String exitMessage = config.getProperty(PROP_EXIT);
-        String exitEmoji = service.awaitTermination(1000L, TimeUnit.MILLISECONDS) ? EMOJI_HAPPY : EMOJI_SAD;
+        boolean isTerminated = service.awaitTermination(1000L, TimeUnit.MILLISECONDS);
 
-        LOG.info("{} {}", exitMessage, exitEmoji);
+        LOG.info("{} {}", config.getProperty("banner.exit"), isTerminated ? ":)" : ":(");
+    }
+
+    private static InputStream getPropertyStream() {
+        return JavaTrial.class.getClassLoader().getResourceAsStream("config.properties");
     }
 }
