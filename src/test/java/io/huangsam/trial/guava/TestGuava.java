@@ -1,4 +1,4 @@
-package io.huangsam.trial.google;
+package io.huangsam.trial.guava;
 
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;

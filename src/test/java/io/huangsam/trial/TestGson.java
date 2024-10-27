@@ -1,4 +1,4 @@
-package io.huangsam.trial.google;
+package io.huangsam.trial;
 
 import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
