@@ -2,6 +2,8 @@ package io.huangsam.trial;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
@@ -10,6 +12,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -89,6 +92,21 @@ public class TestExecutor {
         assertTrue(service.awaitTermination(100L, TimeUnit.MILLISECONDS));
 
         assertTrue(service.isTerminated());
+    }
+
+    @Test
+    void testPutKeysInParallel() throws InterruptedException {
+        ExecutorService service = Executors.newFixedThreadPool(10);
+        Map<Integer, Integer> map = new ConcurrentHashMap<>();
+        Stream.iterate(0, i -> i < 100, i -> i + 1)
+                .forEach(i -> service.submit(() -> {
+                    map.put(i, i * 3);
+                }));
+        service.shutdown();
+        assertTrue(service.awaitTermination(100L, TimeUnit.MILLISECONDS));
+        assertFalse(map.isEmpty());
+        assertEquals(100, map.size());
+        assertTrue(map.entrySet().stream().allMatch(entry -> entry.getValue() % 3 == 0));
     }
 
     private static class SerialInvoker implements Executor {
