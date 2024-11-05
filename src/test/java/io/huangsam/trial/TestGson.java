@@ -27,6 +27,7 @@ public class TestGson {
     @Test
     void testJsonToPrimitives() {
         assertEquals(1, GSON.fromJson("1", Integer.class));
+        assertEquals(false, GSON.fromJson("false", Boolean.class));
         assertArrayEquals(new int[]{1, 2}, GSON.fromJson("[1, 2]", int[].class));
     }
 }
