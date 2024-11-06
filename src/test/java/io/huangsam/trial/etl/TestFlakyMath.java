@@ -9,13 +9,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestFlakyMath {
     @ParameterizedTest
-    @ValueSource(longs = {1L, 2L, 3L})
+    @ValueSource(longs = {1L, 2L, 3L, 5L})
     void testOptionalChainingOnLittleNumber(long smallish) {
         assertTrue(getOptionalChain(smallish).isEmpty());
     }
 
     @ParameterizedTest
-    @ValueSource(longs = {5L, 8L, 13L})
+    @ValueSource(longs = {8L, 13L, 21L, 34L})
     void testOptionalChainingOnBigNumber(long biggish) {
         assertTrue(getOptionalChain(biggish).isPresent());
     }
@@ -24,6 +24,6 @@ public class TestFlakyMath {
         return Optional.of(value)
                 .flatMap(l -> (l < 3) ? Optional.empty() : Optional.of(l * 3L))
                 .map(l -> l * 2L)
-                .filter(l -> l > 20);
+                .filter(l -> l > 30);
     }
 }
