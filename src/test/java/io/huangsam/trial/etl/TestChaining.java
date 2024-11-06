@@ -33,11 +33,12 @@ public class TestChaining {
 
     @Test
     void testStreamChainingOnNestedIntegers() {
-        int sum = Stream.of(List.of(1, 2, 3), List.of(4, 5, 6), List.of(7, 8, 9))
+        int total = Stream.of(List.of(1, 2, 3), List.of(4, 5, 6), List.of(7, 8, 9))
                 .flatMap(Collection::stream)
-                .mapToInt(Integer::intValue).sum();
+                .mapToInt(Integer::intValue)
+                .sum();
 
-        assertEquals(1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9, sum);
+        assertEquals(1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9, total);
     }
 
     private Optional<Long> getOptionalChain(Long value) {
