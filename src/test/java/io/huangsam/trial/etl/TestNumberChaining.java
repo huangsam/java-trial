@@ -16,12 +16,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TestChaining {
+public class TestNumberChaining {
     private static final int SUM_TO_NINE = IntStream.of(1, 2, 3, 4, 5, 6, 7, 8, 9).sum();
 
     @ParameterizedTest
     @ValueSource(longs = {1L, 2L, 3L, 5L})
-    void testOptionalChainingOnLittleNumber(long smallish) {
+    void testOptionalChainingOnLittleLong(long smallish) {
         Optional<Long> optional = getOptionalChain(smallish);
         assertTrue(optional.isEmpty());
         assertThrows(NoSuchElementException.class, optional::get);
@@ -29,7 +29,7 @@ public class TestChaining {
 
     @ParameterizedTest
     @ValueSource(longs = {8L, 13L, 21L, 34L})
-    void testOptionalChainingOnBigNumber(long biggish) {
+    void testOptionalChainingOnBigLong(long biggish) {
         Optional<Long> optional = getOptionalChain(biggish);
         assertTrue(optional.isPresent());
         assertEquals(biggish * 6L, optional.get());
