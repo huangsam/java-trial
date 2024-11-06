@@ -16,6 +16,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Apply {@code map} and {@code flatMap} operations in both the {@code Optional}
+ * and {@code Stream} contexts so that it's clear how each one works.
+ *
+ * @see <a href="https://www.baeldung.com/java-difference-map-and-flatmap">Map vs flatmap</a>
+ * @see <a href="https://www.baeldung.com/java-flatten-nested-collections">Baeldung on flatten</a>
+ */
 public class TestNumberChaining {
     private static final int SUM_TO_NINE = IntStream.of(1, 2, 3, 4, 5, 6, 7, 8, 9).sum();
 
@@ -58,6 +65,6 @@ public class TestNumberChaining {
         return Optional.of(value)
                 .flatMap(l -> (l < 3) ? Optional.empty() : Optional.of(l * 3L))
                 .map(l -> l * 2L)
-                .filter(l -> l > 30);
+                .filter(l -> l > 30L);
     }
 }
