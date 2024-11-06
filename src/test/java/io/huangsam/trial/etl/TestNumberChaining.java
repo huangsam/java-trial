@@ -18,7 +18,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Apply {@code map} and {@code flatMap} operations in both the {@code Optional}
- * and {@code Stream} contexts so that it's clear how each one works.
+ * and {@code Stream} contexts so that it's clear how each one works. Please note
+ * that when we use {@code flatMap}, we should be mindful of wrapping it with an
+ * optional or stream context before passing it off to the next stage.
  *
  * @see <a href="https://www.baeldung.com/java-difference-map-and-flatmap">Map vs flatmap</a>
  * @see <a href="https://www.baeldung.com/java-flatten-nested-collections">Baeldung on flatten</a>
