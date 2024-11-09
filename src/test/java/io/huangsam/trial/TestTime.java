@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class TestTime {
     private static final LocalTime SIX_TIME = LocalTime.of(6, 0);
 
-    private static final LocalDateTime SPECIAL_DATETIME = LocalDateTime.of(2000, Month.JANUARY, 1, 0, 0);
+    private static final LocalDateTime MILLENNIAL_DT = LocalDateTime.of(2000, Month.JANUARY, 1, 0, 0);
 
     private static final String UTC_ID = "UTC";
 
@@ -53,9 +53,9 @@ public class TestTime {
 
     @Test
     void testLocalDateTimeOffset() {
-        assertEquals(LocalDateTime.parse("2000-01-01T00:00:00"), SPECIAL_DATETIME);
-        assertEquals(LocalDateTime.parse("2000-01-02T00:00:00"), SPECIAL_DATETIME.plusDays(1));
-        assertEquals(LocalDateTime.parse("1999-12-31T00:00:00"), SPECIAL_DATETIME.minusDays(1));
+        assertEquals(LocalDateTime.parse("2000-01-01T00:00:00"), MILLENNIAL_DT);
+        assertEquals(LocalDateTime.parse("2000-01-02T00:00:00"), MILLENNIAL_DT.plusDays(1));
+        assertEquals(LocalDateTime.parse("1999-12-31T00:00:00"), MILLENNIAL_DT.minusDays(1));
     }
 
     @Test
@@ -67,7 +67,7 @@ public class TestTime {
     @Test
     void testZonedTimeHasUtcZone() {
         ZoneId expectedZone = ZoneId.of(UTC_ID);
-        ZonedDateTime dateTime = ZonedDateTime.of(SPECIAL_DATETIME, expectedZone);
+        ZonedDateTime dateTime = ZonedDateTime.of(MILLENNIAL_DT, expectedZone);
 
         assertEquals(expectedZone, dateTime.getZone());
     }
@@ -95,7 +95,7 @@ public class TestTime {
 
     @Test
     void testStringFromDateTime() {
-        String localDateString = SPECIAL_DATETIME.format(DateTimeFormatter.ISO_DATE);
+        String localDateString = MILLENNIAL_DT.format(DateTimeFormatter.ISO_DATE);
 
         assertEquals("2000-01-01", localDateString);
     }
