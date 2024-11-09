@@ -17,7 +17,7 @@ public class MysteryCar {
     }
 
     public boolean hasSameSpecs(MysteryCar other) {
-        return wheels == other.wheels && miles == other.miles;
+        return wheels == other.wheels && getMileInfo().equals(other.getMileInfo());
     }
 
     // Left as private to test the power of reflection!
