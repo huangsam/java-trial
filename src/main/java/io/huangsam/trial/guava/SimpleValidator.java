@@ -21,8 +21,8 @@ public class SimpleValidator {
         return current;
     }
 
-    public static String appendHello(String original) {
-        checkNotNull(original, "The string is null");
-        return original + "hello";
+    public static String salute(String name) {
+        checkNotNull(name, "The string is null");
+        return "Hello " + name;
     }
 }

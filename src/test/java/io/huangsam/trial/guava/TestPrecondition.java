@@ -2,7 +2,7 @@ package io.huangsam.trial.guava;
 
 import org.junit.jupiter.api.Test;
 
-import static io.huangsam.trial.guava.SimpleValidator.appendHello;
+import static io.huangsam.trial.guava.SimpleValidator.salute;
 import static io.huangsam.trial.guava.SimpleValidator.fibonacci;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -29,12 +29,12 @@ public class TestPrecondition {
     }
 
     @Test
-    void testAppendHelloNull() {
-        assertThrows(NullPointerException.class, () -> appendHello(null));
+    void testSaluteNull() {
+        assertThrows(NullPointerException.class, () -> salute(null));
     }
 
     @Test
-    void testAppendHelloWorld() {
-        assertEquals("worldhello", appendHello("world"));
+    void testSaluteWorld() {
+        assertEquals("Hello world", salute("world"));
     }
 }
