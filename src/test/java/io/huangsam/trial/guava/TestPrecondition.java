@@ -2,6 +2,7 @@ package io.huangsam.trial.guava;
 
 import org.junit.jupiter.api.Test;
 
+import static io.huangsam.trial.guava.SimpleValidator.appendHello;
 import static io.huangsam.trial.guava.SimpleValidator.fibonacci;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -25,5 +26,15 @@ public class TestPrecondition {
         assertEquals(5, fibonacci(4));
         assertEquals(8, fibonacci(5));
         assertEquals(13, fibonacci(6));
+    }
+
+    @Test
+    void testAppendHelloNull() {
+        assertThrows(NullPointerException.class, () -> appendHello(null));
+    }
+
+    @Test
+    void testAppendHelloWorld() {
+        assertEquals("worldhello", appendHello("world"));
     }
 }

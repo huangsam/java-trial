@@ -1,6 +1,7 @@
 package io.huangsam.trial.guava;
 
 import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class SimpleValidator {
     private SimpleValidator() {
@@ -18,5 +19,10 @@ public class SimpleValidator {
             current = sum;
         }
         return current;
+    }
+
+    public static String appendHello(String original) {
+        checkNotNull(original, "The string is null");
+        return original + "hello";
     }
 }
