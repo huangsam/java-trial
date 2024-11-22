@@ -32,8 +32,8 @@ test {
 jacocoTestReport {
     dependsOn test
     reports {
-        xml.required = true
         html.required = true
+        xml.required = true
     }
     // https://www.baeldung.com/jacoco-report-exclude
     afterEvaluate {
