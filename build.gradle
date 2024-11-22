@@ -20,6 +20,10 @@ dependencies {
     testRuntimeOnly libs.junit.launcher
 }
 
+application {
+    mainClass = 'io.huangsam.trial.JavaTrial'
+}
+
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
@@ -37,8 +41,4 @@ jacocoTestReport {
             fileTree(dir: it, exclude: 'io/huangsam/trial/JavaTrial.class')
         }))
     }
-}
-
-application {
-    mainClass = 'io.huangsam.trial.JavaTrial'
 }
