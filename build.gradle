@@ -38,7 +38,7 @@ jacocoTestReport {
     // https://www.baeldung.com/jacoco-report-exclude
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: 'io/huangsam/trial/JavaTrial.class')
+            fileTree(dir: it, exclude: 'io/huangsam/**/JavaTrial.class')
         }))
     }
 }
