@@ -2,9 +2,9 @@
 gson = "2.11.0"
 guava = "33.3.1-jre"
 junit-jupiter = "5.11.2"
-logback = "1.5.12"
+logback = "1.5.13"
 mockito = "5.14.2"
-sl4j = "2.0.16"
+slf4j = "2.0.16"
 task-tree = "4.0.0"
 
 [libraries]
@@ -15,7 +15,7 @@ junit-launcher = { module = "org.junit.platform:junit-platform-launcher" }
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
 mockito-junit = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
-sl4j-api = { module = "org.slf4j:slf4j-api", version.ref = "sl4j" }
+slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 
 [plugins]
 task-tree = { id = "com.dorongold.task-tree", version.ref = "task-tree" }
