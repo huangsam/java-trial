@@ -4,7 +4,7 @@ Playground for common features and libraries. Spans Java 8 through 17.
 
 ## Getting started
 
-Here are the only two commands you need to know:
+Here are the commands you need to know:
 
 ```bash
 # Run application
