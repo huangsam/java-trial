@@ -2,6 +2,20 @@
 
 Playground for common features and libraries. Spans Java 8 through 17.
 
+## Getting started
+
+Here are the only two commands you need to know:
+
+```bash
+# Run application
+./gradlew run
+
+# Run tests
+./gradlew test
+```
+
+## Goals
+
 Features tested:
 
 - [x] Annotations
@@ -23,18 +37,6 @@ Libraries tested:
 - [x] JUnit
 - [x] Mockito
 - [x] SL4J
-
-## Getting started
-
-Here are the only two commands you need to know:
-
-```bash
-# Run application
-./gradlew run
-
-# Run tests
-./gradlew test
-```
 
 ## Useful resources
 
