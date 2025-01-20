@@ -40,7 +40,7 @@ Libraries tested:
 - [x] Guava
 - [x] JUnit
 - [x] Mockito
-- [x] SL4J
+- [x] SLF4J
 
 ## Useful resources
 
