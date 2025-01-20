@@ -4,6 +4,8 @@
 
 Playground for common features and libraries. Spans multiple Java LTS versions.
 
+Check out my [Kotlin Trial] and [Scala Trial] if you want to learn more!
+
 ## Getting started
 
 Here are the commands you need to know:
@@ -54,3 +56,6 @@ Community resources:
 - <https://docs.gradle.org/current/userguide/platforms.html>
 - <https://www.youtube.com/codingwithjohn>
 - <https://github.com/akullpp/awesome-java>
+
+[Kotlin Trial]: https://github.com/huangsam/kotlin-trial
+[Scala Trial]: https://github.com/huangsam/scala-trial
