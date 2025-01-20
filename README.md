@@ -2,7 +2,7 @@
 
 [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/huangsam/java-trial/ci.yml)](https://github.com/huangsam/java-trial/actions)
 
-Playground to assess new features and popular libraries from Java LTS versions.
+Playground to assess new features and popular libraries on Java LTS versions.
 
 Check out my [Kotlin Trial] and [Scala Trial] to learn more about other JVM stacks!
 
