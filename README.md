@@ -1,5 +1,7 @@
 # Java Trial
 
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/huangsam/java-trial/ci.yml)](https://github.com/huangsam/java-trial/actions)
+
 Playground for common features and libraries. Spans Java 8 through 17.
 
 ## Getting started
