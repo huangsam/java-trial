@@ -20,15 +20,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @see <a href="https://www.baeldung.com/java-blocking-queue">Baeldung on BlockingQueue</a>
  */
 public class TestProducerConsumer {
-    private static final int BOUND = 10;
     private static final int PRODUCER_COUNT = 2;
     private static final int CONSUMER_COUNT = 4;
+
+    // The sentinel value that will stop the consumers
     private static final int PILL_VALUE = Integer.MAX_VALUE;
+
+    // The ratio of sentinel values to the number of producers
     private static final int PILL_RATIO = CONSUMER_COUNT / PRODUCER_COUNT;
 
     @RepeatedTest(3)
     void testBlockingQueueIsEmpty() throws InterruptedException {
-        BlockingQueue<Integer> queue = new LinkedBlockingQueue<>(BOUND);
+        BlockingQueue<Integer> queue = new LinkedBlockingQueue<>(10);
 
         ExecutorService producerService = Executors.newFixedThreadPool(PRODUCER_COUNT);
         ExecutorService consumerService = Executors.newFixedThreadPool(CONSUMER_COUNT);
