@@ -44,6 +44,12 @@ Libraries tested:
 - [x] Mockito
 - [x] SLF4J
 
+### Practical application
+
+After achieving all the goals above, it will be possible to write a robust side
+project like [Photohaul](https://github.com/huangsam/photohaul) from scratch and
+release it to the public for feedback and inputs!
+
 ## Useful resources
 
 Official resources:
