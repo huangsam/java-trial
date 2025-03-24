@@ -4,7 +4,7 @@
 
 Playground to assess new features and popular libraries on Java LTS versions.
 
-Check out my [Kotlin Trial] and [Scala Trial] to learn more about other JVM stacks!
+Check out my [Kotlin Trial] and [Scala Trial] to try out the other JVM stacks!
 
 <img src="images/java-trial.webp" alt="Java logo" width="250px" />
 
