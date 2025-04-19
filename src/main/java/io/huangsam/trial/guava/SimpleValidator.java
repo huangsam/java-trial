@@ -1,5 +1,7 @@
 package io.huangsam.trial.guava;
 
+import org.jetbrains.annotations.NotNull;
+
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -18,6 +20,7 @@ public class SimpleValidator {
         return current;
     }
 
+    @NotNull
     public static String salute(String name) {
         checkNotNull(name, "The string is null");
         return "Hello " + name;

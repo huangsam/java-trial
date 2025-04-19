@@ -1,6 +1,7 @@
 [versions]
 gson = "2.12.1"
 guava = "33.4.0-jre"
+jetbrains-annotations = "26.0.2"
 junit-jupiter = "5.11.2"
 logback = "1.5.17"
 mockito = "5.16.0"
@@ -10,6 +11,7 @@ task-tree = "4.0.1"
 [libraries]
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
+jetbrains-annotations = { module = "org.jetbrains:annotations", version.ref = "jetbrains-annotations" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
 junit-launcher = { module = "org.junit.platform:junit-platform-launcher" }
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
