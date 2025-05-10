@@ -65,8 +65,8 @@ public class TestListenableFuture {
     void testListenableFanIn() throws ExecutionException, InterruptedException {
         ListeningExecutorService service = getListeningService();
 
-        ListenableFuture<Integer> idFuture = service.submit(() -> 1);
         ListenableFuture<String> nameFuture = service.submit(() -> "Bob");
+        ListenableFuture<Integer> idFuture = service.submit(() -> 1);
 
         Executor listeningExecutor = Executors.newSingleThreadExecutor();
         ListenableFuture<String> allInFuture = Futures.whenAllSucceed(idFuture, nameFuture)
