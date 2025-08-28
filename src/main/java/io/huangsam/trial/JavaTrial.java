@@ -29,25 +29,27 @@ public class JavaTrial {
         LOG.info(config.getProperty("banner.enter"));
 
         int threadCount = 4;
-        ExecutorService service = Executors.newFixedThreadPool(threadCount);
-        NumberCruncher cruncher = new NumberCruncher();
-        NumberReporter reporter = new NumberReporter();
+        boolean isTerminated;
+        try (ExecutorService service = Executors.newFixedThreadPool(threadCount)) {
+            NumberCruncher cruncher = new NumberCruncher();
+            NumberReporter reporter = new NumberReporter();
 
-        Stream.iterate(1L, i -> i <= threadCount, i -> i + 1)
-                .map(i -> service.submit(new NumberRunner(i, cruncher, reporter)))
-                .forEach(future -> {
-                    try {
-                        future.get();
-                    } catch (InterruptedException e) {
-                        Thread.currentThread().interrupt();
-                    } catch (ExecutionException e) {
-                        LOG.error(e.getMessage(), e);
-                    }
-                });
+            Stream.iterate(1L, i -> i <= threadCount, i -> i + 1)
+                    .map(i -> service.submit(new NumberRunner(i, cruncher, reporter)))
+                    .forEach(future -> {
+                        try {
+                            future.get();
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                        } catch (ExecutionException e) {
+                            LOG.error(e.getMessage(), e);
+                        }
+                    });
 
-        service.shutdown();
+            service.shutdown();
 
-        boolean isTerminated = service.awaitTermination(1000L, TimeUnit.MILLISECONDS);
+            isTerminated = service.awaitTermination(1000L, TimeUnit.MILLISECONDS);
+        }
 
         LOG.info("{} {}", config.getProperty("banner.exit"), isTerminated ? ":)" : ":(");
     }
