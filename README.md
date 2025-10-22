@@ -58,6 +58,7 @@ Official resources:
 - <https://docs.oracle.com/en/java/javase/11/>
 - <https://docs.oracle.com/en/java/javase/17/>
 - <https://docs.oracle.com/en/java/javase/21/>
+- <https://docs.oracle.com/en/java/javase/25/>
 
 Community resources:
 
