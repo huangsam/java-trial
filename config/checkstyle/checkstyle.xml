@@ -14,10 +14,64 @@
     </module>
 
     <module name="TreeWalker">
-        <module name="AvoidStarImport"/>
+        <!-- Naming conventions -->
         <module name="ConstantName"/>
+        <module name="MemberName"/>
+        <module name="MethodName"/>
+        <module name="PackageName"/>
+        <module name="ParameterName"/>
+        <module name="TypeName"/>
+        <module name="LocalVariableName"/>
+        <module name="InterfaceTypeParameterName"/>
+        <module name="MethodTypeParameterName"/>
+
+        <!-- Import conventions -->
+        <module name="AvoidStarImport"/>
+        <module name="UnusedImports"/>
+        <module name="ImportOrder">
+            <property name="groups" value="*,javax,java"/>
+            <property name="separated" value="true"/>
+            <property name="option" value="bottom" />
+            <property name="sortStaticImportsAlphabetically" value="true" />
+        </module>
+
+        <!-- Code style -->
         <module name="EmptyBlock"/>
         <module name="OneStatementPerLine"/>
-        <module name="UnusedImports"/>
+        <module name="UpperEll"/>
+        <module name="ArrayTypeStyle"/>
+        <module name="GenericWhitespace"/>
+        <module name="WhitespaceAfter"/>
+        <module name="WhitespaceAround"/>
+        <module name="NoWhitespaceAfter"/>
+        <module name="ParenPad"/>
+        <module name="TypecastParenPad"/>
+        <module name="NeedBraces"/>
+        <module name="OperatorWrap">
+            <property name="option" value="nl"/>
+        </module>
+        <module name="SeparatorWrap">
+            <property name="tokens" value="COMMA"/>
+            <property name="option" value="eol"/>
+        </module>
+        <module name="SeparatorWrap">
+            <property name="tokens" value="DOT"/>
+            <property name="option" value="nl"/>
+        </module>
+
+        <!-- Code smells -->
+        <module name="CyclomaticComplexity"/>
+        <module name="ParameterNumber"/>
+        <module name="ExecutableStatementCount">
+            <property name="max" value="60"/>
+        </module>
+        <module name="MutableException"/>
+        <module name="EqualsHashCode"/>
+        <module name="EqualsAvoidNull"/>
+
+        <!-- Documentation -->
+        <module name="JavadocMethod">
+            <property name="accessModifiers" value="public"/>
+        </module>
     </module>
 </module>
