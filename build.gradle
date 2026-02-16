@@ -11,14 +11,15 @@ repositories {
 }
 
 dependencies {
+    compileOnly libs.jetbrains.annotations
     implementation libs.gson
     implementation libs.guava
     implementation libs.logback.classic
     implementation libs.slf4j.api
     testImplementation libs.bundles.mockito.all
     testImplementation libs.junit.jupiter
+    testImplementation platform(libs.junit.bom)
     testRuntimeOnly libs.junit.launcher
-    compileOnly libs.jetbrains.annotations
 }
 
 application {
