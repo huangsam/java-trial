@@ -3,17 +3,7 @@ package io.huangsam.trial.delivery;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class NumbersProducer implements Runnable {
-    private final BlockingQueue<Integer> numbersQueue;
-    private final int poisonPill;
-    private final int poisonPillPerProducer;
-
-    public NumbersProducer(BlockingQueue<Integer> numbersQueue, int poisonPill, int poisonPillPerProducer) {
-        this.numbersQueue = numbersQueue;
-        this.poisonPill = poisonPill;
-        this.poisonPillPerProducer = poisonPillPerProducer;
-    }
-
+public record NumbersProducer(BlockingQueue<Integer> numbersQueue, int poisonPill, int poisonPillPerProducer) implements Runnable {
     public void run() {
         try {
             generateNumbers();

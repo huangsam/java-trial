@@ -2,7 +2,8 @@ package io.huangsam.trial.runner;
 
 import org.slf4j.Logger;
 
-public abstract class AbstractRunner implements Runnable {
+public sealed abstract class AbstractRunner implements Runnable
+    permits CountRunner, CyclicRunner, SemaphoreRunner {
     @Override
     public void run() {
         try {

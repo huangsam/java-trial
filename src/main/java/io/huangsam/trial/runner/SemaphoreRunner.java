@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
-public class SemaphoreRunner extends AbstractRunner {
+public final class SemaphoreRunner extends AbstractRunner {
     private static final Logger LOG = LoggerFactory.getLogger(SemaphoreRunner.class);
 
     private static final int MAX_ATTEMPTS = 5;

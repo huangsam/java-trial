@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
-public class CyclicRunner extends AbstractRunner {
+public final class CyclicRunner extends AbstractRunner {
     private static final Logger LOG = LoggerFactory.getLogger(CyclicRunner.class);
 
     private final CyclicBarrier barrier;

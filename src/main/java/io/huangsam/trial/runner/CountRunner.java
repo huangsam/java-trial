@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.CountDownLatch;
 
-public class CountRunner extends AbstractRunner {
+public final class CountRunner extends AbstractRunner {
     private static final Logger LOG = LoggerFactory.getLogger(CountRunner.class);
 
     private final CountDownLatch latch;

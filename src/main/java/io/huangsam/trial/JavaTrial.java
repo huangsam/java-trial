@@ -30,7 +30,7 @@ public class JavaTrial {
 
         int threadCount = 4;
         boolean isTerminated;
-        try (ExecutorService service = Executors.newFixedThreadPool(threadCount)) {
+        try (ExecutorService service = Executors.newVirtualThreadPerTaskExecutor()) {
             NumberCruncher cruncher = new NumberCruncher();
             NumberReporter reporter = new NumberReporter();
 
