@@ -26,6 +26,7 @@ This repository is structured into thematic packages to evaluate different aspec
 - `features.modern`: In-depth exploration of stable Java LTS features (Records, Patterns).
 - `libs`: Assessment of 3rd party libraries (Gson, Guava).
 - `concurrent`: Focused trials for Multithreading and Virtual Threads.
+- `model`: Shared data structures (POJOs, Records) used across the project.
 
 For detailed technical standards and naming conventions, refer to the [Agent Guide](AGENTS.md).
 
