@@ -7,14 +7,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+import io.huangsam.trial.stdlib.util.ResourceExplorer;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -28,6 +26,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @see <a href="https://www.baeldung.com/java-xml">Baeldung on XML</a>
  */
 public class TestUserProfile {
+    private final ResourceExplorer explorer = new ResourceExplorer();
+
     @Test
     void testUserProfileGetters() {
         UserProfile profile = new UserProfile("Foo Bar", "foo.bar@example.com", 1);
@@ -39,7 +39,7 @@ public class TestUserProfile {
 
     @Test
     void testLoadUserProfileFromJson() throws IOException {
-        InputStream jsonStream = getStream("test.json");
+        InputStream jsonStream = explorer.getResourceStream("test.json");
         String jsonContent = new String(jsonStream.readAllBytes());
         UserProfile[] profiles = new Gson().fromJson(jsonContent, UserProfile[].class);
 
@@ -49,31 +49,27 @@ public class TestUserProfile {
 
     @Test
     void testLoadUserProfileFromCsv() throws IOException {
-        InputStream csvStream = getStream("test.csv");
-        String csvContent = new String(csvStream.readAllBytes());
-        String[] lines = csvContent.split("\n");
+        InputStream csvStream = explorer.getResourceStream("test.csv");
+        List<String> lines = explorer.parseCsvLines(csvStream);
 
-        assertEquals(3, lines.length);
+        assertEquals(3, lines.size());
 
-        List<UserProfile> profiles = Arrays.stream(lines)
+        List<UserProfile> profiles = lines.stream()
                 .filter(line -> !line.startsWith("name"))
                 .map(this::parseProfileFromCsvLine)
                 .toList();
 
-        assertEquals(lines.length - 1, profiles.size());
+        assertEquals(lines.size() - 1, profiles.size());
         assertTrue(profiles.stream().allMatch(profile -> profile.name().contains("Doe")));
     }
 
     @Test
     void testLoadUserProfileFromXml() throws Exception {
-        InputStream xmlStream = getStream("test.xml");
-        DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        Document doc = builder.parse(xmlStream);
-        doc.getDocumentElement().normalize();
+        InputStream xmlStream = explorer.getResourceStream("test.xml");
+        Document doc = explorer.parseXml(xmlStream);
         NodeList nodeList = doc.getElementsByTagName("user");
 
-        List<UserProfile> profiles = Stream.iterate(0, i -> i < nodeList.getLength(), i -> i + 1)
-                .map(nodeList::item)
+        List<UserProfile> profiles = explorer.streamify(nodeList)
                 .map(this::parseProfileFromXmlElement)
                 .toList();
 
@@ -92,9 +88,5 @@ public class TestUserProfile {
         String email = element.getElementsByTagName("email").item(0).getTextContent();
         int age = Integer.parseInt(element.getElementsByTagName("age").item(0).getTextContent());
         return new UserProfile(name, email, age);
-    }
-
-    private InputStream getStream(String name) {
-        return getClass().getClassLoader().getResourceAsStream(name);
     }
 }
