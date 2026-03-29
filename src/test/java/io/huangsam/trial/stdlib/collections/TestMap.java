@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
@@ -18,7 +17,8 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  * that the same work does not need to be repeated.
  */
 public class TestMap {
-    private final Map<Integer, Integer> mapping = new HashMap<>();
+    private final CollectionExplorer explorer = new CollectionExplorer();
+    private final Map<Integer, Integer> mapping = explorer.newTreeMap();
 
     @BeforeEach
     void resetMapping() {

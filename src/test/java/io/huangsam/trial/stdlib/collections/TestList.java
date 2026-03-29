@@ -2,8 +2,7 @@ package io.huangsam.trial.stdlib.collections;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
+ 
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,12 +17,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * items one-by-one with them or grab just one entry from a particular index.
  */
 public class TestList {
-    private final List<Integer> list = new ArrayList<>();
+    private final CollectionExplorer explorer = new CollectionExplorer();
+    private final List<Integer> list = explorer.newArrayList();
 
     @BeforeEach
     void resetList() {
         list.clear();
-        list.addAll(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));
+        explorer.addAll(list, 1, 2, 3, 4, 5, 6, 7, 8, 9);
     }
 
     @Test

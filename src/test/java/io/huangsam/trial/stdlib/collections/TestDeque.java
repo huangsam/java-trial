@@ -3,7 +3,6 @@ package io.huangsam.trial.stdlib.collections;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
@@ -18,7 +17,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * structures.
  */
 public class TestDeque {
-    private final Deque<Integer> deque = new ArrayDeque<>();
+    private final CollectionExplorer explorer = new CollectionExplorer();
+    private final Deque<Integer> deque = explorer.newLinkedListDeque();
 
     @BeforeEach
     void resetDeque() {

@@ -1,6 +1,5 @@
 package io.huangsam.trial.libs.gson;
 
-import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -14,20 +13,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @see <a href="https://github.com/FasterXML/jackson-docs">Jackson guide</a>
  */
 public class TestGson {
-    private static final Gson GSON = new Gson();
+    private final JsonExplorer explorer = new JsonExplorer();
 
     @Test
     void testPrimitivesToJson() {
-        assertEquals("1", GSON.toJson(1));
-        assertEquals("\"abcd\"", GSON.toJson("abcd"));
-        assertEquals("[1]", GSON.toJson(new int[]{1}));
-        assertEquals("null", GSON.toJson(null));
+        assertEquals("1", explorer.toJson(1));
+        assertEquals("\"abcd\"", explorer.toJson("abcd"));
+        assertEquals("[1]", explorer.toJson(new int[]{1}));
+        assertEquals("null", explorer.toJson(null));
     }
 
     @Test
     void testJsonToPrimitives() {
-        assertEquals(1, GSON.fromJson("1", Integer.class));
-        assertEquals(false, GSON.fromJson("false", Boolean.class));
-        assertArrayEquals(new int[]{1, 2}, GSON.fromJson("[1, 2]", int[].class));
+        assertEquals(1, explorer.fromJson("1", Integer.class));
+        assertEquals(false, explorer.fromJson("false", Boolean.class));
+        assertArrayEquals(new int[]{1, 2}, explorer.fromJson("[1, 2]", int[].class));
     }
 }

@@ -10,28 +10,30 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * methods. The most common one is {@code assertEquals}.
  */
 public class TestMath {
+    private final MathExplorer explorer = new MathExplorer();
+
     @Test
     void testAdd() {
-        assertEquals(2, 1 + 1);
+        assertEquals(2, explorer.add(1, 1));
     }
 
     @Test
     void testSubtract() {
-        assertEquals(3, 5 - 2);
+        assertEquals(3, explorer.subtract(5, 2));
     }
 
     @Test
     void testMultiply() {
-        assertEquals(4, 2 * 2);
+        assertEquals(4, explorer.multiply(2, 2));
     }
 
     @Test
     void testDivide() {
-        assertEquals(5, 40 / 8);
+        assertEquals(5, explorer.divide(40, 8));
     }
 
     @Test
     void testModulus() {
-        assertEquals(6, 56 % 10);
+        assertEquals(6, explorer.modulus(56, 10));
     }
 }
