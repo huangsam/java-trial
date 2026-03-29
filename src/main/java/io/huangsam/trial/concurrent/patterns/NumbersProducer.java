@@ -3,7 +3,17 @@ package io.huangsam.trial.concurrent.patterns;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * A producer that generates random numbers and adds them to a blocking queue.
+ *
+ * @param numbersQueue          the queue to add numbers to
+ * @param poisonPill            the value representing a poison pill
+ * @param poisonPillPerProducer the number of poison pills to produce
+ */
 public record NumbersProducer(BlockingQueue<Integer> numbersQueue, int poisonPill, int poisonPillPerProducer) implements Runnable {
+    /**
+     * Executes the producer logic.
+     */
     public void run() {
         try {
             generateNumbers();

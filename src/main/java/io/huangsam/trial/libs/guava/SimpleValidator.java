@@ -6,6 +6,12 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public class SimpleValidator {
+    /**
+     * Calculates the nth Fibonacci number.
+     *
+     * @param n the position in the Fibonacci sequence
+     * @return the Fibonacci number at position n
+     */
     public static int fibonacci(int n) {
         checkArgument(n >= 0 && n <= 6, "Got invalid input %d", n);
         if (n <= 2) {
@@ -20,6 +26,12 @@ public class SimpleValidator {
         return current;
     }
 
+    /**
+     * Returns a greeting string for the given name.
+     *
+     * @param name the name to salute
+     * @return a greeting string
+     */
     @NotNull
     public static String salute(String name) {
         checkNotNull(name, "The string is null");

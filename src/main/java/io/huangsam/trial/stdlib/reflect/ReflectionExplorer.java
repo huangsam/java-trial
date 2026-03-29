@@ -10,10 +10,21 @@ import java.util.Optional;
  * @param car the car to explore
  */
 public record ReflectionExplorer(MysteryCar car) {
+    /**
+     * Gets all declared fields of the car.
+     *
+     * @return an array of fields
+     */
     public Field[] getCarFields() {
         return car.getClass().getDeclaredFields();
     }
 
+    /**
+     * Gets a specific declared field of the car by name.
+     *
+     * @param fieldName the name of the field
+     * @return an Optional containing the field if found, or empty otherwise
+     */
     public Optional<Field> getCarField(String fieldName) {
         try {
             return Optional.of(car.getClass().getDeclaredField(fieldName));
@@ -22,6 +33,12 @@ public record ReflectionExplorer(MysteryCar car) {
         }
     }
 
+    /**
+     * Gets a specific declared method of the car by name.
+     *
+     * @param methodName the name of the method
+     * @return an Optional containing the method if found, or empty otherwise
+     */
     public Optional<Method> getCarMethod(String methodName) {
         try {
             return Optional.of(car.getClass().getDeclaredMethod(methodName));

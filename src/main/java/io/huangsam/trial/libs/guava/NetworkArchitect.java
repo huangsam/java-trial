@@ -61,6 +61,11 @@ public class NetworkArchitect {
         return graph.successors(start).contains(end); 
     }
 
+    /**
+     * Gets the underlying mutable graph.
+     *
+     * @return the mutable graph
+     */
     public MutableGraph<String> getGraph() {
         return graph;
     }

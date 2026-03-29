@@ -13,6 +13,14 @@ import java.util.TreeSet;
  * @param <T> the type of elements
  */
 public class MergeExplorer<T extends Comparable<T>> {
+    /**
+     * Merges two collections into a new collection of the specified type.
+     *
+     * @param c1 the first collection
+     * @param c2 the second collection
+     * @param as the class of the new collection
+     * @return the merged collection
+     */
     public Collection<T> mergeAs(Collection<T> c1, Collection<T> c2, Class<?> as) {
         String className = as.getName();
         Collection<T> merged = switch (className) {
