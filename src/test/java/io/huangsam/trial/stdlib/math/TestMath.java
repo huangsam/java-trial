@@ -3,6 +3,7 @@ package io.huangsam.trial.stdlib.math;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Getting a grasp of the JUnit suite from a Java perspective.
@@ -35,5 +36,10 @@ public class TestMath {
     @Test
     void testModulus() {
         assertEquals(6, explorer.modulus(56, 10));
+    }
+
+    @Test
+    void testDivideByZero() {
+        assertThrows(ArithmeticException.class, () -> explorer.divide(10, 0));
     }
 }
