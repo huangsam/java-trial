@@ -1,0 +1,27 @@
+package io.huangsam.trial.stdlib.reflect;
+
+public class MysteryCar {
+    @SimpleStuff
+    private final int wheels;
+
+    private final int miles;
+
+    public MysteryCar() {
+        wheels = 4;
+        miles = 0;
+    }
+
+    public MysteryCar(int wheels, int miles) {
+        this.wheels = wheels;
+        this.miles = miles;
+    }
+
+    public boolean hasSameSpecs(MysteryCar other) {
+        return wheels == other.wheels && getMileInfo().equals(other.getMileInfo());
+    }
+
+    // Left as private to test the power of reflection!
+    private String getMileInfo() {
+        return "Traveled " + miles + " miles";
+    }
+}
