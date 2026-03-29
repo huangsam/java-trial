@@ -25,28 +25,28 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @see <a href="https://www.youtube.com/watch?v=bhhMJSKNCQY">YouTube on Relection</a>
  * @see <a href="https://www.youtube.com/watch?v=vKVzRbsMnTQ">YouTube on Optionals</a>
  */
-public class TestMirage {
-    private static Mirage mirage;
+public class TestReflection {
+    private static ReflectionExplorer explorer;
 
     @BeforeEach
-    void setupMirage() {
-        mirage = new Mirage(new MysteryCar());
+    void setupExplorer() {
+        explorer = new ReflectionExplorer(new MysteryCar());
     }
 
     @Test
     void testMiragesHaveSameSpecs() {
-        assertTrue(mirage.car().hasSameSpecs(new MysteryCar(4, 0)));
+        assertTrue(explorer.car().hasSameSpecs(new MysteryCar(4, 0)));
     }
 
     @Test
     void testMiragesHaveDifferentSpecs() {
-        assertFalse(mirage.car().hasSameSpecs(new MysteryCar(6, 0)));
-        assertFalse(mirage.car().hasSameSpecs(new MysteryCar(4, 1)));
+        assertFalse(explorer.car().hasSameSpecs(new MysteryCar(6, 0)));
+        assertFalse(explorer.car().hasSameSpecs(new MysteryCar(4, 1)));
     }
 
     @Test
     void testGetCarFields() {
-        Field[] fields = mirage.getCarFields();
+        Field[] fields = explorer.getCarFields();
         assertEquals(2, fields.length);
 
         Map<String, Field> fieldMap = Arrays.stream(fields)
@@ -67,9 +67,9 @@ public class TestMirage {
     void testSetPrivateField() throws IllegalAccessException {
         int expectedWheels = 4;
 
-        MysteryCar car = mirage.car();
+        MysteryCar car = explorer.car();
 
-        Optional<Field> optionalField = mirage.getCarField("wheels");
+        Optional<Field> optionalField = explorer.getCarField("wheels");
         Field field = optionalField.orElseThrow();
 
         field.setAccessible(true);
@@ -86,9 +86,9 @@ public class TestMirage {
 
     @Test
     void testInvokePrivateMethod() throws IllegalAccessException, InvocationTargetException {
-        MysteryCar car = mirage.car();
+        MysteryCar car = explorer.car();
 
-        Optional<Method> optionalMethod = mirage.getCarMethod("getMileInfo");
+        Optional<Method> optionalMethod = explorer.getCarMethod("getMileInfo");
         Method method = optionalMethod.orElseThrow();
 
         method.setAccessible(true);
@@ -104,13 +104,13 @@ public class TestMirage {
 
     @Test
     void testEmptyField() {
-        Optional<Field> optionalField = mirage.getCarField("foo");
+        Optional<Field> optionalField = explorer.getCarField("foo");
         assertTrue(optionalField.isEmpty());
     }
 
     @Test
     void testEmptyMethod() {
-        Optional<Method> optionalMethod = mirage.getCarMethod("foo");
+        Optional<Method> optionalMethod = explorer.getCarMethod("foo");
         assertTrue(optionalMethod.isEmpty());
     }
 }

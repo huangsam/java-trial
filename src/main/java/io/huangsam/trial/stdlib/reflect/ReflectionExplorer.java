@@ -4,7 +4,12 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Optional;
 
-public record Mirage(MysteryCar car) {
+/**
+ * Demonstrates the use of reflection to explore class fields and methods.
+ *
+ * @param car the car to explore
+ */
+public record ReflectionExplorer(MysteryCar car) {
     public Field[] getCarFields() {
         return car.getClass().getDeclaredFields();
     }

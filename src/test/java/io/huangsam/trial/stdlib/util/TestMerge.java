@@ -15,15 +15,8 @@ import java.util.TreeSet;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-/**
- * {@code NumberMerger<T>} shows the power of a method which exists under a class
- * with generic typing. Note that generics can have more than one type, but
- * we want to keep things simple with a type that is comparable.
- *
- * @see <a href="https://www.youtube.com/watch?v=K1iu1kXkVoA">YouTube on Generics</a>
- */
-public class TestNumberMerger {
-    private static final NumberMerger<Integer> MERGER = new NumberMerger<>();
+public class TestMerge {
+    private static final MergeExplorer<Integer> MERGER = new MergeExplorer<>();
 
     private static final Collection<Integer> C1 = Arrays.asList(3, 7, 2, 9, 8);
     private static final Collection<Integer> C2 = Arrays.asList(1, 10, 4);

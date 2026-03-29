@@ -7,7 +7,12 @@ import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.TreeSet;
 
-public class NumberMerger<T extends Comparable<T>> {
+/**
+ * Demonstrates merging different collection types.
+ *
+ * @param <T> the type of elements
+ */
+public class MergeExplorer<T extends Comparable<T>> {
     public Collection<T> mergeAs(Collection<T> c1, Collection<T> c2, Class<?> as) {
         String className = as.getName();
         Collection<T> merged = switch (className) {
