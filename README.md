@@ -20,52 +20,11 @@ Here are the commands you need to know:
 ./gradlew test
 ```
 
-## Goals
-
-Features tested:
-
-- [x] Annotations
-- [x] Concurrency
-- [x] File parsing
-- [x] Generics
-- [x] Optionals
-- [x] Properties
-- [x] Records
-- [x] Reflection
-- [x] Streams
-- [x] Time constructs
-- [x] Try with resources
-
-Libraries tested:
-
-- [x] Gson
-- [x] Guava
-- [x] JUnit
-- [x] Mockito
-- [x] SLF4J
-
-### Practical application
-
-After achieving all the goals above, it will be possible to write a robust side
-project like [Photohaul](https://github.com/huangsam/photohaul) from scratch and
-release it to the public for feedback and inputs!
-
 ## Useful resources
 
-Official resources:
-
-- <https://docs.oracle.com/javase/8/>
-- <https://docs.oracle.com/en/java/javase/11/>
-- <https://docs.oracle.com/en/java/javase/17/>
-- <https://docs.oracle.com/en/java/javase/21/>
-- <https://docs.oracle.com/en/java/javase/25/>
-
-Community resources:
-
-- <https://javaalmanac.io/features/>
-- <https://docs.gradle.org/current/userguide/platforms.html>
-- <https://www.youtube.com/codingwithjohn>
-- <https://github.com/akullpp/awesome-java>
+- **JDK Features**: <https://javaalmanac.io/features/>
+- **LTS Docs**: [JDK 17](https://docs.oracle.com/en/java/javase/17/), [JDK 21](https://docs.oracle.com/en/java/javase/21/), [JDK 25](https://docs.oracle.com/en/java/javase/25/)
+- **Awesome Java**: <https://github.com/akullpp/awesome-java>
 
 [Kotlin Trial]: https://github.com/huangsam/kotlin-trial
 [Scala Trial]: https://github.com/huangsam/scala-trial
