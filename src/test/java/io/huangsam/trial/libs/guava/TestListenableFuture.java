@@ -5,7 +5,6 @@ import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
-import org.jspecify.annotations.Nullable;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,7 +48,7 @@ public class TestListenableFuture {
             }
 
             @Override
-            public void onFailure(@Nullable Throwable t) {
+            public void onFailure(Throwable t) {
                 if (t != null) {
                     LOG.warn("Nothing good is happening: {}", t.getMessage());
                 }

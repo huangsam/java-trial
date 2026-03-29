@@ -1,7 +1,5 @@
 package io.huangsam.trial.libs.guava;
 
-import org.jetbrains.annotations.NotNull;
-
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -32,7 +30,6 @@ public class SimpleValidator {
      * @param name the name to salute
      * @return a greeting string
      */
-    @NotNull
     public static String salute(String name) {
         checkNotNull(name, "The string is null");
         return "Hello " + name;

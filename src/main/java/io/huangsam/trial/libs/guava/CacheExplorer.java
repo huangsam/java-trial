@@ -4,7 +4,6 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.CacheStats;
 import com.google.common.cache.LoadingCache;
-import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +25,7 @@ public class CacheExplorer {
                 .recordStats()
                 .build(new CacheLoader<>() {
                     @Override
-                    public @NotNull String load(@NotNull String key) {
+                    public String load(String key) {
                         return simulateExpensiveOperation(key);
                     }
                 });
