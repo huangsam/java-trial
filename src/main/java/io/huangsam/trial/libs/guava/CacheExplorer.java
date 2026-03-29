@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * Demonstrates Guava's LoadingCache for efficient data retrieval and expiry.
  */
 public class CacheExplorer {
-    private static final Logger LOGGER = LoggerFactory.getLogger(CacheExplorer.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CacheExplorer.class);
 
     private final LoadingCache<String, String> cache;
 
@@ -41,7 +41,7 @@ public class CacheExplorer {
         try {
             return cache.get(key);
         } catch (ExecutionException e) {
-            LOGGER.error("Error loading value for key: {}", key, e);
+            LOG.error("Error loading value for key: {}", key, e);
             throw new RuntimeException("Failed to load value", e);
         }
     }
@@ -52,7 +52,9 @@ public class CacheExplorer {
      * @return the cache statistics
      */
     public CacheStats getStats() {
-        return cache.stats();
+        CacheStats stats = cache.stats();
+        LOG.info("Current cache statistics: {}", stats);
+        return stats;
     }
 
     /**
@@ -61,11 +63,12 @@ public class CacheExplorer {
      * @param key the key to invalidate
      */
     public void invalidate(String key) {
+        LOG.info("Invalidating cache key: '{}'", key);
         cache.invalidate(key);
     }
 
     private String simulateExpensiveOperation(String key) {
-        LOGGER.info("Cache miss for key: '{}'. Executing expensive operation...", key);
+        LOG.info("Cache miss for key: '{}'. Executing expensive operation...", key);
         // Simulate a delay (e.g., database lookup or API call)
         try {
             Thread.sleep(100); 

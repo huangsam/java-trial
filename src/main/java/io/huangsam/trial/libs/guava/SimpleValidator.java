@@ -1,9 +1,14 @@
 package io.huangsam.trial.libs.guava;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public class SimpleValidator {
+    private static final Logger LOG = LoggerFactory.getLogger(SimpleValidator.class);
+
     /**
      * Calculates the nth Fibonacci number.
      *
@@ -11,6 +16,7 @@ public class SimpleValidator {
      * @return the Fibonacci number at position n
      */
     public static int fibonacci(int n) {
+        LOG.debug("Validating fibonacci input: n={}", n);
         checkArgument(n >= 0 && n <= 6, "Got invalid input %d", n);
         if (n <= 2) {
             return n;
@@ -31,6 +37,7 @@ public class SimpleValidator {
      * @return a greeting string
      */
     public static String salute(String name) {
+        LOG.debug("Validating salute input: name={}", name);
         checkNotNull(name, "The string is null");
         return "Hello " + name;
     }

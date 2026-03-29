@@ -1,8 +1,11 @@
 package io.huangsam.trial.libs.gson;
 
 import com.google.gson.Gson;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JsonExplorer {
+    private static final Logger LOG = LoggerFactory.getLogger(JsonExplorer.class);
     private static final Gson GSON = new Gson();
 
     /**
@@ -12,6 +15,11 @@ public class JsonExplorer {
      * @return the JSON string representation of the object
      */
     public String toJson(Object src) {
+        if (src == null) {
+            LOG.info("Serializing null object");
+        } else {
+            LOG.info("Serializing object of type: {}", src.getClass().getName());
+        }
         return GSON.toJson(src);
     }
 
@@ -24,6 +32,8 @@ public class JsonExplorer {
      * @return the deserialized object
      */
     public <T> T fromJson(String json, Class<T> classOfT) {
+        LOG.info("Deserializing JSON to type: {}", classOfT.getName());
+        LOG.debug("Raw JSON: {}", json);
         return GSON.fromJson(json, classOfT);
     }
 }

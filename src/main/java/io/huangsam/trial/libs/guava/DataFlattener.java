@@ -4,6 +4,8 @@ import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.collect.FluentIterable;
 import com.google.common.collect.ImmutableList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -11,6 +13,7 @@ import java.util.List;
  * Demonstrates monadic data flattening and transformation using Guava.
  */
 public class DataFlattener {
+    private static final Logger LOG = LoggerFactory.getLogger(DataFlattener.class);
 
     /**
      * Flattens a list of strings by splitting each string by comma.
@@ -20,6 +23,7 @@ public class DataFlattener {
      * @return a flattened list of individual words
      */
     public List<String> flattenAndTrim(List<String> inputs) {
+        LOG.debug("Flattening {} comma-separated strings", inputs.size());
         return FluentIterable.from(inputs)
                 .transformAndConcat(new Function<String, Iterable<String>>() {
                     @Override
@@ -43,12 +47,14 @@ public class DataFlattener {
      * @return the transformed string, or a default value
      */
     public String processOptional(Optional<String> input) {
-        return input.transform(new Function<String, String>() {
+        String result = input.transform(new Function<String, String>() {
             @Override
             public String apply(String s) {
                 return s.toUpperCase();
             }
         }).or("DEFAULT");
+        LOG.debug("Process optional: input={}, result={}", input, result);
+        return result;
     }
 
     /**

@@ -2,6 +2,8 @@ package io.huangsam.trial.libs.guava;
 
 import com.google.common.graph.GraphBuilder;
 import com.google.common.graph.MutableGraph;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Set;
 
@@ -10,6 +12,8 @@ import java.util.Set;
  */
 @SuppressWarnings("UnstableApiUsage")
 public class NetworkArchitect {
+    private static final Logger LOG = LoggerFactory.getLogger(NetworkArchitect.class);
+
     private final MutableGraph<String> graph;
 
     public NetworkArchitect() {
@@ -26,6 +30,7 @@ public class NetworkArchitect {
      * @param dependency the dependency of the node
      */
     public void addDependency(String node, String dependency) {
+        LOG.info("Adding dependency: {} -> {}", node, dependency);
         graph.putEdge(node, dependency);
     }
 
@@ -57,6 +62,7 @@ public class NetworkArchitect {
      * @return true if a path exists
      */
     public boolean hasDependencyPath(String start, String end) {
+        LOG.debug("Checking path existence between '{}' and '{}'", start, end);
         // Basic check for direct or indirect (Guava Graphs provide many traversal utilities)
         return graph.successors(start).contains(end); 
     }

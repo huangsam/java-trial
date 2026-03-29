@@ -9,11 +9,12 @@ import org.slf4j.LoggerFactory;
  */
 @SuppressWarnings("UnstableApiUsage")
 public class TrafficController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(TrafficController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(TrafficController.class);
 
     private final RateLimiter rateLimiter;
 
     public TrafficController(double permitsPerSecond) {
+        LOG.info("Initialized TrafficController with {} permits/sec", permitsPerSecond);
         this.rateLimiter = RateLimiter.create(permitsPerSecond);
     }
 
@@ -25,7 +26,7 @@ public class TrafficController {
     public void runThrottled(Runnable task) {
         double waitTime = rateLimiter.acquire();
         if (waitTime > 0.0) {
-            LOGGER.info("Throttled: waited {} seconds", waitTime);
+            LOG.info("Throttled: waited {} seconds", waitTime);
         }
         task.run();
     }
@@ -41,7 +42,7 @@ public class TrafficController {
             task.run();
             return true;
         } else {
-            LOGGER.warn("Operation skipped: rate limit exceeded");
+            LOG.warn("Operation skipped: rate limit exceeded");
             return false;
         }
     }
