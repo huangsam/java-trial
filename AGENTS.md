@@ -22,3 +22,6 @@
 - **IF** handling JSON/Serialization **THEN** use `libs.gson`.
 - **IF** build fails **THEN** check Checkstyle `ImportOrder` immediately.
 - **IF** tests pass **THEN** run `jacocoTestReport` to verify density.
+- **IF** adding classes with public methods **THEN** add Javadoc for each method.
+- **IF** adding logging **THEN** declare the logger as `LOG`.
+- **IF** logging data **THEN** prefer `DEBUG` unless it's a lifecycle event.
