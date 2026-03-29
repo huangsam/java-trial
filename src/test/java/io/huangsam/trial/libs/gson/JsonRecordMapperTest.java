@@ -1,4 +1,4 @@
-package io.huangsam.trial.features.modern;
+package io.huangsam.trial.libs.gson;
 
 import org.junit.jupiter.api.Test;
 

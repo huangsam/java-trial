@@ -1,4 +1,4 @@
-package io.huangsam.trial.features.modern;
+package io.huangsam.trial.libs.gson;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
