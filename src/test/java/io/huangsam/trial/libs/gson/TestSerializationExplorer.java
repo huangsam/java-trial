@@ -12,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @see <a href="https://github.com/google/gson/blob/main/UserGuide.md">Gson guide</a>
  * @see <a href="https://github.com/FasterXML/jackson-docs">Jackson guide</a>
  */
-public class TestGson {
-    private final JsonExplorer explorer = new JsonExplorer();
+public class TestSerializationExplorer {
+    private final SerializationExplorer explorer = new SerializationExplorer();
 
     @Test
     void testPrimitivesToJson() {

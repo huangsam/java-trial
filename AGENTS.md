@@ -10,8 +10,8 @@
 
 ## Patterns
 
-- **Explorer Class**: Use `*Explorer.java` in `src/main/java` for logic.
-- **Unit Test**: Use `Test*.java` in `src/test/java` for verification.
+- **Explorer Class**: Use `*Explorer.java` for stateless logic (utils/facades). If the class has instance-level state (e.g., initialized fields), do NOT use the suffix. Always place in `src/main/java`.
+- **Unit Test**: Use `Test*.java` prefix for all unit tests. Always place in `src/test/java`.
 - **Coverage**: Aim for 100% JaCoCo coverage except for complex concurrency threads.
 - **Stable-First**: No preview features unless explicitly requested.
 
@@ -23,5 +23,7 @@
 - **IF** build fails **THEN** check Checkstyle `ImportOrder` immediately.
 - **IF** tests pass **THEN** run `jacocoTestReport` to verify density.
 - **IF** adding classes with public methods **THEN** add Javadoc for each method.
-- **IF** adding logging **THEN** declare the logger as `LOG`.
+- **IF** adding logging **THEN** it must be reserved for `concurrent` logic or `libs` integrations.
+- **IF** adding logging **THEN** declare the logger as `private static final Logger LOG`.
 - **IF** logging data **THEN** prefer `DEBUG` unless it's a lifecycle event.
+- **IF** handling imports, please look at `checkstyle.xml` for the import order.

@@ -6,8 +6,11 @@ import org.slf4j.LoggerFactory;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class SimpleValidator {
-    private static final Logger LOG = LoggerFactory.getLogger(SimpleValidator.class);
+/**
+ * Demonstrates Guava Preconditions for argument validation.
+ */
+public class ValidationExplorer {
+    private static final Logger LOG = LoggerFactory.getLogger(ValidationExplorer.class);
 
     /**
      * Calculates the nth Fibonacci number.

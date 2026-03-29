@@ -4,8 +4,11 @@ import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class JsonExplorer {
-    private static final Logger LOG = LoggerFactory.getLogger(JsonExplorer.class);
+/**
+ * Demonstrates JSON serialization and deserialization using GSON.
+ */
+public class SerializationExplorer {
+    private static final Logger LOG = LoggerFactory.getLogger(SerializationExplorer.class);
     private static final Gson GSON = new Gson();
 
     /**

@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SuppressWarnings("UnstableApiUsage")
-class NetworkArchitectTest {
+public class TestNetworkArchitect {
 
     @Test
     void testDependencyGraph() {

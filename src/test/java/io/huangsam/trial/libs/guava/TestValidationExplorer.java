@@ -2,8 +2,8 @@ package io.huangsam.trial.libs.guava;
 
 import org.junit.jupiter.api.Test;
 
-import static io.huangsam.trial.libs.guava.SimpleValidator.fibonacci;
-import static io.huangsam.trial.libs.guava.SimpleValidator.salute;
+import static io.huangsam.trial.libs.guava.ValidationExplorer.fibonacci;
+import static io.huangsam.trial.libs.guava.ValidationExplorer.salute;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * @see <a href="https://github.com/google/guava/wiki/PreconditionsExplained">Explanation</a>
  * @see <a href="https://guava.dev/releases/snapshot/api/docs/com/google/common/base/Preconditions.html">API docs</a>
  */
-public class TestPrecondition {
+public class TestValidationExplorer {
     @Test
     void testIllegalArgumentFromFibonacciPrecondition() {
         assertThrows(IllegalArgumentException.class, () -> fibonacci(-1));

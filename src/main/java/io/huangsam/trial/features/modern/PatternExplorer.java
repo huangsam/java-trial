@@ -3,7 +3,7 @@ package io.huangsam.trial.features.modern;
 /**
  * Demonstrates modern Java features: Switch Pattern Matching and Record Patterns.
  */
-public class PatternMatcher {
+public class PatternExplorer {
 
     /**
      * A record representing a Credit Card payment.
@@ -40,11 +40,11 @@ public class PatternMatcher {
      */
     public String processPayment(Object payment) {
         return switch (payment) {
-            case CreditCard(String number, String network) -> 
+            case CreditCard(String number, String network) ->
                 "Processing %s card: %s".formatted(network, mask(number));
-            case BankTransfer(String iban, String name) -> 
+            case BankTransfer(String iban, String name) ->
                 "Processing Transfer from %s: %s".formatted(name, mask(iban));
-            case Crypto(String address, String coin) -> 
+            case Crypto(String address, String coin) ->
                 "Processing %s payment to: %s".formatted(coin, mask(address));
             case null -> "No payment provided";
             default -> "Unknown payment type";

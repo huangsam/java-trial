@@ -10,8 +10,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Demonstrates Java 21+ Virtual Threads (Project Loom).
  */
-public class LoomThreads {
-    private static final Logger LOGGER = LoggerFactory.getLogger(LoomThreads.class);
+public class LoomExplorer {
+    private static final Logger LOG = LoggerFactory.getLogger(LoomExplorer.class);
 
     /**
      * Runs a large number of tasks using virtual threads.
@@ -38,7 +38,7 @@ public class LoomThreads {
         }
         // The try-with-resources on ExecutorService will wait for all tasks to finish (Java 19+)
         
-        LOGGER.info("Successfully completed {} virtual threads", counter.get());
+        LOG.info("Successfully completed {} virtual threads", counter.get());
         return counter.get();
     }
 }

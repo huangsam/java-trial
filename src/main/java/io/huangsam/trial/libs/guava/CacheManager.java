@@ -13,12 +13,12 @@ import java.util.concurrent.TimeUnit;
 /**
  * Demonstrates Guava's LoadingCache for efficient data retrieval and expiry.
  */
-public class CacheExplorer {
-    private static final Logger LOG = LoggerFactory.getLogger(CacheExplorer.class);
+public class CacheManager {
+    private static final Logger LOG = LoggerFactory.getLogger(CacheManager.class);
 
     private final LoadingCache<String, String> cache;
 
-    public CacheExplorer() {
+    public CacheManager() {
         this.cache = CacheBuilder.newBuilder()
                 .maximumSize(100)
                 .expireAfterWrite(10, TimeUnit.MINUTES)

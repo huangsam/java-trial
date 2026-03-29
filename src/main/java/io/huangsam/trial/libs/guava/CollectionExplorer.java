@@ -4,13 +4,16 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.Multimap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
 
 /**
  * Demonstrates advanced Guava collections: Multimap and BiMap.
  */
-public class CollectionEnricher {
+public class CollectionExplorer {
+    private static final Logger LOG = LoggerFactory.getLogger(CollectionExplorer.class);
 
     /**
      * Demonstrates a Multimap, which maps one key to multiple values.
@@ -19,6 +22,7 @@ public class CollectionEnricher {
      * @return a multimap of user interests
      */
     public Multimap<String, String> createUserInterests() {
+        LOG.debug("Creating user interests multimap");
         Multimap<String, String> userInterests = ArrayListMultimap.create();
         userInterests.put("Alice", "Java");
         userInterests.put("Alice", "Guava");
@@ -36,6 +40,7 @@ public class CollectionEnricher {
      * @return the collection of interests
      */
     public Collection<String> getInterests(Multimap<String, String> map, String user) {
+        LOG.debug("Getting interests for user: {}", user);
         return map.get(user);
     }
 
@@ -46,6 +51,7 @@ public class CollectionEnricher {
      * @return a bidirectional mapping of user IDs and names
      */
     public BiMap<Integer, String> createUserIdMap() {
+        LOG.debug("Creating user ID map");
         BiMap<Integer, String> userIdMap = HashBiMap.create();
         userIdMap.put(101, "Alice");
         userIdMap.put(102, "Bob");
@@ -61,6 +67,7 @@ public class CollectionEnricher {
      * @return the user name
      */
     public String getUserName(BiMap<Integer, String> map, Integer id) {
+        LOG.debug("Getting user name for ID: {}", id);
         return map.get(id);
     }
 
@@ -72,6 +79,7 @@ public class CollectionEnricher {
      * @return the user ID
      */
     public Integer getUserId(BiMap<Integer, String> map, String name) {
+        LOG.debug("Getting user ID for name: {}", name);
         return map.inverse().get(name);
     }
 }

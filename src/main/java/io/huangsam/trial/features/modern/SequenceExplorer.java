@@ -10,7 +10,7 @@ import java.util.SequencedSet;
 /**
  * Demonstrates Java 21+ Sequenced Collections.
  */
-public class OrderedCollections {
+public class SequenceExplorer {
 
     /**
      * Demonstrates SequencedCollection (List).

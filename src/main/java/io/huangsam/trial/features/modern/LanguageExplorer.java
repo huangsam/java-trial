@@ -3,7 +3,7 @@ package io.huangsam.trial.features.modern;
 /**
  * Demonstrates standard modern Java syntax features (Java 15, 17, 21).
  */
-public class ModernSyntaxExplorer {
+public class LanguageExplorer {
 
     /**
      * Demonstrates Text Blocks (Standard since Java 15).
@@ -49,7 +49,7 @@ public class ModernSyntaxExplorer {
     /**
      * Demonstrates modern String formatting (Standard since Java 15).
      *
-     * @param name the name to format
+     * @param name    the name to format
      * @param version the version to format
      * @return a formatted string
      */

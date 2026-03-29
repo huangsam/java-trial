@@ -12,8 +12,8 @@ import java.util.List;
 /**
  * Demonstrates monadic data flattening and transformation using Guava.
  */
-public class DataFlattener {
-    private static final Logger LOG = LoggerFactory.getLogger(DataFlattener.class);
+public class FlattenerExplorer {
+    private static final Logger LOG = LoggerFactory.getLogger(FlattenerExplorer.class);
 
     /**
      * Flattens a list of strings by splitting each string by comma.
