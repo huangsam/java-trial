@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 /**
  * Demonstrates the use of the Stream API, specifically focusing on flattening operations.
  */
-public class StreamExplorer {
+public class FlatteningExplorer {
 
     /**
      * Flattens a list of lists into a single list.

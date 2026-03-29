@@ -1,13 +1,12 @@
 package io.huangsam.trial.model.human;
 
 import com.google.gson.Gson;
+import io.huangsam.trial.stdlib.util.ResourceExplorer;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import io.huangsam.trial.stdlib.util.ResourceExplorer;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,8 +17,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Let's load {@code UserProfile} records via JSON, CXV and XML files. It's common
- * to do file operations to grab data and process them, so we're doing exactly that.
+ * Let's load {@code UserProfile} records via JSON, CXV and XML files. It's
+ * common to do file operations to grab data and process them, so we're doing
+ * exactly that.
  *
  * @see <a href="https://www.baeldung.com/java-json">Baeldung on JSON</a>
  * @see <a href="https://www.baeldung.com/java-csv">Baeldung on CSV</a>

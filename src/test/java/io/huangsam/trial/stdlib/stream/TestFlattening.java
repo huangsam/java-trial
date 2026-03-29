@@ -8,9 +8,8 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class TestStream {
-
-    private final StreamExplorer explorer = new StreamExplorer();
+class TestFlattening {
+    private final FlatteningExplorer explorer = new FlatteningExplorer();
 
     @Test
     void testFlattenLists() {

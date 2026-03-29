@@ -8,6 +8,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -50,8 +51,8 @@ public class ResourceExplorer {
      * @param xmlStream the XML resource stream
      * @return the parsed Document
      * @throws ParserConfigurationException if the XML builder cannot be configured
-     * @throws IOException                 if the resource cannot be read
-     * @throws SAXException                if the XML is invalid
+     * @throws IOException                  if the resource cannot be read
+     * @throws SAXException                 if the XML is invalid
      */
     public Document parseXml(InputStream xmlStream) throws ParserConfigurationException, IOException, SAXException {
         DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
