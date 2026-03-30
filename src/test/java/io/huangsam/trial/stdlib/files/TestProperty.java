@@ -1,4 +1,4 @@
-package io.huangsam.trial.stdlib.util;
+package io.huangsam.trial.stdlib.files;
 
 import org.junit.jupiter.api.Test;
 

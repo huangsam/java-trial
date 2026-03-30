@@ -1,4 +1,4 @@
-package io.huangsam.trial.stdlib.util;
+package io.huangsam.trial.stdlib.files;
 
 import java.io.IOException;
 import java.io.InputStream;
