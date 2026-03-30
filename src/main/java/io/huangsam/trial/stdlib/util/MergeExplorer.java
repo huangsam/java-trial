@@ -1,11 +1,7 @@
 package io.huangsam.trial.stdlib.util;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.TreeSet;
+import java.util.function.Supplier;
 
 /**
  * Demonstrates merging different collection types.
@@ -14,24 +10,17 @@ import java.util.TreeSet;
  */
 public class MergeExplorer<T extends Comparable<T>> {
     /**
-     * Merges two collections into a new collection of the specified type.
+     * Merges two collections into a new collection created by the specified
+     * factory.
      *
-     * @param c1 the first collection
-     * @param c2 the second collection
-     * @param as the class of the new collection
+     * @param <C>     the type of the collection
+     * @param c1      the first collection
+     * @param c2      the second collection
+     * @param factory the factory supplying the new collection
      * @return the merged collection
      */
-    public Collection<T> mergeAs(Collection<T> c1, Collection<T> c2, Class<?> as) {
-        String className = as.getName();
-        Collection<T> merged = switch (className) {
-            case "java.util.ArrayList" -> new ArrayList<>();
-            case "java.util.HashSet" -> new HashSet<>();
-            case "java.util.LinkedHashSet" -> new LinkedHashSet<>();
-            case "java.util.LinkedList" -> new LinkedList<>();
-            case "java.util.TreeSet" -> new TreeSet<>();
-            default -> throw new IllegalArgumentException("Cannot merge with class " + className);
-        };
-
+    public <C extends Collection<T>> C mergeAs(Collection<T> c1, Collection<T> c2, Supplier<C> factory) {
+        C merged = factory.get();
         merged.addAll(c1);
         merged.addAll(c2);
         return merged;
