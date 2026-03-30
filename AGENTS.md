@@ -10,7 +10,7 @@
 
 ## Patterns
 
-- **Explorer Class**: Use `*Explorer.java` for stateless logic (utils/facades). If stateful (fields), omit suffix. Always in `src/main/java`.
+- **Explorer Class**: Use `*Explorer.java` for stateless logic (utils/facades).
 - **Unit Test**: Use `Test*.java` prefix. Always in `src/test/java`.
 - **Coverage**: Aim for 100% JaCoCo coverage (except complex concurrency). Run `jacocoTestReport` to verify density.
 - **Stable-First**: No Java preview features. Use Java 17/21 LTS features only.
@@ -22,3 +22,4 @@
 - **IF** adding logging **THEN** reserve for `concurrent` or `libs`; declare as `private static final Logger LOG`.
 - **IF** logging data **THEN** prefer `DEBUG` unless it is a lifecycle event.
 - **IF** handling imports **THEN** strictly follow the group order in `checkstyle.xml`.
+- **IF** creating or renaming a class **THEN** verify if it has fields; use `Explorer` suffix only if stateless (no fields).
