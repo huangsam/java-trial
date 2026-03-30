@@ -3,6 +3,7 @@ package io.huangsam.trial;
 import io.huangsam.trial.concurrent.workload.NumberCruncher;
 import io.huangsam.trial.concurrent.workload.NumberReporter;
 import io.huangsam.trial.concurrent.workload.NumberRunner;
+import io.huangsam.trial.stdlib.net.NetworkClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,6 +28,14 @@ public class JavaTrial {
         }
 
         LOG.info(config.getProperty("banner.enter"));
+
+        NetworkClient network = new NetworkClient();
+        network.getAsync("https://www.google.com")
+                .thenAccept(body -> LOG.info("Network check (Google): {} bytes received", body.length()))
+                .exceptionally(e -> {
+                    LOG.error("Network check failed: {}", e.getMessage());
+                    return null;
+                });
 
         int threadCount = 4;
         boolean isTerminated;
