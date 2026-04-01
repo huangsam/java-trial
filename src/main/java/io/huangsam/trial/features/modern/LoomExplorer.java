@@ -18,11 +18,10 @@ public class LoomExplorer {
      *
      * @param taskCount the number of tasks to run
      * @return the number of successfully completed tasks
-     * @throws InterruptedException if the execution is interrupted
      */
-    public int runManyVirtualThreads(int taskCount) throws InterruptedException {
+    public int runManyVirtualThreads(int taskCount) {
         AtomicInteger counter = new AtomicInteger(0);
-        
+
         try (ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor()) {
             for (int i = 0; i < taskCount; i++) {
                 executor.submit(() -> {
@@ -37,7 +36,7 @@ public class LoomExplorer {
             }
         }
         // The try-with-resources on ExecutorService will wait for all tasks to finish (Java 19+)
-        
+
         LOG.info("Successfully completed {} virtual threads", counter.get());
         return counter.get();
     }
