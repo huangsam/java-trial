@@ -12,6 +12,12 @@ import java.nio.file.StandardOpenOption;
  * Covers Memory-Mapped Files, File Locking, and Zero-Copy Transfers.
  */
 public class NioChannelExplorer {
+    /**
+     * Constructs an NIO channel explorer.
+     */
+    public NioChannelExplorer() {
+        // Default constructor
+    }
 
     /**
      * Maps a file into memory for instant access via a MappedByteBuffer.

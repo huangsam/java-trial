@@ -18,6 +18,11 @@ public class EventBusManager {
 
     private final EventBus bus;
 
+    /**
+     * Constructs an event bus manager.
+     *
+     * @param busName the name of the bus
+     */
     public EventBusManager(String busName) {
         this.bus = new EventBus(busName);
     }
@@ -47,18 +52,40 @@ public class EventBusManager {
 
         private final List<Object> events = new ArrayList<>();
 
+        /**
+         * Constructs a sample subscriber.
+         */
+        public SampleSubscriber() {
+            // Default constructor
+        }
+
+        /**
+         * Handles string messages.
+         *
+         * @param msg the message string
+         */
         @Subscribe
         public void onMessage(String msg) {
             LOG.info("Subscriber received String: {}", msg);
             events.add(msg);
         }
 
+        /**
+         * Handles integer values.
+         *
+         * @param val the integer value
+         */
         @Subscribe
         public void onInteger(Integer val) {
             LOG.info("Subscriber received Integer: {}", val);
             events.add(val);
         }
 
+        /**
+         * Gets the list of received events.
+         *
+         * @return a defensive copy of the events list
+         */
         public List<Object> getEvents() {
             return new ArrayList<>(events);
         }

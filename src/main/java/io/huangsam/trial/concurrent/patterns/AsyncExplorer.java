@@ -12,6 +12,12 @@ import java.util.stream.Collectors;
  * Demonstrates chaining, combining, and error handling.
  */
 public class AsyncExplorer {
+    /**
+     * Constructs an async explorer.
+     */
+    public AsyncExplorer() {
+        // Default constructor
+    }
 
     private final ExecutorService executor = Executors.newFixedThreadPool(4);
 

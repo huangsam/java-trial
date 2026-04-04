@@ -4,6 +4,12 @@ package io.huangsam.trial.stdlib.math;
  * Demonstrates the use of the standard java.lang.Math library for more advanced math operations.
  */
 public class MathLibExplorer {
+    /**
+     * Constructs a math library explorer.
+     */
+    public MathLibExplorer() {
+        // Default constructor
+    }
 
     /**
      * Returns the absolute value of a double.

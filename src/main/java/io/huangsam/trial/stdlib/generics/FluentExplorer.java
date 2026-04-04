@@ -9,15 +9,37 @@ package io.huangsam.trial.stdlib.generics;
  * inheritance hierarchy.
  */
 public class FluentExplorer {
+    /**
+     * Constructs a fluent explorer.
+     */
+    public FluentExplorer() {
+        // Default constructor
+    }
 
     /**
      * The base builder uses a recursive generic
      * {@code <B extends PersonBuilder<B>>}.
      * This forces implementations to return their specific builder type.
+     *
+     * @param <B> the builder type
      */
     public abstract static class PersonBuilder<B extends PersonBuilder<B>> {
+        /**
+         * The name of the person.
+         */
         protected String name;
+
+        /**
+         * The age of the person.
+         */
         protected int age;
+
+        /**
+         * Constructs a person builder.
+         */
+        protected PersonBuilder() {
+            // Default constructor
+        }
 
         /**
          * Returns 'this' cast to the explicit generic type.
@@ -55,6 +77,13 @@ public class FluentExplorer {
     public static class StudentBuilder extends PersonBuilder<StudentBuilder> {
         private String major;
 
+        /**
+         * Constructs a student builder.
+         */
+        public StudentBuilder() {
+            // Default constructor
+        }
+
         @Override
         protected StudentBuilder self() {
             return this;
@@ -85,6 +114,10 @@ public class FluentExplorer {
      * The target model class to be built.
      * Record type is a modern Java feature introduced in Java 14 (preview) / 16
      * (standard).
+     *
+     * @param name  the student's name
+     * @param age   the student's age
+     * @param major the student's major
      */
     public record Student(String name, int age, String major) {
     }

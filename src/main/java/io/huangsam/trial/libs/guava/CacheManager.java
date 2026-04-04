@@ -18,6 +18,9 @@ public class CacheManager {
 
     private final LoadingCache<String, String> cache;
 
+    /**
+     * Constructs a cache manager with a default loading cache.
+     */
     public CacheManager() {
         this.cache = CacheBuilder.newBuilder()
                 .maximumSize(100)

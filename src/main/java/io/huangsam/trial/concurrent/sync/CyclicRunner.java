@@ -6,11 +6,19 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
+/**
+ * A runner that performs a cyclic barrier operation.
+ */
 public final class CyclicRunner extends AbstractRunner {
     private static final Logger LOG = LoggerFactory.getLogger(CyclicRunner.class);
 
     private final CyclicBarrier barrier;
 
+    /**
+     * Constructs a cyclic runner.
+     *
+     * @param barrier the barrier
+     */
     public CyclicRunner(CyclicBarrier barrier) {
         this.barrier = barrier;
     }

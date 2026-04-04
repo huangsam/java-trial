@@ -1,5 +1,8 @@
 package io.huangsam.trial.model.human;
 
+/**
+ * Represents an employee in the system.
+ */
 public class Employee {
     private final int id;
     private final String name;

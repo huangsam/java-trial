@@ -12,6 +12,13 @@ public class SerializationExplorer {
     private static final Gson GSON = new Gson();
 
     /**
+     * Constructs a serialization explorer.
+     */
+    public SerializationExplorer() {
+        // Default constructor
+    }
+
+    /**
      * Serializes an object to JSON.
      *
      * @param src the object to serialize

@@ -11,6 +11,12 @@ import java.util.SequencedSet;
  * Demonstrates Java 21+ Sequenced Collections.
  */
 public class SequenceExplorer {
+    /**
+     * Constructs a sequence explorer.
+     */
+    public SequenceExplorer() {
+        // Default constructor
+    }
 
     /**
      * Demonstrates SequencedCollection (List).

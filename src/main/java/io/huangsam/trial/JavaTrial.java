@@ -16,9 +16,27 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
+/**
+ * Main entry point for the Java Trial application.
+ * Demonstrates basic integration of concurrency and networking features.
+ */
 public class JavaTrial {
     private static final Logger LOG = LoggerFactory.getLogger(JavaTrial.class);
 
+    /**
+     * Constructs a Java trial instance.
+     */
+    public JavaTrial() {
+        // Default constructor
+    }
+
+    /**
+     * Main execution method.
+     *
+     * @param args the command line arguments
+     * @throws InterruptedException if a thread is interrupted
+     * @throws IOException          if an I/O error occurs
+     */
     public static void main(String[] args) throws InterruptedException, IOException {
         Properties config = new Properties();
 

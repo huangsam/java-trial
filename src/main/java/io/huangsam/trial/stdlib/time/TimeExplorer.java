@@ -16,6 +16,13 @@ import java.time.temporal.ChronoUnit;
  */
 public class TimeExplorer {
     /**
+     * Constructs a time explorer.
+     */
+    public TimeExplorer() {
+        // Default constructor
+    }
+
+    /**
      * Parses an ISO-8601 date-time string into a LocalDateTime.
      *
      * @param dateTimeString the date-time string to parse

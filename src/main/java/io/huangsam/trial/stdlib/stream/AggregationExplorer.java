@@ -6,6 +6,12 @@ import java.util.List;
  * Demonstrates the use of the Stream API for aggregation operations like reduce.
  */
 public class AggregationExplorer {
+    /**
+     * Constructs an aggregation explorer.
+     */
+    public AggregationExplorer() {
+        // Default constructor
+    }
 
     /**
      * Sums all numbers in a list using the reduce operation.

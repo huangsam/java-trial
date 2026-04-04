@@ -6,6 +6,9 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * A runner that uses a Semaphore for synchronization with backoff-based retries.
+ */
 public final class SemaphoreRunner extends AbstractRunner {
     private static final Logger LOG = LoggerFactory.getLogger(SemaphoreRunner.class);
 
@@ -15,6 +18,11 @@ public final class SemaphoreRunner extends AbstractRunner {
     private final Backoff backOff;
     private int attempts = 0;
 
+    /**
+     * Constructs a semaphore runner.
+     *
+     * @param semaphore the semaphore to use
+     */
     public SemaphoreRunner(Semaphore semaphore) {
         this.semaphore = semaphore;
         this.backOff = new Backoff(50.0, 1.25);
@@ -63,6 +71,12 @@ public final class SemaphoreRunner extends AbstractRunner {
         private double base;
         private final double factor;
 
+        /**
+         * Constructs a backoff strategy.
+         *
+         * @param base the base delay
+         * @param factor the multiplication factor
+         */
         Backoff(double base, double factor) {
             this.base = base;
             this.factor = factor;

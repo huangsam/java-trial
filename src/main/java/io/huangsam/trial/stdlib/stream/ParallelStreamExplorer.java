@@ -8,6 +8,12 @@ import java.util.stream.LongStream;
  * Demonstrates the use of .parallel() and its performance considerations.
  */
 public class ParallelStreamExplorer {
+    /**
+     * Constructs a parallel stream explorer.
+     */
+    public ParallelStreamExplorer() {
+        // Default constructor
+    }
 
     /**
      * Computes the sum of range of numbers using a sequential stream.

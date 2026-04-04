@@ -16,6 +16,11 @@ public class NetworkClient {
     private final HttpClient client;
     private final Duration requestTimeout;
 
+    /**
+     * Constructs a network client with the specified timeout.
+     *
+     * @param requestTimeout the timeout for requests
+     */
     public NetworkClient(Duration requestTimeout) {
         this.requestTimeout = requestTimeout;
         this.client = HttpClient.newBuilder()

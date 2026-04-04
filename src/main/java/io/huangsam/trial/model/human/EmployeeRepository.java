@@ -3,7 +3,17 @@ package io.huangsam.trial.model.human;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Repository for managing employee records.
+ */
 public class EmployeeRepository {
+    /**
+     * Constructs an employee repository.
+     */
+    public EmployeeRepository() {
+        // Default constructor
+    }
+
     private final Map<Integer, Employee> employeeRecords = new HashMap<>();
 
     /**

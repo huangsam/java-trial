@@ -4,6 +4,12 @@ package io.huangsam.trial.stdlib.math;
  * Math utilities for basic operations with defensive checks.
  */
 public class MathExplorer {
+    /**
+     * Constructs a math explorer.
+     */
+    public MathExplorer() {
+        // Default constructor
+    }
 
     /**
      * Adds two integers.

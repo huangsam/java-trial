@@ -8,6 +8,12 @@ import java.util.stream.Collectors;
  * Demonstrates the use of the Stream API for advanced terminal operations with collectors.
  */
 public class CollectionExplorer {
+    /**
+     * Constructs a collection explorer.
+     */
+    public CollectionExplorer() {
+        // Default constructor
+    }
 
     /**
      * Groups a list of strings by their length.

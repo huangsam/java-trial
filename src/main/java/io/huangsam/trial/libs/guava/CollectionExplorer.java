@@ -13,6 +13,13 @@ import java.util.Collection;
  * Demonstrates advanced Guava collections: Multimap and BiMap.
  */
 public class CollectionExplorer {
+    /**
+     * Constructs a collection explorer.
+     */
+    public CollectionExplorer() {
+        // Default constructor
+    }
+
     private static final Logger LOG = LoggerFactory.getLogger(CollectionExplorer.class);
 
     /**
@@ -35,7 +42,7 @@ public class CollectionExplorer {
     /**
      * Gets interests for a specific user.
      *
-     * @param map the multimap of interests
+     * @param map  the multimap of interests
      * @param user the username
      * @return the collection of interests
      */
@@ -63,7 +70,7 @@ public class CollectionExplorer {
      * Gets a username by ID.
      *
      * @param map the BIMAP of IDs to names
-     * @param id the user ID
+     * @param id  the user ID
      * @return the username
      */
     public String getUserName(BiMap<Integer, String> map, Integer id) {
@@ -74,7 +81,7 @@ public class CollectionExplorer {
     /**
      * Gets a user ID by name.
      *
-     * @param map the BIMAP of IDs to names
+     * @param map  the BIMAP of IDs to names
      * @param name the username
      * @return the user ID
      */

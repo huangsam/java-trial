@@ -14,6 +14,13 @@ public class MethodHandleExplorer {
     private final MethodHandles.Lookup lookup = MethodHandles.lookup();
 
     /**
+     * Constructs a method handle explorer.
+     */
+    public MethodHandleExplorer() {
+        // Default constructor
+    }
+
+    /**
      * Finds a MethodHandle for a virtual (instance) method.
      *
      * @param receiverClass the class containing the method

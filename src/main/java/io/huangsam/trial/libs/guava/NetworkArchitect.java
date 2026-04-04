@@ -16,6 +16,9 @@ public class NetworkArchitect {
 
     private final MutableGraph<String> graph;
 
+    /**
+     * Constructs a network architect.
+     */
     public NetworkArchitect() {
         // Create a directed graph to model something like a dependency tree or a social network
         this.graph = GraphBuilder.directed()

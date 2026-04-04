@@ -10,6 +10,12 @@ import java.util.stream.Stream;
  * Demonstrates the use of the Stream API, specifically focusing on flattening operations.
  */
 public class FlatteningExplorer {
+    /**
+     * Constructs a flattening explorer.
+     */
+    public FlatteningExplorer() {
+        // Default constructor
+    }
 
     /**
      * Flattens a list of lists into a single list.

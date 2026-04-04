@@ -14,6 +14,13 @@ public class LoomExplorer {
     private static final Logger LOG = LoggerFactory.getLogger(LoomExplorer.class);
 
     /**
+     * Constructs a Loom explorer instance.
+     */
+    public LoomExplorer() {
+        // Default constructor
+    }
+
+    /**
      * Runs a large number of tasks using virtual threads.
      *
      * @param taskCount the number of tasks to run

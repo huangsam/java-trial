@@ -11,6 +11,12 @@ import java.util.stream.Stream;
  * Demonstrates Files.walk and Files.find.
  */
 public class DirectoryExplorer {
+    /**
+     * Constructs a directory explorer.
+     */
+    public DirectoryExplorer() {
+        // Default constructor
+    }
 
     /**
      * Lists all files in a directory recursively.

@@ -18,6 +18,12 @@ import java.util.stream.Stream;
  * Utility for loading and parsing resources from the classpath.
  */
 public class ResourceExplorer {
+    /**
+     * Constructs a resource explorer.
+     */
+    public ResourceExplorer() {
+        // Default constructor
+    }
 
     /**
      * Loads a resource from the classpath as an InputStream.

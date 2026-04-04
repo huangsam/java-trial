@@ -43,3 +43,9 @@ tasks.jacocoTestReport {
         }
     }))
 }
+
+tasks.withType<Javadoc> {
+    val options = options as StandardJavadocDocletOptions
+    options.addBooleanOption("Xdoclint:all", true)
+    options.addBooleanOption("Werror", true)
+}

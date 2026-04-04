@@ -9,6 +9,13 @@ import java.util.concurrent.ConcurrentMap;
  */
 public class ConcurrentMapExplorer {
 
+    /**
+     * Constructs a concurrent map explorer.
+     */
+    public ConcurrentMapExplorer() {
+        // Default constructor
+    }
+
     private final ConcurrentMap<String, Integer> map = new ConcurrentHashMap<>();
 
     /**

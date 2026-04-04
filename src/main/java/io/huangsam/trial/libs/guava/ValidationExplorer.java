@@ -13,6 +13,13 @@ public class ValidationExplorer {
     private static final Logger LOG = LoggerFactory.getLogger(ValidationExplorer.class);
 
     /**
+     * Constructs a validation explorer.
+     */
+    public ValidationExplorer() {
+        // Default constructor
+    }
+
+    /**
      * Calculates the nth Fibonacci number.
      *
      * @param n the position in the Fibonacci sequence

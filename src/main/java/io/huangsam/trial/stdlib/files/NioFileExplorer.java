@@ -11,6 +11,12 @@ import java.util.stream.Stream;
  * Focuses on Path and Files utility methods introduced in Java 7 and 11.
  */
 public class NioFileExplorer {
+    /**
+     * Constructs an NIO file explorer.
+     */
+    public NioFileExplorer() {
+        // Default constructor
+    }
 
     /**
      * Writes content to a file using UTF-8 encoding.

@@ -9,6 +9,12 @@ import java.util.function.Predicate;
  * Demonstrates the power of lambda expressions and method references.
  */
 public class FunctionalExplorer {
+    /**
+     * Constructs a functional explorer.
+     */
+    public FunctionalExplorer() {
+        // Default constructor
+    }
 
     /**
      * A custom functional interface for string transformations.

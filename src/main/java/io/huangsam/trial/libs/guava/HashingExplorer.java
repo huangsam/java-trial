@@ -11,6 +11,12 @@ import java.nio.charset.StandardCharsets;
  * Provides a much more consistent interface than the legacy JDK MessageDigest.
  */
 public class HashingExplorer {
+    /**
+     * Constructs a hashing explorer.
+     */
+    public HashingExplorer() {
+        // Default constructor
+    }
 
     /**
      * Hashes a string using Murmur3 128-bit.

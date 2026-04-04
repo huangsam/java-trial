@@ -21,6 +21,9 @@ public class JsonRecordMapper {
     public record DigitalAsset(String symbol, double price) {
     }
 
+    /**
+     * Constructs a JSON record mapper.
+     */
     public JsonRecordMapper() {
         this.gson = new GsonBuilder().create();
     }

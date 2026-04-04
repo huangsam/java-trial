@@ -6,6 +6,12 @@ import java.util.List;
  * Demonstrates the use of the Stream API for transformation and filtering.
  */
 public class TransformationExplorer {
+    /**
+     * Constructs a transformation explorer.
+     */
+    public TransformationExplorer() {
+        // Default constructor
+    }
 
     /**
      * Filters strings by length and transforms them to uppercase.

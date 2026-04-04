@@ -15,6 +15,13 @@ public class LockExplorer {
     private int counter = 0;
 
     /**
+     * Constructs a lock explorer instance.
+     */
+    public LockExplorer() {
+        // Default constructor
+    }
+
+    /**
      * Increments the counter using a ReentrantLock.
      * Ensure thread safety with explicit lock/unlock.
      */

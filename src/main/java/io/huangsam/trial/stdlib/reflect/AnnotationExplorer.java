@@ -17,6 +17,12 @@ import java.util.Optional;
  * the definitions for the annotations it processes.
  */
 public class AnnotationExplorer {
+    /**
+     * Constructs an annotation explorer.
+     */
+    public AnnotationExplorer() {
+        // Default constructor
+    }
 
     /**
      * A marker annotation for tagging simple fields or methods.

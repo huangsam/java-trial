@@ -10,6 +10,12 @@ import com.google.gson.JsonParser;
  * a full POJO mapping is not required or possible.
  */
 public class JsonParserExplorer {
+    /**
+     * Constructs a JSON parser explorer.
+     */
+    public JsonParserExplorer() {
+        // Default constructor
+    }
 
     /**
      * Parses a JSON string and extracts a specific string value by key path.

@@ -9,6 +9,13 @@ import java.util.Optional;
 public class SearchExplorer {
 
     /**
+     * Constructs a search explorer.
+     */
+    public SearchExplorer() {
+        // Default constructor
+    }
+
+    /**
      * Finds the first string that starts with a specific prefix.
      *
      * @param strings the strings to search

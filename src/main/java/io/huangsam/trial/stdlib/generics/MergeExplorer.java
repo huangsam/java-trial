@@ -10,6 +10,12 @@ import java.util.function.Supplier;
  */
 public class MergeExplorer<T extends Comparable<T>> {
     /**
+     * Constructs a merge explorer.
+     */
+    public MergeExplorer() {
+        // Default constructor
+    }
+    /**
      * Merges two collections into a new collection created by the specified
      * factory.
      *

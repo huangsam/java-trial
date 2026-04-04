@@ -13,6 +13,11 @@ public class TrafficController {
 
     private final RateLimiter rateLimiter;
 
+    /**
+     * Constructs a traffic controller.
+     *
+     * @param permitsPerSecond the rate limit
+     */
     public TrafficController(double permitsPerSecond) {
         LOG.info("Initialized TrafficController with {} permits/sec", permitsPerSecond);
         this.rateLimiter = RateLimiter.create(permitsPerSecond);

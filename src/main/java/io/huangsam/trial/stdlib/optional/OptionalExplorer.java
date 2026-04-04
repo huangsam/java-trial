@@ -7,6 +7,12 @@ import java.util.Optional;
  * Demonstrates modern Java methods like ifPresentOrElse, or, and flatMap.
  */
 public class OptionalExplorer {
+    /**
+     * Constructs an optional explorer.
+     */
+    public OptionalExplorer() {
+        // Default constructor
+    }
 
     /**
      * Executes an action if the optional has a value, otherwise executes another action.

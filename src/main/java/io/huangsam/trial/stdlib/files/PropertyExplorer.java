@@ -8,6 +8,12 @@ import java.util.Properties;
  * Utility for loading and querying Java Properties files.
  */
 public class PropertyExplorer {
+    /**
+     * Constructs a property explorer.
+     */
+    public PropertyExplorer() {
+        // Default constructor
+    }
 
     /**
      * Loads a properties file from the classpath.

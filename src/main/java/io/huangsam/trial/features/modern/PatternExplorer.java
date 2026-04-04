@@ -4,6 +4,12 @@ package io.huangsam.trial.features.modern;
  * Demonstrates modern Java features: Switch Pattern Matching and Record Patterns.
  */
 public class PatternExplorer {
+    /**
+     * Constructs a pattern explorer.
+     */
+    public PatternExplorer() {
+        // Default constructor
+    }
 
     /**
      * A record representing a Credit Card payment.
