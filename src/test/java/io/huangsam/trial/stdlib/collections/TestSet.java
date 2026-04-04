@@ -50,4 +50,11 @@ public class TestSet {
 
         assertEquals(0, set.size());
     }
+
+    @Test
+    void testEmptySet() {
+        Set<Integer> emptySet = explorer.newHashSet();
+        assertTrue(emptySet.isEmpty());
+        assertEquals(0, emptySet.size());
+    }
 }

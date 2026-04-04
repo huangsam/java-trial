@@ -10,6 +10,8 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 /**
  * A {@code Map} is a data structure for setting keys and values. It can be
@@ -79,5 +81,12 @@ public class TestMap {
         assertEquals(12, mapping.get(3));
         assertEquals(30, mapping.get(5));
         assertEquals(56, mapping.get(7));
+    }
+
+    @Test
+    void testEmptyMap() {
+        Map<Integer, Integer> emptyMap = explorer.newTreeMap();
+        assertTrue(emptyMap.isEmpty());
+        assertEquals(0, emptyMap.size());
     }
 }

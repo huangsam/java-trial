@@ -3,6 +3,8 @@ package io.huangsam.trial.stdlib.math;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 class TestMathLib {
 
@@ -24,6 +26,7 @@ class TestMathLib {
     void testSquareRoot() {
         assertEquals(3.0, explorer.squareRoot(9.0));
         assertEquals(4.0, explorer.squareRoot(16.0));
+        assertEquals(Double.NaN, explorer.squareRoot(-1.0));
     }
 
     @Test
@@ -54,5 +57,12 @@ class TestMathLib {
     void testFloorToDouble() {
         assertEquals(4.0, explorer.floorToDouble(4.9));
         assertEquals(4.0, explorer.floorToDouble(4.0));
+    }
+
+    @Test
+    void testSpecialDoubleValues() {
+        assertEquals(Double.NaN, explorer.absolute(Double.NaN));
+        assertEquals(Double.POSITIVE_INFINITY, explorer.absolute(Double.NEGATIVE_INFINITY));
+        assertTrue(Double.isNaN(explorer.power(-1.0, 0.5)));
     }
 }

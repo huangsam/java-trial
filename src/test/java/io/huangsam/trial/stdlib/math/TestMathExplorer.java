@@ -53,4 +53,16 @@ public class TestMathExplorer {
         assertThrows(IllegalArgumentException.class, () -> explorer.validatePositive(0));
         assertThrows(IllegalArgumentException.class, () -> explorer.validatePositive(-5));
     }
+
+    @Test
+    void testAddOverflow() {
+        // Just checking basic arithmetic, not expecting overflow handling unless specified,
+        // but verifying the result is as per JVM rules.
+        assertEquals(Integer.MIN_VALUE, explorer.add(Integer.MAX_VALUE, 1));
+    }
+
+    @Test
+    void testSubtractUnderflow() {
+        assertEquals(Integer.MAX_VALUE, explorer.subtract(Integer.MIN_VALUE, 1));
+    }
 }

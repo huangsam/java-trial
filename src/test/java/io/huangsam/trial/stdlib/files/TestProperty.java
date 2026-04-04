@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 class TestProperty {
 
@@ -26,5 +28,10 @@ class TestProperty {
 
         assertEquals("localhost", explorer.getProperty(props, "db.host", "127.0.0.1"));
         assertEquals("3306", explorer.getProperty(props, "db.mysql.port", "3306"));
+    }
+
+    @Test
+    void testLoadPropertiesFromResourcesException() {
+        assertThrows(IllegalArgumentException.class, () -> explorer.loadFromResources("non_existent.properties"));
     }
 }

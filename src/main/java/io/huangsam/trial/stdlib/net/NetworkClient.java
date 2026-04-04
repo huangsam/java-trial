@@ -14,8 +14,14 @@ import java.util.concurrent.CompletableFuture;
 public class NetworkClient {
 
     private final HttpClient client;
+    private final Duration requestTimeout;
 
     public NetworkClient() {
+        this(Duration.ofSeconds(5));
+    }
+
+    public NetworkClient(Duration requestTimeout) {
+        this.requestTimeout = requestTimeout;
         this.client = HttpClient.newBuilder()
                 .connectTimeout(Duration.ofSeconds(5))
                 .followRedirects(HttpClient.Redirect.NORMAL)
@@ -31,6 +37,7 @@ public class NetworkClient {
     public CompletableFuture<String> getAsync(String url) {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
+                .timeout(requestTimeout)
                 .GET()
                 .build();
 
@@ -49,6 +56,7 @@ public class NetworkClient {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .header("Content-Type", "application/json")
+                .timeout(requestTimeout)
                 .POST(HttpRequest.BodyPublishers.ofString(body))
                 .build();
 

@@ -65,4 +65,18 @@ public class TestList {
         assertTrue(list.containsAll(Arrays.asList(1, 2, 3, 5, 8)));
         assertFalse(list.containsAll(Arrays.asList(1, 9, 10)));
     }
+
+    @Test
+    void testEmptyList() {
+        List<Integer> emptyList = explorer.newArrayList();
+        assertTrue(emptyList.isEmpty());
+        assertEquals(0, emptyList.size());
+    }
+
+    @Test
+    void testAddAllEmpty() {
+        List<Integer> newList = explorer.newArrayList();
+        explorer.addAll(newList);
+        assertTrue(newList.isEmpty());
+    }
 }

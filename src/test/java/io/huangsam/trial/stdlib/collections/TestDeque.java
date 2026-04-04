@@ -59,4 +59,11 @@ public class TestDeque {
         assertEquals(1, deque.removeLast());
         assertThrows(NoSuchElementException.class, deque::pop);
     }
+
+    @Test
+    void testEmptyDeque() {
+        Deque<Integer> emptyDeque = explorer.newLinkedListDeque();
+        assertTrue(emptyDeque.isEmpty());
+        assertEquals(0, emptyDeque.size());
+    }
 }
