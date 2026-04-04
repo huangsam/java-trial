@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static io.huangsam.trial.stdlib.reflect.AnnotationExplorer.SimpleStuff;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -27,10 +28,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class TestReflection {
     private static ReflectionExplorer explorer;
+    private static AnnotationExplorer annotationExplorer;
 
     @BeforeEach
     void setupExplorer() {
         explorer = new ReflectionExplorer(new MysteryCar());
+        annotationExplorer = new AnnotationExplorer();
     }
 
     @Test
@@ -59,8 +62,9 @@ public class TestReflection {
         assertNotNull(milesField);
 
         // https://www.youtube.com/watch?v=DkZr7_c9ry8
-        assertTrue(wheelsField.isAnnotationPresent(SimpleStuff.class));
-        assertFalse(milesField.isAnnotationPresent(SimpleStuff.class));
+        // Using the consolidated AnnotationExplorer
+        assertTrue(annotationExplorer.hasFieldAnnotation(MysteryCar.class, "wheels", SimpleStuff.class));
+        assertFalse(annotationExplorer.hasFieldAnnotation(MysteryCar.class, "miles", SimpleStuff.class));
     }
 
     @Test

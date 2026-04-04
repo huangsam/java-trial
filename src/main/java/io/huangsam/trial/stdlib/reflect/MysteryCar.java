@@ -1,7 +1,7 @@
 package io.huangsam.trial.stdlib.reflect;
 
 public class MysteryCar {
-    @SimpleStuff
+    @AnnotationExplorer.SimpleStuff
     private final int wheels;
 
     private final int miles;
