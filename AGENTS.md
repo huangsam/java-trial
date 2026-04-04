@@ -2,10 +2,10 @@
 
 ## Architecture
 
-- `io.huangsam.trial.stdlib`: Core utilities & Foundational JDK APIs (Time, Math, Collections).
-- `io.huangsam.trial.features.modern`: Stable Java 17/21+ language features (Records, Patterns).
-- `io.huangsam.trial.libs`: 3rd party trials (Gson, Guava). Use `libs.gson` for JSON.
-- `io.huangsam.trial.concurrent`: Multithreading & Virtual Threads.
+- `io.huangsam.trial.stdlib`: Core Java APIs and utilities (collections, streams, I/O, reflection, time, generics, networking, functional patterns, error handling).
+- `io.huangsam.trial.features.modern`: Stable Java 17/21+ language features (Records, Sealed Classes, Pattern Matching, Sequenced Collections, Virtual Threads).
+- `io.huangsam.trial.libs`: 3rd party libraries (Gson, Guava, Mockito). Use `libs.gson` for JSON.
+- `io.huangsam.trial.concurrent`: Multithreading, synchronization primitives, and Virtual Threads.
 - `io.huangsam.trial.model`: Shared POJOs/Records.
 
 ## Patterns

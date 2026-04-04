@@ -22,10 +22,10 @@ Here are the commands you need to know:
 
 This repository is structured into thematic packages to evaluate different aspects of the Java ecosystem:
 
-- `stdlib`: Foundational JDK utilities (Time, Math, Collections).
-- `features.modern`: In-depth exploration of stable Java LTS features (Records, Patterns).
-- `libs`: Assessment of 3rd party libraries (Gson, Guava).
-- `concurrent`: Focused trials for Multithreading and Virtual Threads.
+- `stdlib`: Comprehensive exploration of core Java APIs (collections, streams, I/O, reflection, time, etc).
+- `features.modern`: In-depth exploration of stable Java LTS features (Records, Sealed Classes, etc).
+- `libs`: Assessment of 3rd party libraries (Gson, Guava, Mockito).
+- `concurrent`: Focused trials for multithreading, synchronization primitives, and Virtual Threads.
 - `model`: Shared data structures (POJOs, Records) used across the project.
 
 For detailed technical standards and naming conventions, refer to the [Agent Guide](AGENTS.md).
