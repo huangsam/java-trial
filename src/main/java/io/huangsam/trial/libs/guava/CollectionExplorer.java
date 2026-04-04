@@ -36,7 +36,7 @@ public class CollectionExplorer {
      * Gets interests for a specific user.
      *
      * @param map the multimap of interests
-     * @param user the user name
+     * @param user the username
      * @return the collection of interests
      */
     public Collection<String> getInterests(Multimap<String, String> map, String user) {
@@ -60,11 +60,11 @@ public class CollectionExplorer {
     }
 
     /**
-     * Gets a user name by ID.
+     * Gets a username by ID.
      *
      * @param map the BIMAP of IDs to names
      * @param id the user ID
-     * @return the user name
+     * @return the username
      */
     public String getUserName(BiMap<Integer, String> map, Integer id) {
         LOG.debug("Getting user name for ID: {}", id);
@@ -75,7 +75,7 @@ public class CollectionExplorer {
      * Gets a user ID by name.
      *
      * @param map the BIMAP of IDs to names
-     * @param name the user name
+     * @param name the username
      * @return the user ID
      */
     public Integer getUserId(BiMap<Integer, String> map, String name) {
