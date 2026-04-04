@@ -6,11 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
- * Getting a grasp of the JUnit suite from a Java perspective.
- * Trying out the {@code @Test} annotation and static assert
- * methods. The most common one is {@code assertEquals}.
+ * Tests for {@link MathExplorer}.
+ * Covers basic operations and defensive error handling.
  */
-public class TestMath {
+public class TestMathExplorer {
     private final MathExplorer explorer = new MathExplorer();
 
     @Test
@@ -41,5 +40,17 @@ public class TestMath {
     @Test
     void testDivideByZero() {
         assertThrows(ArithmeticException.class, () -> explorer.divide(10, 0));
+    }
+
+    @Test
+    void testModulusByZero() {
+        assertThrows(ArithmeticException.class, () -> explorer.modulus(10, 0));
+    }
+
+    @Test
+    void testValidatePositive() {
+        explorer.validatePositive(10);
+        assertThrows(IllegalArgumentException.class, () -> explorer.validatePositive(0));
+        assertThrows(IllegalArgumentException.class, () -> explorer.validatePositive(-5));
     }
 }
