@@ -8,9 +8,9 @@ public class TestFluent {
 
     @Test
     void testFluentBuilder() {
-        // Since StudentBuilder correctly typed itself as StudentBuilder instead of PersonBuilder,
-        // we can chain the inherited 'withName()' straight into the specific 'withMajor()'
-        // and return the target Student record directly.
+        // Since StudentBuilder correctly typed itself as StudentBuilder instead of
+        // PersonBuilder, we can chain the inherited 'withName()' straight into the
+        // specific 'withMajor()', and return the target Student record directly.
         FluentExplorer.Student student = new FluentExplorer.StudentBuilder()
                 .withName("Alice")
                 .withAge(22)

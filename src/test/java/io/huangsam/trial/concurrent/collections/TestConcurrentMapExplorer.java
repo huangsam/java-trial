@@ -38,4 +38,11 @@ public class TestConcurrentMapExplorer {
         explorer.clear();
         assertEquals(0, explorer.size());
     }
+
+    @Test
+    void testGetValue() {
+        assertNull(explorer.getValue("nonexistent"));
+        explorer.putIfAbsent("key1", 50);
+        assertEquals(50, explorer.getValue("key1"));
+    }
 }

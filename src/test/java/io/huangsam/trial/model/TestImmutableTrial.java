@@ -30,6 +30,12 @@ public class TestImmutableTrial {
     }
 
     @Test
+    public void testGetTitle() {
+        ImmutableTrial trial = new ImmutableTrial("My Title", List.of(), new Date());
+        assertEquals("My Title", trial.getTitle(), "Title should match the one passed in constructor");
+    }
+
+    @Test
     public void testDefensiveCopyInGetter() {
         ImmutableTrial trial = new ImmutableTrial("Title", List.of("tag1"), new Date());
 
@@ -45,6 +51,6 @@ public class TestImmutableTrial {
         List<String> tags = trial.getTags();
 
         assertThrows(UnsupportedOperationException.class, () -> tags.add("newTag"),
-            "Modifying the list returned by getTags() should throw an exception");
+                "Modifying the list returned by getTags() should throw an exception");
     }
 }

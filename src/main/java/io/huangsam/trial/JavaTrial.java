@@ -29,7 +29,7 @@ public class JavaTrial {
 
         LOG.info(config.getProperty("banner.enter"));
 
-        NetworkClient network = new NetworkClient();
+        NetworkClient network = new NetworkClient(java.time.Duration.ofSeconds(5));
         network.getAsync("https://www.google.com")
                 .thenAccept(body -> LOG.info("Network check (Google): {} bytes received", body.length()))
                 .exceptionally(e -> {

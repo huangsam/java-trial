@@ -16,10 +16,6 @@ public class NetworkClient {
     private final HttpClient client;
     private final Duration requestTimeout;
 
-    public NetworkClient() {
-        this(Duration.ofSeconds(5));
-    }
-
     public NetworkClient(Duration requestTimeout) {
         this.requestTimeout = requestTimeout;
         this.client = HttpClient.newBuilder()

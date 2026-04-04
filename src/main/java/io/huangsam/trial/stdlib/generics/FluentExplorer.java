@@ -1,14 +1,18 @@
 package io.huangsam.trial.stdlib.generics;
 
 /**
- * Demonstrates the Fluent Builder pattern using recursive generics (Self-Types).
- * This pattern ensures that subclasses return their own type for builder methods
- * defined in a parent class, enabling smooth method chaining across an inheritance hierarchy.
+ * Demonstrates the Fluent Builder pattern using recursive generics
+ * (Self-Types).
+ * This pattern ensures that subclasses return their own type for builder
+ * methods
+ * defined in a parent class, enabling smooth method chaining across an
+ * inheritance hierarchy.
  */
 public class FluentExplorer {
 
     /**
-     * The base builder uses a recursive generic {@code <B extends PersonBuilder<B>>}.
+     * The base builder uses a recursive generic
+     * {@code <B extends PersonBuilder<B>>}.
      * This forces implementations to return their specific builder type.
      */
     public abstract static class PersonBuilder<B extends PersonBuilder<B>> {
@@ -79,7 +83,8 @@ public class FluentExplorer {
 
     /**
      * The target model class to be built.
-     * Record type is a modern Java feature introduced in Java 14 (preview) / 16 (standard).
+     * Record type is a modern Java feature introduced in Java 14 (preview) / 16
+     * (standard).
      */
     public record Student(String name, int age, String major) {
     }

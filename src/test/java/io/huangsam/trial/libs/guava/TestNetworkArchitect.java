@@ -33,4 +33,22 @@ public class TestNetworkArchitect {
         assertEquals(1, libCDependents.size());
         assertTrue(libCDependents.contains("LibA"));
     }
+
+    @Test
+    void testHasDependencyPath() {
+        NetworkArchitect architect = new NetworkArchitect();
+        architect.addDependency("App", "LibA");
+        
+        assertTrue(architect.hasDependencyPath("App", "LibA"));
+        org.junit.jupiter.api.Assertions.assertFalse(architect.hasDependencyPath("LibA", "App"));
+    }
+
+    @Test
+    void testGetGraph() {
+        NetworkArchitect architect = new NetworkArchitect();
+        architect.addDependency("A", "B");
+        
+        com.google.common.graph.MutableGraph<String> graph = architect.getGraph();
+        assertTrue(graph.hasEdgeConnecting("A", "B"));
+    }
 }
