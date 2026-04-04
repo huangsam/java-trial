@@ -32,14 +32,14 @@ public class LanguageExplorer {
         double area();
     }
 
-    public static final record Circle(double radius) implements Shape {
+    public record Circle(double radius) implements Shape {
         @Override
         public double area() {
             return Math.PI * radius * radius;
         }
     }
 
-    public static final record Square(double side) implements Shape {
+    public record Square(double side) implements Shape {
         @Override
         public double area() {
             return side * side;

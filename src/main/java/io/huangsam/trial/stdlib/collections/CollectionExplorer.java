@@ -1,6 +1,7 @@
 package io.huangsam.trial.stdlib.collections;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -28,8 +29,6 @@ public class CollectionExplorer {
 
     @SafeVarargs
     public final <T> void addAll(java.util.Collection<T> collection, T... elements) {
-        for (T element : elements) {
-            collection.add(element);
-        }
+        collection.addAll(Arrays.asList(elements));
     }
 }
